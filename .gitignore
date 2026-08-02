@@ -1,0 +1,10 @@
+# Estado local de Netlify CLI (no debe compartirse)
+.netlify/
+
+# Basura del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dependencias / builds (por si acaso a futuro)
+node_modules/
