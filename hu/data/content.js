@@ -13,7 +13,7 @@ window.KAISER = {
     nombre: "Pastelería Kaiser",
     sucursal: "Sucursal Huechuraba",
     lema: "Sabor casero desde 2005",
-    direccion: "Quilapán 6898, Huechuraba",
+    direccion: "Av. Pedro Fontova 6898, Huechuraba",
     ciudad: "Huechuraba, Región Metropolitana",
     email: "Dkaiserhuechuraba@gmail.com",
     whatsapp: "56976235401",
@@ -25,7 +25,7 @@ window.KAISER = {
     rating: "4,8",
     reviewCount: "135",
     reviewsUrl: "https://www.google.com/search?sca_esv=cd31abf341a22df9&sxsrf=APpeQns7YAm6DEPTJYEzc_NM633pQ5Y61A:1785196180034&q=pasteleria+kaiser&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_wdkNF8y89wzLX-v0qH_EOEAtv3DrnQybJz0XowiMQ_Cf1dBpIUNPHIm-lp4B8FQv0wbZqfftXoxefT03UmPpBQ56DeH43YWmmMO4UHg88C2cX5-KA%3D%3D&sa=X&ved=2ahUKEwje66iBhvSVAxUCmZUCHRE6Nx8QrrQLegQIHhAA&biw=1517&bih=703&dpr=0.9&hl=es",
-    mapsQuery: "Quilapán 6898, Huechuraba",
+    mapsQuery: "Av. Pedro Fontova 6898, Huechuraba",
   },
 
   /* ---- Horario real (catálogo de WhatsApp, 2026-07-27) ----
@@ -338,8 +338,8 @@ window.KAISER = {
   /* ---- Reseñas destacadas (reales, de Google — traducidas al español) ----
      Mismas 3 en las 3 sucursales: Google no diferencia el listado por sucursal. */
   resenas: [
-    { nombre: "Antonia Paz", estrellas: 5, texto: "Las mejores tortas que he probado. Siempre están frescas y tienen mucha variedad. Suele estar muy lleno y hay que esperar para comprar, sobre todo los fines de semana, pero vale la pena. También venden tortas y pasteles por trozo, así que puedes probar sus creaciones. Las recomiendo totalmente." },
-    { nombre: "Linsay Reyes", estrellas: 5, texto: "Todo estaba muy fresco y delicioso. Compramos trozos sueltos de torta: kuchen de nuez, pie de maracuyá, pie de limón y otras piezas deliciosas." },
-    { nombre: "Katherine Atenas", estrellas: 5, texto: "Las mejores tortas del sector norte de Santiago. He probado casi todos los sabores de esta pastelería y todos son increíbles 💜" },
+    { nombre: "Sofia García", estrellas: 5, texto: "Muy ricas tortas! Si van a comprar uff no se arrepentirán 10/10." },
+    { nombre: "Katherine Atenas", estrellas: 5, texto: "Las mejores tortas del sector norte de Santiago. He probado casi todo los sabores de torta de esta pastelería y todas son maravillosas 💜" },
+    { nombre: "Valeska Vargas", estrellas: 5, texto: "Las mejores tortas que e probado son esquisitas" },
   ],
 };

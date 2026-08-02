@@ -405,3 +405,16 @@ section { padding: clamp(3.4rem, 7vw, 6rem) 0; }
   * { animation: none !important; scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* Aviso de regla de centena en el carrito */
+.cart-warn{
+  margin:0 0 .75rem;
+  padding:.7rem .85rem;
+  border-radius:.6rem;
+  background:#fff4e5;
+  border:1px solid #f0c48a;
+  color:#7a4a10;
+  font-size:.85rem;
+  line-height:1.45;
+}
+.cart-send:disabled{ opacity:.5; cursor:not-allowed; }

@@ -19,8 +19,8 @@ window.KAISER = {
     tiktok: "pasteleriakaiserph",
     facebook: "Kaiserpadrehurtado",
     web: "www.pasteleriakaiser.cl",
-    rating: "4,8",
-    reviewCount: "135",
+    rating: "4,4",
+    reviewCount: "36",
     reviewsUrl: "https://www.google.com/search?sca_esv=cd31abf341a22df9&sxsrf=APpeQns7YAm6DEPTJYEzc_NM633pQ5Y61A:1785196180034&q=pasteleria+kaiser&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_wdkNF8y89wzLX-v0qH_EOEAtv3DrnQybJz0XowiMQ_Cf1dBpIUNPHIm-lp4B8FQv0wbZqfftXoxefT03UmPpBQ56DeH43YWmmMO4UHg88C2cX5-KA%3D%3D&sa=X&ved=2ahUKEwje66iBhvSVAxUCmZUCHRE6Nx8QrrQLegQIHhAA&biw=1517&bih=703&dpr=0.9&hl=es",
     mapsQuery: "Pastelería Kaiser Rodolfo Jaramillo 2660 Padre Hurtado",
   },
@@ -46,7 +46,7 @@ window.KAISER = {
 
   /* ---- Franja de confianza (stats reales) ---- */
   stats: [
-    { n: "4,8★", t: "135 reseñas en Google" },
+    { n: "4,4★", t: "36 reseñas en Google" },
     { n: "2005", t: "Sabor casero desde" },
     { n: "50+", t: "Tortas, kuchen y cóctel" },
     { n: "100%", t: "Hecho en casa" },
@@ -277,8 +277,8 @@ window.KAISER = {
   /* ---- Reseñas destacadas (reales, de Google — traducidas al español) ----
      Mismas 3 en las 3 sucursales: Google no diferencia el listado por sucursal. */
   resenas: [
-    { nombre: "Antonia Paz", estrellas: 5, texto: "Las mejores tortas que he probado. Siempre están frescas y tienen mucha variedad. Suele estar muy lleno y hay que esperar para comprar, sobre todo los fines de semana, pero vale la pena. También venden tortas y pasteles por trozo, así que puedes probar sus creaciones. Las recomiendo totalmente." },
-    { nombre: "Linsay Reyes", estrellas: 5, texto: "Todo estaba muy fresco y delicioso. Compramos trozos sueltos de torta: kuchen de nuez, pie de maracuyá, pie de limón y otras piezas deliciosas." },
-    { nombre: "Katherine Atenas", estrellas: 5, texto: "Las mejores tortas del sector norte de Santiago. He probado casi todos los sabores de esta pastelería y todos son increíbles 💜" },
+    { nombre: "Mauricio Toledo", estrellas: 5, texto: "Probamos la torta mil hojas manjar tradicional, estaba muy buena, fresca, porción grande, buen precio, atención amable, gran variedad de sabores." },
+    { nombre: "Limel Alvarez", estrellas: 5, texto: "Muy buena atencion, se pueden hacer reservas, la calidad de sus productos es la mejor 100% recomendados" },
+    { nombre: "Luis Martinez Rios", estrellas: 5, texto: "Muy buenos a buen precio" },
   ],
 };

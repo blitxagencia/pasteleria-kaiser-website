@@ -38,33 +38,54 @@
   function parseCLP(s) { return parseInt(String(s).replace(/[^\d]/g, ""), 10) || 0; }
 
   // Deriva las opciones de precio de un ítem (tamaños de torta, chico/grande, o pack de 100 u)
-  function buildOpts(it, scaleName) {
+  // Lee el minimo del grupo desde su propia nota ("Pedido minimo 50 unidades.")
+  function minUnits(nota) {
+    var m = /m[i\u00ed]nimo\s*(\d+)\s*unidad/i.exec(nota || "");
+    return m ? parseInt(m[1], 10) : 0;
+  }
+  // La nota autoriza repartir la centena entre dos variedades?
+  function allowsMix(nota) {
+    return /50\s*de\s*una/i.test(nota || "");
+  }
+
+  function buildOpts(it, scaleName, nota) {
     if (scaleName) {
       var sc = scaleObj(scaleName);
-      return Object.keys(sc).map(function (k) { return { label: k + " personas", price: sc[k] }; });
+      return Object.keys(sc).map(function (k) { return { label: k + " personas", price: sc[k], units: 0 }; });
     }
     if (it.precioFijo) {
       var ms = it.precioFijo.match(/\$[\d.]+/g) || [];
       var per100 = /100\s*u/i.test(it.precioFijo);
       if (ms.length >= 2) {
-        return [{ label: "Chico (6 a 8 pers.)", price: parseCLP(ms[0]) },
-                { label: "Grande (10 a 12 pers.)", price: parseCLP(ms[1]) }];
+        return [{ label: "Chico (6 a 8 pers.)", price: parseCLP(ms[0]), units: 0 },
+                { label: "Grande (10 a 12 pers.)", price: parseCLP(ms[1]), units: 0 }];
       }
-      if (ms.length === 1) return [{ label: per100 ? "100 unidades" : "", price: parseCLP(ms[0]) }];
+      if (ms.length === 1) {
+        var full = parseCLP(ms[0]);
+        if (!per100) return [{ label: "", price: full, units: 0 }];
+        // El precio de 50 u es la mitad exacta (confirmado por Nicolas, 31 jul 2026).
+        var opts = [];
+        if (minUnits(nota) === 50 || allowsMix(nota)) {
+          opts.push({ label: "50 unidades", price: Math.round(full / 2), units: 50 });
+        }
+        opts.push({ label: "100 unidades", price: full, units: 100 });
+        return opts;
+      }
     }
-    return [{ label: "", price: 0 }];
+    return [{ label: "", price: 0, units: 0 }];
   }
 
   function defaultSel(opts, scaleName) {
     if (scaleName) { var i = opts.map(function (o) { return o.label; }).indexOf("15 personas"); return i < 0 ? 0 : i; }
-    return 0;
+    var j = opts.map(function (o) { return o.units; }).indexOf(100);
+    return j < 0 ? 0 : j;
   }
 
   // Registra un ítem en el catálogo y devuelve su índice
-  function registerItem(it, grupoNombre, scaleName) {
-    var opts = buildOpts(it, scaleName);
+  function registerItem(it, grupoNombre, scaleName, nota) {
+    var opts = buildOpts(it, scaleName, nota);
     if (!opts[0] || !opts[0].price) return -1; // sin precio parseable, no se puede agregar
-    return ITEMS.push({ n: it.n, cat: grupoNombre, opts: opts, sel: defaultSel(opts, scaleName) }) - 1;
+    return ITEMS.push({ n: it.n, cat: grupoNombre, opts: opts, sel: defaultSel(opts, scaleName), mix: allowsMix(nota) }) - 1;
   }
 
   /* ---------- Enlaces (WhatsApp, redes) ---------- */
@@ -117,8 +138,8 @@
   }
 
   /* ---------- Carta ---------- */
-  function renderItem(it, grupoNombre, scaleName) {
-    var idx = registerItem(it, grupoNombre, scaleName);
+  function renderItem(it, grupoNombre, scaleName, nota) {
+    var idx = registerItem(it, grupoNombre, scaleName, nota);
     var price = it.precioFijo ? '<span class="i-price">' + it.precioFijo + "</span>" : "";
     var tope = it.tope ? '<span class="i-tope">hasta ' + it.tope + " pers.</span>" : "";
     var media = it.img ? '<div class="i-thumb"><img src="' + it.img + '" alt="' + it.n + '" loading="lazy" /></div>' : "";
@@ -133,7 +154,7 @@
     var precio = "";
     if (gr.precio) { var o = scaleObj(gr.precio); if (o) precio = '<span class="g-precio">' + scaleRange(o) + "</span>"; }
     var nota = gr.nota ? '<p class="grupo-nota">' + gr.nota + "</p>" : "";
-    var items = gr.items.map(function (it) { return renderItem(it, gr.nombre, gr.precio); }).join("");
+    var items = gr.items.map(function (it) { return renderItem(it, gr.nombre, gr.precio, gr.nota); }).join("");
     return '<div class="grupo"><div class="grupo-head"><h3>' + gr.nombre + "</h3>" + precio + "</div>" +
       nota + '<div class="items-grid">' + items + "</div></div>";
   }
@@ -186,7 +207,7 @@
 
   /* ---------- Carrito / Pedido ---------- */
   var CART = [];
-  var LS_KEY = "kaiserCartPH";
+  var LS_KEY = "kaiserCartPH2";
 
   function cartLoad() { try { CART = JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch (e) { CART = []; } }
   function cartSave() { try { localStorage.setItem(LS_KEY, JSON.stringify(CART)); } catch (e) {} }
@@ -199,7 +220,7 @@
     var found = null;
     for (var i = 0; i < CART.length; i++) { if (CART[i].n === it.n && CART[i].cat === it.cat) { found = CART[i]; break; } }
     if (found) found.qty++;
-    else CART.push({ n: it.n, cat: it.cat, opts: it.opts, sel: it.sel, qty: 1 });
+    else CART.push({ n: it.n, cat: it.cat, opts: it.opts, sel: it.sel, qty: 1, mix: it.mix });
     cartSave(); cartRender();
   }
 
@@ -234,14 +255,44 @@
           "</div></div>";
       }).join("");
     }
+    var errs = centenaErrors();
+    var warn = document.getElementById("cartWarn");
+    if (warn) {
+      if (errs.length) {
+        warn.innerHTML = errs.map(function (x) {
+          return "En <b>" + x.cat + "</b> llevas <b>" + x.units + " unidades</b>. El pedido va de 100 en 100: " +
+                 "puedes elegir 50 de una variedad y 50 de otra, pero el total tiene que ser 100, 200, 300\u2026";
+        }).join("<br>");
+        warn.style.display = "";
+      } else {
+        warn.style.display = "none";
+      }
+    }
+    if (send) send.disabled = !CART.length || errs.length > 0;
     var tot = document.getElementById("cartTotal");
     if (tot) tot.textContent = clp(cartTotal());
   }
 
+
+  // Grupos que permiten 50+50 deben totalizar multiplos de 100
+  function centenaErrors() {
+    var per = {};
+    CART.forEach(function (e) {
+      if (!e.mix) return;
+      var u = (e.opts[e.sel] && e.opts[e.sel].units) || 0;
+      per[e.cat] = (per[e.cat] || 0) + u * e.qty;
+    });
+    return Object.keys(per)
+      .filter(function (c) { return per[c] % 100 !== 0; })
+      .map(function (c) { return { cat: c, units: per[c] }; });
+  }
+
   function cartToWhatsApp() {
     if (!CART.length) return;
+    if (centenaErrors().length) { cartOpen(true); return; }
     var lines = CART.map(function (e) {
       var o = e.opts[e.sel];
+      if (o.units) return "• " + (o.units * e.qty) + " unidades de " + e.n + " · " + clp(o.price * e.qty);
       return "• " + e.qty + "x " + e.n + (o.label ? " (" + o.label + ")" : "") + " · " + clp(o.price) + " c/u";
     });
     var msg = "¡Hola Pastelería Kaiser! Me gustaría encargar:\n\n" + lines.join("\n") +
