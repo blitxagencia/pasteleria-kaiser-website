@@ -21,7 +21,7 @@ window.KAISER = {
     web: "www.pasteleriakaiser.cl",
     rating: "4,4",
     reviewCount: "36",
-    reviewsUrl: "https://www.google.com/search?sca_esv=cd31abf341a22df9&sxsrf=APpeQns7YAm6DEPTJYEzc_NM633pQ5Y61A:1785196180034&q=pasteleria+kaiser&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_wdkNF8y89wzLX-v0qH_EOEAtv3DrnQybJz0XowiMQ_Cf1dBpIUNPHIm-lp4B8FQv0wbZqfftXoxefT03UmPpBQ56DeH43YWmmMO4UHg88C2cX5-KA%3D%3D&sa=X&ved=2ahUKEwje66iBhvSVAxUCmZUCHRE6Nx8QrrQLegQIHhAA&biw=1517&bih=703&dpr=0.9&hl=es",
+    reviewsUrl: "https://maps.app.goo.gl/NNs1rtoqQhLN462cA",
     mapsQuery: "Pastelería Kaiser Rodolfo Jaramillo 2660 Padre Hurtado",
   },
 
