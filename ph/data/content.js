@@ -25,22 +25,29 @@ window.KAISER = {
     mapsQuery: "Pastelería Kaiser Rodolfo Jaramillo 2660 Padre Hurtado",
   },
 
-  /* ---- Horario · PLACEHOLDER, confirmar en la reunión ----
-     Formato 24h. day: 0=domingo .. 6=sábado. Cerrado = null. */
+  /* ---- Horario · REAL ----
+     Fuente: perfil de WhatsApp Business de la propia sucursal,
+     verificado el 2026-08-03. Formato 24h. day: 0=domingo .. 6=sábado.
+     Cerrado = null.
+
+     ⚠️ Acá vivía un horario INVENTADO (lun a sáb 09:30-20:00, dom
+     10:00-15:00) marcado con `placeholder: true`, y estuvo publicado.
+     Decía que abrían los lunes, que es justo el día que cierran. */
   horario: {
-    placeholder: true, // TODO: reemplazar con el horario real de la sucursal
+    placeholder: false,
     dias: {
-      1: { abre: "09:30", cierra: "20:00" }, // Lun
-      2: { abre: "09:30", cierra: "20:00" }, // Mar
-      3: { abre: "09:30", cierra: "20:00" }, // Mié
-      4: { abre: "09:30", cierra: "20:00" }, // Jue
-      5: { abre: "09:30", cierra: "20:00" }, // Vie
-      6: { abre: "09:30", cierra: "20:00" }, // Sáb
-      0: { abre: "10:00", cierra: "15:00" }, // Dom
+      1: null,                               // Lun: CERRADO
+      2: { abre: "11:45", cierra: "20:00" }, // Mar
+      3: { abre: "11:45", cierra: "20:00" }, // Mié
+      4: { abre: "11:45", cierra: "20:00" }, // Jue
+      5: { abre: "11:45", cierra: "20:00" }, // Vie
+      6: { abre: "11:45", cierra: "20:00" }, // Sáb
+      0: { abre: "11:45", cierra: "19:30" }, // Dom
     },
     resumen: [
-      { etiqueta: "Lunes a sábado", valor: "09:30 – 20:00" },
-      { etiqueta: "Domingo", valor: "10:00 – 15:00" },
+      { etiqueta: "Lunes", valor: "Cerrado" },
+      { etiqueta: "Martes a sábado", valor: "11:45 – 20:00" },
+      { etiqueta: "Domingo", valor: "11:45 – 19:30" },
     ],
   },
 
