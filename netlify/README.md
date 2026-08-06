@@ -1,6 +1,30 @@
 # El bot de WhatsApp · etapa 1
 
-**Estado: escrito y probado en local. Todavía NO está conectado a Meta ni desplegado.**
+**Estado (2026-08-05): desplegado en la rama de pruebas, todavía NO en producción.**
+
+## Dónde vive esto
+
+| | Rama | URL | Qué tiene |
+|---|---|---|---|
+| Producción | `main` | https://pasteleriakaiser.cl | El sitio de los clientes. **Sin bot.** |
+| Pruebas | `bot-pruebas` | https://bot-pruebas--pasteleria-kaiser.netlify.app | El sitio **+ el bot** |
+
+La rama de pruebas existe por una razón concreta: el commit del bot está encima del commit del
+FAQ de Padre Hurtado, y el FAQ no se publica hasta que Kaiser mande las fotos. Como en git los
+commits son una cadena, subir el bot a `main` arrastraría el FAQ. La rama corta esa cadena.
+
+Cuando lleguen las fotos, `main` se publica con todo junto y esta rama se borra.
+
+### Endpoint del webhook (el que se pega en Meta)
+
+```
+https://bot-pruebas--pasteleria-kaiser.netlify.app/.netlify/functions/whatsapp
+```
+
+Durante las pruebas, `WA_PHONE_ID_PH` apunta al **número de prueba de Meta**
+(`1175099102364099`, el +1 555 653-7667). O sea: el bot contesta como Padre Hurtado, con su
+dirección y su horario reales, sin necesidad del número definitivo. Cuando llegue el número de
+verdad se cambia esa variable y nada más.
 
 ## Probarlo sin Meta, sin cuenta y sin internet
 
@@ -48,9 +72,19 @@ manda en cada webhook, así que no hay tres copias del mismo código esperando d
 - [ ] **El handoff.** Con el camino C (número propio del bot) el encargado **no ve** esta
       conversación en su celular. Hoy el escalamiento solo queda en el log. Hay que decidir cómo
       avisarle: **email = $0**, WhatsApp fuera de ventana se paga
-- [ ] **El horario real de Padre Hurtado.** Mientras siga en placeholder, el bot no lo responde
+- [x] ~~El horario real de Padre Hurtado~~ — confirmado y publicado el 2026-08-05 (commit
+      `558defd`). El bot ya lo responde
 - [ ] Variables de entorno en Netlify (ver cabecera de `functions/whatsapp.mjs`)
 - [ ] Etapa 2: la IA para los tipo C, reusando `@anthropic-ai/sdk` con `claude-haiku-4-5`
+
+## Trampa de Netlify que ya nos mordió
+
+`lib/datos.mjs` **lee** los `content.js` en tiempo de ejecución, no los importa. Netlify empaqueta
+las funciones siguiendo los `import`, así que no tiene forma de saber que esos archivos hacen
+falta y **no los sube**. Local funciona perfecto; producción muere con ENOENT.
+
+Por eso `netlify.toml` los declara a mano en `included_files`. **Si algún día se agrega una
+sucursal, su `content.js` va en esa lista o el bot se cae solo para esa sucursal.**
 
 ## Si cambia el sitio, ojo con esto
 
