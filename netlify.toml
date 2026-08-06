@@ -1,2 +1,28 @@
 [build]
   publish = "."
+
+# ---------------------------------------------------------------
+# Funciones (el bot de WhatsApp)
+#
+# `included_files` es OBLIGATORIO acá y es fácil de olvidar.
+#
+# Netlify empaqueta cada función leyendo sus `import`. Solo mete al
+# paquete lo que puede ver escrito en el código. Pero netlify/lib/
+# datos.mjs no importa los content.js: los LEE en tiempo de
+# ejecución, con una ruta que se arma sobre la marcha. El empaquetador
+# no puede adivinar eso, así que sin esta lista los content.js
+# sencillamente no viajan y la función revienta con ENOENT.
+#
+# Traducción: el bot funciona perfecto en tu computador y falla en
+# producción. Este es el tipo de bug que se persigue durante horas en
+# el lugar equivocado.
+#
+# Si algún día se agrega una sucursal, su content.js va acá también.
+# ---------------------------------------------------------------
+[functions]
+  node_bundler = "esbuild"
+  included_files = [
+    "ph/data/content.js",
+    "pe/data/content.js",
+    "hu/data/content.js",
+  ]

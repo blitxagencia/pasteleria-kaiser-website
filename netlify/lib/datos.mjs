@@ -11,17 +11,56 @@
    y ese error se paga con el cliente enojado en el mostrador.
    ============================================================= */
 
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const RAIZ = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+/* ---------- Dónde está la raíz del sitio, en tiempo de ejecución ----------
+
+   En tu computador esto era una línea: subir dos carpetas desde este
+   archivo. En Netlify no sirve, por dos razones:
+
+   1. Netlify empaqueta las funciones. El bundler junta todo en un
+      archivo, así que `import.meta.url` deja de apuntar a
+      netlify/lib/ y apunta al empaquetado.
+   2. Los content.js llegan por `included_files` (ver netlify.toml) y
+      quedan colgando del directorio de la función, no del repo.
+
+   Este bug es de los peores: local funciona perfecto y producción
+   revienta con un ENOENT que no dice nada. Por eso se prueban varios
+   candidatos y gana el primero que DE VERDAD tenga los archivos.
+   Se resuelve una sola vez por arranque y queda cacheado. */
+const CANDIDATOS = [
+  join(dirname(fileURLToPath(import.meta.url)), "..", ".."),
+  process.env.LAMBDA_TASK_ROOT,
+  process.cwd(),
+].filter(Boolean);
+
+const TESTIGO = join("ph", "data", "content.js");
+let raizResuelta = null;
+
+async function raiz() {
+  if (raizResuelta) return raizResuelta;
+  for (const candidato of CANDIDATOS) {
+    try {
+      await access(join(candidato, TESTIGO));
+      raizResuelta = candidato;
+      return candidato;
+    } catch {
+      /* no está acá, sigue con el próximo */
+    }
+  }
+  throw new Error(
+    `No encontré ${TESTIGO}. Busqué en: ${CANDIDATOS.join(" | ")}. ` +
+      `Revisa included_files en netlify.toml.`,
+  );
+}
 
 /* Los content.js son del navegador: hacen `window.KAISER = {...}`.
    No son módulos de Node, así que se evalúan con un `window` de
    mentira. Diez líneas, y a cambio no se duplica ni un precio. */
 async function cargarContenido(sucursal) {
-  const codigo = await readFile(join(RAIZ, sucursal, "data", "content.js"), "utf8");
+  const codigo = await readFile(join(await raiz(), sucursal, "data", "content.js"), "utf8");
   const ventana = {};
   new Function("window", codigo)(ventana);
   if (!ventana.KAISER) {
