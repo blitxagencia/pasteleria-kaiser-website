@@ -74,7 +74,12 @@ manda en cada webhook, así que no hay tres copias del mismo código esperando d
       avisarle: **email = $0**, WhatsApp fuera de ventana se paga
 - [x] ~~El horario real de Padre Hurtado~~ — confirmado y publicado el 2026-08-05 (commit
       `558defd`). El bot ya lo responde
-- [ ] Variables de entorno en Netlify (ver cabecera de `functions/whatsapp.mjs`)
+- [x] ~~Variables de entorno en Netlify~~ — cargadas el 2026-08-05. `WA_APP_SECRET` y
+      `WA_TOKEN` como *secret* (Production + Branch deploys); `WA_VERIFY_TOKEN` y
+      `WA_PHONE_ID_PH` en All scopes
+- [ ] **Token permanente.** El `WA_TOKEN` de hoy es el temporal del Paso 1 y **vence en 24 h**.
+      Hay que reemplazarlo por uno de *usuario del sistema* antes de que esto quede en pie solo
+- [ ] El handoff (ver arriba)
 - [ ] Etapa 2: la IA para los tipo C, reusando `@anthropic-ai/sdk` con `claude-haiku-4-5`
 
 ## Trampa de Netlify que ya nos mordió
