@@ -27,7 +27,25 @@ ph/
 
 **Referencial (cambiar cuando haya info/fotos reales):**
 - **El resto de las fotos** → representativas de stock (Unsplash). Reemplazar por fotos reales de los pasteles de Kaiser. Ver abajo.
-- **Horario** → PLACEHOLDER (Lun a Sáb 09:30–20:00, Dom 10:00–15:00). No es el horario real; confirmar en la reunión y editar en `data/content.js` → `horario`. De ahí sale también el indicador "Abierto ahora".
+*(El horario dejó de ser referencial. Ver abajo.)*
+
+## Horario · REAL y confirmado
+
+**Vigente desde el miércoles 2026-08-19**, confirmado por Nicolás el 2026-08-17:
+
+- Lunes: **Cerrado**
+- Martes: **12:00 – 20:00**
+- Miércoles a sábado: **09:00 – 20:00**
+- Domingo: **11:45 – 19:30**
+
+*Antes de esa fecha era: martes a sábado 11:45 – 20:00, domingo igual.*
+
+Vive en `data/content.js` → `horario`, y de ahí sale también el indicador "Abierto ahora".
+
+⚠️ **`content.js` es la única fuente.** El agente de WhatsApp lee este mismo archivo con
+`node tools/build_carta.js` (repo `AgenteKaiser`), que regenera `sucursales/ph.json` y
+`sucursales/ph.carta.md`. **Si editas el horario a mano en el agente, quedan dos versiones y el
+bot le dice al cliente algo distinto de lo que muestra la web.** Ya pasó una vez.
 
 ## Valoración y reseñas (real, 2026-07-27)
 

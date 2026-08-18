@@ -137,6 +137,22 @@
     if (link && D.biz.reviewsUrl) link.href = D.biz.reviewsUrl;
   }
 
+  /* ---------- Preguntas frecuentes ----------
+     Usa <details>/<summary> nativo: el acordeón funciona sin JavaScript,
+     lo lee un lector de pantalla y Google indexa las respuestas aunque
+     estén cerradas. Si la sucursal no tiene FAQ cargada, la sección se
+     esconde entera en vez de mostrarse vacía. */
+  function renderFaq() {
+    var section = document.getElementById("faq");
+    var list = document.getElementById("faqList");
+    if (!section || !list) return;
+    if (!D.faq || !D.faq.length) { section.style.display = "none"; return; }
+    list.innerHTML = D.faq.map(function (f) {
+      return '<details class="faq-item"><summary class="faq-q">' + f.p +
+        '</summary><div class="faq-a">' + f.r + "</div></details>";
+    }).join("");
+  }
+
   /* ---------- Carta ---------- */
   function renderItem(it, grupoNombre, scaleName, nota) {
     var idx = registerItem(it, grupoNombre, scaleName, nota);
@@ -402,6 +418,7 @@
   renderStats();
   renderEsp();
   renderResenas();
+  renderFaq();
   renderCarta();
   wireCart();
   renderHorario();

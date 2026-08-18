@@ -291,6 +291,19 @@ section { padding: clamp(3.4rem, 7vw, 6rem) 0; }
 .rev-name { font-family: var(--ff-serif); font-weight: 700; color: var(--vino); font-size: .92rem; }
 @media (max-width: 860px) { .rev-grid { grid-template-columns: 1fr; } }
 
+/* Preguntas frecuentes */
+.faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: .75rem; }
+.faq-item { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--r-sm); box-shadow: var(--sombra-sm); overflow: hidden; }
+.faq-q { font-family: var(--ff-serif); font-weight: 700; color: var(--vino); font-size: 1.02rem; padding: 1.05rem 3rem 1.05rem 1.3rem; cursor: pointer; position: relative; list-style: none; transition: background .18s ease; }
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q:hover { background: var(--crema-2); }
+/* Flecha propia: la nativa cambia de forma según el navegador */
+.faq-q::after { content: ""; position: absolute; right: 1.3rem; top: 50%; width: 9px; height: 9px; border-right: 2px solid var(--vino); border-bottom: 2px solid var(--vino); transform: translateY(-70%) rotate(45deg); transition: transform .2s ease; }
+.faq-item[open] .faq-q::after { transform: translateY(-30%) rotate(-135deg); }
+.faq-item[open] .faq-q { background: var(--crema-2); }
+.faq-a { padding: 0 1.3rem 1.25rem; color: var(--tinta-60); font-size: .96rem; line-height: 1.65; }
+@media (max-width: 860px) { .faq-q { font-size: .97rem; padding-right: 2.6rem; } }
+
 /* ---------- Pedido (banda vino) ---------- */
 .pedido { background: linear-gradient(135deg, var(--vino) 0%, var(--vino-900) 100%); color: #fff; text-align: center; position: relative; overflow: hidden; }
 .pedido::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 15% 20%, rgba(232,154,174,.22), transparent 40%); }

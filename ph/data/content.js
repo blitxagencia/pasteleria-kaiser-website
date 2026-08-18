@@ -37,16 +37,17 @@ window.KAISER = {
     placeholder: false,
     dias: {
       1: null,                               // Lun: CERRADO
-      2: { abre: "11:45", cierra: "20:00" }, // Mar
-      3: { abre: "11:45", cierra: "20:00" }, // Mié
-      4: { abre: "11:45", cierra: "20:00" }, // Jue
-      5: { abre: "11:45", cierra: "20:00" }, // Vie
-      6: { abre: "11:45", cierra: "20:00" }, // Sáb
+      2: { abre: "12:00", cierra: "20:00" }, // Mar
+      3: { abre: "09:00", cierra: "20:00" }, // Mié
+      4: { abre: "09:00", cierra: "20:00" }, // Jue
+      5: { abre: "09:00", cierra: "20:00" }, // Vie
+      6: { abre: "09:00", cierra: "20:00" }, // Sáb
       0: { abre: "11:45", cierra: "19:30" }, // Dom
     },
     resumen: [
       { etiqueta: "Lunes", valor: "Cerrado" },
-      { etiqueta: "Martes a sábado", valor: "11:45 – 20:00" },
+      { etiqueta: "Martes", valor: "12:00 – 20:00" },
+      { etiqueta: "Miércoles a sábado", valor: "09:00 – 20:00" },
       { etiqueta: "Domingo", valor: "11:45 – 19:30" },
     ],
   },
@@ -287,5 +288,49 @@ window.KAISER = {
     { nombre: "Mauricio Toledo", estrellas: 5, texto: "Probamos la torta mil hojas manjar tradicional, estaba muy buena, fresca, porción grande, buen precio, atención amable, gran variedad de sabores." },
     { nombre: "Limel Alvarez", estrellas: 5, texto: "Muy buena atencion, se pueden hacer reservas, la calidad de sus productos es la mejor 100% recomendados" },
     { nombre: "Luis Martinez Rios", estrellas: 5, texto: "Muy buenos a buen precio" },
+  ],
+
+  /* ---- Preguntas frecuentes ----
+
+     Cada respuesta sale de lo que la pastelería ya le
+     contesta a sus clientes por WhatsApp. Las fuentes textuales están
+     en projects/pasteleria-kaiser/faq-real-clientes.md.
+
+     Estas seis son las preguntas que más se repiten en el historial y
+     que el sitio no respondía. Cada una que el sitio contesta es un
+     WhatsApp que el encargado no tiene que escribir.
+
+     ⚠️ SOLO PADRE HURTADO. Peñaflor y Huechuraba NO tienen este bloque
+     todavía porque estas reglas salieron del WhatsApp de PH y nadie ha
+     confirmado que apliquen igual en las otras dos. Si se copian sin
+     preguntar, se estarían inventando condiciones de venta. */
+  faq: [
+    {
+      p: "¿Con cuánta anticipación tengo que encargar?",
+      /* 2026-08-14: Nicolás cambió el mínimo de "1 o 2 días" a 2 días para
+         las tortas de 10 y 25. Antes decía "basta con 1 o 2 días", que era
+         textual del WhatsApp de PH de agosto. La regla la fija Kaiser. */
+      r: "Para las tortas de 10 y 25 personas necesitamos 2 días de anticipación como mínimo, y no necesitas pagar por adelantado: nos dejas tu nombre y apellido y queda reservada. Para los tamaños más grandes, de 30 personas en adelante, necesitamos 3 días como mínimo y el pago total para confirmar la reserva.",
+    },
+    {
+      p: "¿Hacen despacho a domicilio?",
+      r: "Por ahora no hacemos despacho. Todos los pedidos se retiran acá en el local.",
+    },
+    {
+      p: "¿Cuándo se paga?",
+      r: "Puedes pagar al momento de retirar tu pedido, no hay problema. La única excepción son las tortas de 30 personas o más, que se confirman con el pago total al momento de reservar.",
+    },
+    {
+      p: "¿Se puede escribir un mensaje en la torta?",
+      r: "Sí, y no tiene costo. Nos lo pides al momento del retiro y lo escribimos ahí mismo, en el instante.",
+    },
+    {
+      p: "¿Cómo reservo mi pedido?",
+      r: "Escríbenos por WhatsApp con estos cuatro datos: el sabor de la torta, el tamaño (para cuántas personas), el día en que la necesitas y tu nombre y apellido. Con eso te confirmamos la disponibilidad.",
+    },
+    {
+      p: "¿A qué hora puedo retirar?",
+      r: "Cuando te confirmemos el pedido te decimos el horario exacto de retiro para ese día, porque depende de la hora en que quede lista. Siempre dentro de nuestro horario de atención.",
+    },
   ],
 };
