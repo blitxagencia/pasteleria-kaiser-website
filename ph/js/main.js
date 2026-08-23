@@ -118,7 +118,7 @@
     g.innerHTML = D.especialidades.map(function (e, i) {
       var lead = (i === 0 || e.destacada) ? " lead" : "";
       return '<article class="esp-card' + lead + '">' +
-        '<img src="' + e.img + '" alt="' + e.nombre + '" loading="lazy" />' +
+        zoom(e.img, e.nombre) +
         '<div class="esp-body"><span class="tag">' + e.cat + "</span>" +
         "<h3>" + e.nombre + "</h3><p>" + e.desc + "</p></div></article>";
     }).join("");
@@ -155,12 +155,25 @@
     }).join("");
   }
 
+  /* ---------- Fotos ampliables ----------
+     Cada foto de la carta existe dos veces: la miniatura de 176px que se ve en la
+     lista, y una versión grande en carta/grande/ que SOLO se descarga cuando alguien
+     hace clic. Ampliar la miniatura se vería borrosa; bajar la grande de entrada
+     costaría más de 1 MB que casi nadie mira. */
+  function zoom(src, alt) {
+    var grande = src.indexOf("assets/img/carta/") === 0
+      ? src.replace("assets/img/carta/", "assets/img/carta/grande/")
+      : src;
+    return '<img src="' + src + '" alt="' + alt + '" loading="lazy" class="ampliable" ' +
+      'data-full="' + grande + '" data-pie="' + alt + '" />';
+  }
+
   /* ---------- Carta ---------- */
   function renderItem(it, grupoNombre, scaleName, nota) {
     var idx = registerItem(it, grupoNombre, scaleName, nota);
     var price = it.precioFijo ? '<span class="i-price">' + it.precioFijo + "</span>" : "";
     var tope = it.tope ? '<span class="i-tope">hasta ' + it.tope + " pers.</span>" : "";
-    var media = it.img ? '<div class="i-thumb"><img src="' + it.img + '" alt="' + it.n + '" loading="lazy" /></div>' : "";
+    var media = it.img ? '<div class="i-thumb">' + zoom(it.img, it.n) + "</div>" : "";
     var add = idx >= 0 ? '<button class="add-btn" data-idx="' + idx + '" aria-label="Agregar ' + it.n + ' al pedido">+ Agregar</button>' : "";
     var body = '<div class="i-body"><div class="i-top"><span class="i-name">' + it.n + "</span>" + tope +
       '<span class="i-lead"></span>' + price + "</div>" +
@@ -172,8 +185,11 @@
     var precio = "";
     if (gr.precio) { var o = scaleObj(gr.precio); if (o) precio = '<span class="g-precio">' + scaleRange(o) + "</span>"; }
     var nota = gr.nota ? '<p class="grupo-nota">' + gr.nota + "</p>" : "";
+    // Foto del grupo: se usa cuando la del catálogo es de un surtido y no de una
+    // variedad. Colgarla de un ítem diría que ese ítem se ve así, y no es cierto.
+    var foto = gr.img ? '<div class="g-thumb">' + zoom(gr.img, gr.nombre) + "</div>" : "";
     var items = gr.items.map(function (it) { return renderItem(it, gr.nombre, gr.precio, gr.nota); }).join("");
-    return '<div class="grupo"><div class="grupo-head"><h3>' + gr.nombre + "</h3>" + precio + "</div>" +
+    return '<div class="grupo"><div class="grupo-head">' + foto + "<h3>" + gr.nombre + "</h3>" + precio + "</div>" +
       nota + '<div class="items-grid">' + items + "</div></div>";
   }
 
@@ -415,6 +431,53 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
+  /* ---------- Visor de fotos ----------
+     Un solo listener en el documento en vez de uno por foto: las fotos se dibujan
+     después (renderCarta) y se vuelven a dibujar al cambiar de pestaña, así que
+     engancharlas una por una dejaría muertas las que aparezcan más tarde. */
+  function wireZoom() {
+    var visor = document.createElement("div");
+    visor.className = "visor";
+    visor.setAttribute("role", "dialog");
+    visor.setAttribute("aria-modal", "true");
+    visor.innerHTML = '<button class="visor-x" aria-label="Cerrar">&times;</button>' +
+      '<figure><img alt="" /><figcaption></figcaption></figure>';
+    document.body.appendChild(visor);
+    var img = visor.querySelector("img");
+    var pie = visor.querySelector("figcaption");
+    var previo = null;
+
+    function abrir(el) {
+      img.src = el.getAttribute("data-full") || el.src;
+      img.alt = el.alt || "";
+      pie.textContent = el.getAttribute("data-pie") || el.alt || "";
+      visor.classList.add("open");
+      document.body.style.overflow = "hidden";
+      previo = el;
+      visor.querySelector(".visor-x").focus();
+    }
+    function cerrar() {
+      visor.classList.remove("open");
+      document.body.style.overflow = "";
+      img.src = "";                       // suelta la imagen grande de memoria
+      if (previo) { previo.focus(); previo = null; }
+    }
+
+    document.addEventListener("click", function (e) {
+      var el = e.target.closest ? e.target.closest("img.ampliable") : null;
+      if (el) { e.preventDefault(); abrir(el); return; }
+      if (visor.classList.contains("open") && !e.target.closest("figure")) cerrar();
+    });
+    // El teclado tiene que servir igual que el mouse: hay gente que no usa mouse.
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && visor.classList.contains("open")) return cerrar();
+      if ((e.key === "Enter" || e.key === " ") && document.activeElement &&
+          document.activeElement.classList.contains("ampliable")) {
+        e.preventDefault(); abrir(document.activeElement);
+      }
+    });
+  }
+
   /* ---------- Init ---------- */
   wireLinks();
   renderStats();
@@ -426,4 +489,5 @@
   renderHorario();
   wireHeader();
   wireReveal();
+  wireZoom();
 })();

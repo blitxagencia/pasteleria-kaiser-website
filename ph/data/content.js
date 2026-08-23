@@ -145,8 +145,8 @@ window.KAISER = {
           nombre: "Tortas de chocolate",
           precio: "escalaTortas",
           items: [
-            { n: "Chocopaste", d: "Panqueque de chocolate, mousse de chocolate, manjar puro y crema pastelera.", img: "assets/img/real-chocopaste.jpg" },
-            { n: "Choconuez", d: "Panqueque de chocolate, mousse de chocolate, nueces, manjar crema, mermelada de frutillas y ganache.", img: "assets/img/real-choconuez.jpg" },
+            { n: "Chocopaste", d: "Panqueque de chocolate, mousse de chocolate, manjar puro y crema pastelera.", img: "assets/img/carta/chocopaste.jpg" },
+            { n: "Choconuez", d: "Panqueque de chocolate, mousse de chocolate, nueces, manjar crema, mermelada de frutillas y ganache.", img: "assets/img/carta/choconuez.jpg" },
             { n: "Selva Negra", d: "Panqueque de chocolate, mousse de chocolate, mermelada de frambuesa, chantilly, cerezas y chips de chocolate.", img: "assets/img/real-selvanegra.jpg" },
             { n: "Trufa", d: "Panqueque de chocolate remojado en aguardiente, trufa y manjar.", img: "assets/img/carta/trufa.jpg" },
             { n: "Café", d: "Panqueque de chocolate, mousse de café, mousse de chocolate, chantilly y frambuesas.", img: "assets/img/carta/cafe.jpg" },
@@ -169,10 +169,10 @@ window.KAISER = {
           precio: "escalaHelada",
           nota: "Base de discos de merengue. Disponible en cuatro variedades.",
           items: [
-            { n: "Frambuesa y chantilly", d: "Discos de merengue, frambuesas y chantilly." },
-            { n: "Mousse de lúcuma", d: "Discos de merengue y mousse de lúcuma." },
-            { n: "Mousse de maracuyá", d: "Discos de merengue y mousse de maracuyá." },
-            { n: "Frutillas y chantilly", d: "Discos de merengue, frutillas y chantilly." },
+            { n: "Frambuesa y chantilly", d: "Discos de merengue, frambuesas y chantilly.", img: "assets/img/carta/frambuesa-y-chantilly.jpg" },
+            { n: "Mousse de lúcuma", d: "Discos de merengue y mousse de lúcuma.", img: "assets/img/carta/mousse-de-lucuma.jpg" },
+            { n: "Mousse de maracuyá", d: "Discos de merengue y mousse de maracuyá.", img: "assets/img/carta/mousse-de-maracuya.jpg" },
+            { n: "Frutillas y chantilly", d: "Discos de merengue, frutillas y chantilly.", img: "assets/img/carta/frutillas-y-chantilly.jpg" },
           ],
         },
         {
@@ -217,7 +217,7 @@ window.KAISER = {
             { n: "Kuchen de Manzana", d: "Manzanas verdes, crema pastelera, mermelada de damasco y nueces. Solo en temporada de manzana verde.", precioFijo: "$19.000 / $23.000", img: "assets/img/carta/kuchen-de-manzana.jpg" },
             { n: "Streusel de Frambuesa", d: "Crema pastelera, frambuesas naturales, cubierto con migas.", precioFijo: "$19.000 / $23.000", img: "assets/img/carta/streusel-de-frambuesa.jpg" },
             { n: "Cheesecake de Frutos Rojos", d: "Base de queso philadelphia con azúcar, cubierto con frambuesas y arándanos, con corona de azúcar rubia, almendras, nueces y canela.", precioFijo: "$19.000 / $23.000", img: "assets/img/cheesecake.jpg" },
-            { n: "Pie de Limón", d: "Mousse de limón hecho con jugo de limón natural, cubierto con merengue.", precioFijo: "$19.000 / $23.000", img: "assets/img/pie-limon.jpg" },
+            { n: "Pie de Limón", d: "Mousse de limón hecho con jugo de limón natural, cubierto con merengue.", precioFijo: "$19.000 / $23.000", img: "assets/img/carta/pie-de-limon.jpg" },
             { n: "Pie de Maracuyá", d: "Mousse de maracuyá, cubierto con salsa de maracuyá.", precioFijo: "$19.000 / $23.000", img: "assets/img/carta/pie-de-maracuya.jpg" },
             { n: "Kuchen de Nuez", d: "Relleno de nueces con leche condensada.", precioFijo: "$19.000 / $23.000", img: "assets/img/kuchen.jpg" },
             { n: "Cheesecake New York", d: "Base de galletas molidas con mantequilla, relleno de cheesecake horneado, cubierto con mermelada de frambuesa. Solo tamaño grande.", precioFijo: "$34.000", img: "assets/img/carta/cheesecake-new-york.jpg" },
@@ -244,22 +244,22 @@ window.KAISER = {
           nombre: "Mini Pastelitos",
           nota: "Pedido mínimo 50 unidades. Cuatro variedades surtidas.",
           items: [
-            { n: "Mini pastelitos surtidos", d: "Pie de limón · pie de maracuyá · alfajor de manjar bañado en chocolate · cheesecake de frutos rojos · mil hojas con manjar · tartaleta de frutas.", precioFijo: "$45.000 / 100 u" },
+            { n: "Mini pastelitos surtidos", d: "Pie de limón · pie de maracuyá · alfajor de manjar bañado en chocolate · cheesecake de frutos rojos · mil hojas con manjar · tartaleta de frutas.", precioFijo: "$45.000 / 100 u", img: "assets/img/carta/mini-pastelitos.jpg" },
           ],
         },
         {
           nombre: "Mini Pizzetas",
           nota: "Pedido mínimo 50 unidades.",
           items: [
-            { n: "Napolitanas", d: "Tomate, jamón, aceitunas y queso.", precioFijo: "$47.000 / 100 u", img: "assets/img/pizzetas.jpg" },
-            { n: "De verduras", d: "Palmito, choclito de coctel, espárragos, tomate y queso.", precioFijo: "$47.000 / 100 u" },
+            { n: "Napolitanas", d: "Tomate, jamón, aceitunas y queso.", precioFijo: "$47.000 / 100 u", img: "assets/img/carta/pizzetas-napolitanas.jpg" },
+            { n: "De verduras", d: "Palmito, choclito de coctel, espárragos, tomate y queso.", precioFijo: "$47.000 / 100 u", img: "assets/img/carta/pizzetas-de-verduras.jpg" },
           ],
         },
         {
-          nombre: "Tapaditos",
+          nombre: "Tapaditos", img: "assets/img/carta/tapaditos.jpg",
           nota: "Pedido mínimo 100 unidades. Se pueden pedir 50 de una variedad y 50 de otra.",
           items: [
-            { n: "Pollo a la mostaza", d: "Filetitos de pollo a la mostaza, rodaja de palmito, lechuga y mayonesa.", precioFijo: "$61.000 / 100 u", img: "assets/img/tapaditos.jpg" },
+            { n: "Pollo a la mostaza", d: "Filetitos de pollo a la mostaza, rodaja de palmito, lechuga y mayonesa.", precioFijo: "$61.000 / 100 u" },
             { n: "Pasta de ave con pimentón", d: "Pasta de pollo, pimentón rojo y mayonesa.", precioFijo: "$42.000 / 100 u" },
             { n: "Churrasco italiano", d: "Churrasco de vacuno, tomate, palta y mayonesa.", precioFijo: "$57.000 / 100 u" },
             { n: "Lomito italiano", d: "Lomito de cerdo, palta, tomate y mayonesa.", precioFijo: "$54.000 / 100 u" },
@@ -272,12 +272,12 @@ window.KAISER = {
           nombre: "Crostinis",
           nota: "Pedido mínimo 50 unidades. Sobre pan baguette horneado con aceite de oliva.",
           items: [
-            { n: "Salmón ahumado", d: "Salmón ahumado, queso crema y sésamo.", precioFijo: "$74.000 / 100 u" },
-            { n: "Queso crema y salame", d: "Pasta de queso crema, salame, palmitos y ciboulette.", precioFijo: "$41.000 / 100 u" },
+            { n: "Salmón ahumado", d: "Salmón ahumado, queso crema y sésamo.", precioFijo: "$74.000 / 100 u", img: "assets/img/carta/crostini-salmon.jpg" },
+            { n: "Queso crema y salame", d: "Pasta de queso crema, salame, palmitos y ciboulette.", precioFijo: "$41.000 / 100 u", img: "assets/img/carta/crostini-queso-salame.jpg" },
           ],
         },
         {
-          nombre: "Petit Bouche",
+          nombre: "Petit Bouche", img: "assets/img/carta/petit-bouche.jpg",
           nota: "Pedido mínimo 100 unidades. Tacitas de masa rellenas. Se hornean antes de servir.",
           items: [
             { n: "Camarones gamba", d: "Camarones gamba con salsa de queso.", precioFijo: "$42.000 / 100 u" },
@@ -288,15 +288,15 @@ window.KAISER = {
           nombre: "Brochetas",
           nota: "Pedido mínimo 50 unidades.",
           items: [
-            { n: "Caprese", d: "Trozos de queso, tomates cherry y albahaca fresca.", precioFijo: "$47.000 / 100 u" },
-            { n: "De frutas", d: "Trozos de fruta de estación con decoración de chocolate.", precioFijo: "$72.000 / 100 u", img: "assets/img/brochetas.jpg" },
+            { n: "Caprese", d: "Trozos de queso, tomates cherry y albahaca fresca.", precioFijo: "$47.000 / 100 u", img: "assets/img/carta/brochetas-caprese.jpg" },
+            { n: "De frutas", d: "Trozos de fruta de estación con decoración de chocolate.", precioFijo: "$72.000 / 100 u", img: "assets/img/carta/brochetas-de-frutas.jpg" },
           ],
         },
         {
           nombre: "Mini Sopaipillas",
           nota: "Pedido mínimo 100 unidades.",
           items: [
-            { n: "Mini sopaipillas de coctel", d: "Acompañadas de un pocillo con abundante pebre casero.", precioFijo: "$42.000 / 100 u" },
+            { n: "Mini sopaipillas de coctel", d: "Acompañadas de un pocillo con abundante pebre casero.", precioFijo: "$42.000 / 100 u", img: "assets/img/carta/mini-sopaipillas.jpg" },
           ],
         },
       ],

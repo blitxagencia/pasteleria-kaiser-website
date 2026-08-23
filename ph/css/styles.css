@@ -219,6 +219,34 @@ section { padding: clamp(3.4rem, 7vw, 6rem) 0; }
 .grupo-head .g-precio { font-size: .84rem; font-weight: 600; color: var(--salvia); white-space: nowrap; }
 @media (max-width: 480px) { .grupo-head { flex-wrap: wrap; } .grupo-head .g-precio { white-space: normal; } }
 .grupo-nota { font-size: .84rem; color: var(--tinta-60); margin-bottom: .9rem; font-style: italic; }
+/* Foto del grupo: para cuando el catálogo trae un surtido y no una variedad */
+.grupo-head .g-thumb { width: 52px; height: 52px; border-radius: 10px; overflow: hidden; flex: none; align-self: center; box-shadow: var(--sombra-sm); }
+.grupo-head .g-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.grupo-head h3 { flex: 1; }
+
+/* ---------- Fotos ampliables y su visor ---------- */
+.ampliable { cursor: zoom-in; }
+.visor {
+  position: fixed; inset: 0; z-index: 200; display: none;
+  align-items: center; justify-content: center; padding: 4vmin;
+  background: rgba(30, 8, 15, .88);
+}
+.visor.open { display: flex; }
+.visor figure { margin: 0; max-width: min(92vw, 900px); text-align: center; }
+.visor img { max-width: 100%; max-height: 78vh; border-radius: var(--r); display: block; box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+.visor figcaption { margin-top: .9rem; color: #fff; font-family: var(--ff-serif); font-size: 1.15rem; }
+.visor-x {
+  position: absolute; top: 1rem; right: 1.2rem; z-index: 1;
+  width: 44px; height: 44px; border: 0; border-radius: 50%; cursor: pointer;
+  background: rgba(255,255,255,.15); color: #fff; font-size: 1.8rem; line-height: 1;
+}
+.visor-x:hover { background: rgba(255,255,255,.28); }
+/* Quien navega con teclado tiene que ver dónde está parado */
+.ampliable:focus-visible, .visor-x:focus-visible { outline: 3px solid var(--rosa-soft); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  .visor.open figure { animation: visor-in .18s ease-out; }
+  @keyframes visor-in { from { opacity: 0; transform: scale(.96); } }
+}
 
 .items-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.6rem; }
 @media (max-width: 760px) { .items-grid { grid-template-columns: 1fr; } }
