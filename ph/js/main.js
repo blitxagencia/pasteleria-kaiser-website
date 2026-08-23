@@ -441,8 +441,13 @@
     visor.className = "visor";
     visor.setAttribute("role", "dialog");
     visor.setAttribute("aria-modal", "true");
-    visor.innerHTML = '<button class="visor-x" aria-label="Cerrar">&times;</button>' +
-      '<figure><img alt="" /><figcaption></figcaption></figure>';
+    // El botón cuelga de un marco que envuelve la imagen, no del visor. Con
+    // display:inline-block el marco se encoge al ancho real de la foto, así que la X
+    // queda en SU esquina y no en la de la pantalla, que en fotos angostas quedaba
+    // muy lejos del contenido.
+    visor.innerHTML = '<figure><span class="visor-marco"><img alt="" />' +
+      '<button class="visor-x" aria-label="Cerrar">&times;</button></span>' +
+      "<figcaption></figcaption></figure>";
     // Todo el visor se estiliza acá y NO en styles.css, a propósito. Es un elemento
     // que existe solo si corre el JS, así que el JS se hace cargo entero de cómo se
     // ve. Repartirlo entre los dos archivos ya nos costó dos rondas: bastaba con que
@@ -454,20 +459,24 @@
       visor: "position:fixed;inset:0;z-index:200;display:none;align-items:center;" +
         "justify-content:center;padding:4vmin;background:rgba(30,8,15,.88)",
       fig: "margin:0;max-width:min(92vw,900px);text-align:center",
+      marco: "position:relative;display:inline-block;max-width:100%;line-height:0",
       img: "max-width:100%;max-height:78vh;width:auto;height:auto;display:block;" +
-        "margin:0 auto;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.5)",
-      pie: "margin-top:.9rem;color:#fff;font-size:1.15rem",
-      x: "position:fixed;top:1rem;right:1.2rem;z-index:1;width:44px;height:44px;" +
-        "border:0;border-radius:50%;cursor:pointer;background:rgba(255,255,255,.18);" +
-        "color:#fff;font-size:1.8rem;line-height:1;display:grid;place-items:center;padding:0",
+        "border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.5)",
+      pie: "margin-top:.9rem;color:#fff;font-size:1.15rem;line-height:1.3",
+      x: "position:absolute;top:-14px;right:-14px;z-index:1;width:40px;height:40px;" +
+        "border:2px solid rgba(255,255,255,.75);border-radius:50%;cursor:pointer;" +
+        "background:#5a0c1e;color:#fff;font-size:1.5rem;line-height:1;" +
+        "display:grid;place-items:center;padding:0;box-shadow:0 4px 14px rgba(0,0,0,.45)",
     };
     visor.style.cssText = css.visor;
     var boton = visor.querySelector(".visor-x");
     var figura = visor.querySelector("figure");
+    var marco = visor.querySelector(".visor-marco");
     var img = visor.querySelector("img");
     var pie = visor.querySelector("figcaption");
     boton.style.cssText = css.x;
     figura.style.cssText = css.fig;
+    marco.style.cssText = css.marco;
     img.style.cssText = css.img;
     pie.style.cssText = css.pie;
     document.body.appendChild(visor);
@@ -505,7 +514,10 @@
       var el = e.target.closest("img.ampliable") ||
         (tarjeta && tarjeta.querySelector("img.ampliable"));
       if (el) { e.preventDefault(); abrir(el); return; }
-      if (visor.classList.contains("open") && !e.target.closest("figure")) cerrar();
+      if (!visor.classList.contains("open")) return;
+      // El botón vive DENTRO de figure desde que cuelga de la foto, así que hay que
+      // atenderlo antes: si no, el "clic fuera de figure" ya no lo alcanza.
+      if (e.target.closest(".visor-x") || !e.target.closest("figure")) cerrar();
     });
     // El teclado tiene que servir igual que el mouse: hay gente que no usa mouse.
     document.addEventListener("keydown", function (e) {
