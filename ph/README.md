@@ -23,11 +23,13 @@ ph/
 - Todos los precios y la tabla de tamaños.
 - Dirección, WhatsApp (+569 74899392), Instagram (@pasteleriakaiserph), lema y año 2005.
 - **Logo** real (recortado de la carta oficial). Para mejor calidad, reemplazar `assets/img/logo.png` por el PNG limpio.
-- **Fotos reales** de 3 tortas de chocolate (Chocopaste, Choconuez, Selva Negra), recortadas de la carta oficial: `real-chocopaste.jpg`, `real-choconuez.jpg`, `real-selvanegra.jpg`.
+- **Todas las fotos de producto son reales.** Salen de los catálogos oficiales en PDF que mandó
+  Constanza el 18-ago-2026 (ver abajo).
 
-**Referencial (cambiar cuando haya info/fotos reales):**
-- **El resto de las fotos** → representativas de stock (Unsplash). Reemplazar por fotos reales de los pasteles de Kaiser. Ver abajo.
-*(El horario dejó de ser referencial. Ver abajo.)*
+**Referencial (cambiar cuando haya foto real):**
+- **`hero.jpg` y `nosotros.jpg`** → siguen siendo de stock (Unsplash). Los catálogos no traen
+  ninguna foto lo bastante grande para el hero, que ocupa el ancho completo. Ver abajo.
+*(El horario y las fotos de producto dejaron de ser referenciales.)*
 
 ## Horario · REAL y confirmado
 
@@ -63,11 +65,42 @@ Todo en **`data/content.js`**:
 1. Guarda la foto real en `assets/img/` con el **mismo nombre** del archivo que reemplaza (ej. `torta-panqueque.jpg`).
 2. Listo, el sitio la toma sola. (No hace falta editar código.)
 
-Nombres de las fotos actuales: `hero, torta-panqueque, torta-chocolate, torta-milhojas, cheesecake, kuchen, pie-limon, canapes, tapaditos, pizzetas, brochetas, nosotros`.
+Todas las cajas usan `object-fit: cover`, así que **cualquier proporción funciona**: la foto se
+recorta al centro. No hace falta recortarla antes.
+
+## Fotos de producto · de dónde salió cada una
+
+Extraídas de los tres catálogos PDF oficiales de Padre Hurtado que mandó Constanza el
+**18-ago-2026** (*Catálogo de Tortas PH 2025*, *Catálogo de pie PH 2025*,
+*Catálogo de coctel PH DIC2024*). Son fotos de Kaiser, no de stock.
+
+| Archivo | Plato | Catálogo |
+|---|---|---|
+| `torta-panqueque.jpg` | Locura Kaiser | Tortas, pág. 3 |
+| `torta-milhojas.jpg` | Mil Hojas de la Casa | Tortas, pág. 8 |
+| `real-chocopaste.jpg` | Chocopaste | Tortas, pág. 6 |
+| `real-choconuez.jpg` | Choconuez | Tortas, pág. 6 |
+| `real-selvanegra.jpg` | Selva Negra | Tortas, pág. 6 |
+| `cheesecake.jpg` | Cheesecake de Frutos Rojos | Pie, pág. 3 |
+| `kuchen.jpg` | Kuchen de Nuez | Pie, pág. 2 |
+| `pie-limon.jpg` | Pie de Limón | Pie, pág. 2 |
+| `canapes.jpg` | Canapés Premium | Coctel, pág. 6 |
+| `tapaditos.jpg` | Tapaditos | Coctel, pág. 3 |
+| `pizzetas.jpg` | Mini Pizzetas | Coctel, pág. 2 |
+| `brochetas.jpg` | Brochetas de frutas | Coctel, pág. 4 |
+
+⚠️ **No inventes el emparejamiento.** En los PDF el nombre de cada torta está como *imagen*, no
+como texto, así que un `grep` no lo encuentra: hay que mirar la página. Los 55 recortes que
+sobraron quedaron sin usar; si hace falta uno más, se sacan del mismo PDF.
+
+`torta-chocolate.jpg` se borró: era de stock y **ningún archivo lo referenciaba**.
 
 ## Pendiente
-- Fotos reales de los pasteles (lo más importante para una pastelería).
-- Horario real de la sucursal.
+- **`hero.jpg`** — la foto más grande de los catálogos es de 619 px de ancho y el hero ocupa la
+  pantalla completa. Estirarla se vería borrosa. **Pedirle a Nicolás una foto apaisada del
+  mostrador o de la vitrina**, mínimo 1600 px de ancho.
+- **`nosotros.jpg`** — misma historia: debería ser el local o el equipo, no una torta.
+- **Tortas sin azúcar / light** — el catálogo trae 3 (pág. 10) que el sitio **todavía no lista**.
 
 ---
 Sitio por BlitX · julio 2026. Parte del sitio combinado en `../` (selector de sucursales).

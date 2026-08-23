@@ -20,6 +20,8 @@
     if (name === "escalaTortas") return D.escalaTortas;
     if (name === "escalaHelada") return D.escalaHelada;
     if (name === "escalaBizcocho") return D.escalaBizcocho;
+    if (name === "escalaLight") return D.escalaLight;
+    if (name === "escalaHojaLight") return D.escalaHojaLight;
     return null;
   }
 
@@ -184,7 +186,7 @@
     return '<div class="tamanos"><h4>Tamaños y precios de las tortas</h4>' +
       '<div class="tamanos-scroll"><table><thead><tr><th>Personas</th><th>Forma</th><th>Tamaño</th><th>Precio</th></tr></thead>' +
       "<tbody>" + rows + "</tbody></table></div>" +
-      '<p class="grupo-nota" style="margin-top:.8rem">Precios de tortas de panqueque, chocolate y mil hojas. Heladas y de bizcocho tienen su propia escala (hasta 25 personas).</p></div>';
+      '<p class="grupo-nota" style="margin-top:.8rem">Precios de tortas de panqueque, chocolate y mil hojas. Las heladas, las de bizcocho y las sin azúcar tienen su propia escala (hasta 25 personas).</p></div>';
   }
 
   function renderCarta() {

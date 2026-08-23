@@ -78,6 +78,10 @@ window.KAISER = {
   },
   escalaHelada: { "10": 31500, "15": 39000, "25": 46500 },
   escalaBizcocho: { "10": 31500, "15": 39000, "25": 43500 },
+  /* Sin azúcar / light. Misma escala que las heladas hoy, pero es otro producto:
+     si Kaiser sube una, la otra no tiene por qué moverse. Catálogo de Tortas PH 2025, pág. 10. */
+  escalaLight: { "10": 31500, "15": 39000, "25": 46500 },
+  escalaHojaLight: { "10": 41000, "25": 57000 },
 
   /* ---- Especialidades destacadas (selección editorial) ---- */
   especialidades: [
@@ -178,6 +182,23 @@ window.KAISER = {
             { n: "Torta Tropical", d: "Bizcocho de vainilla, mousse de piña, mango y maracuyá, con trozos de piña y mango." },
             { n: "Red Velvet", d: "Bizcocho de vainilla rojo, cheesecake philadelphia y manjar." },
             { n: "Carrot Cake", d: "Bizcocho de zanahoria con nueces, manjar y frosting de queso philadelphia." },
+          ],
+        },
+        {
+          nombre: "Tortas sin azúcar",
+          precio: "escalaLight",
+          nota: "Endulzadas sin azúcar. Consulta por disponibilidad al encargar.",
+          items: [
+            { n: "Torta de Yogurt", d: "Panqueque de vainilla, mousse de yogurt light, cubierta con mermelada de frambuesa light." },
+            { n: "Torta de Naranja Light", d: "Panqueque de vainilla, salsa de naranja light, cubierta con salsa de naranja light y decorada con chocolate." },
+          ],
+        },
+        {
+          nombre: "Mil hojas sin azúcar",
+          precio: "escalaHojaLight",
+          nota: "Tiene su propia escala: 10 o 25 personas.",
+          items: [
+            { n: "Hoja Frambuesa Light", d: "Capas de mil hojas, manjar endulzado con alulosa, crema chantilly sin azúcar y frambuesas naturales, cubierta con mermelada de frambuesa sin azúcar." },
           ],
         },
       ],
