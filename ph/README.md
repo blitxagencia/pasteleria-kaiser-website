@@ -90,10 +90,30 @@ Extraídas de los tres catálogos PDF oficiales de Padre Hurtado que mandó Cons
 | `brochetas.jpg` | Brochetas de frutas | Coctel, pág. 4 |
 
 ⚠️ **No inventes el emparejamiento.** En los PDF el nombre de cada torta está como *imagen*, no
-como texto, así que un `grep` no lo encuentra: hay que mirar la página. Los 55 recortes que
-sobraron quedaron sin usar; si hace falta uno más, se sacan del mismo PDF.
+como texto, así que un `grep` no lo encuentra: hay que mirar la página.
 
 `torta-chocolate.jpg` se borró: era de stock y **ningún archivo lo referenciaba**.
+
+### `assets/img/carta/` · una miniatura por producto
+
+Cada ítem de la carta tiene su propia foto, en `carta/<nombre-del-producto>.jpg`.
+
+Son **176 × 176 px, recortadas al centro**, porque la caja donde se muestran (`.i-thumb`) mide
+**88 × 88** y con el doble alcanza para pantallas retina. Pesan unos **9 KB cada una** y el sitio
+las carga con `loading="lazy"`: solo se descargan las que el visitante alcanza a ver.
+
+**39 de los 46 productos ya tienen foto.** Los que faltan:
+
+- Las **4 tortas heladas**. El catálogo pone 3 fotos para 4 variedades y no dice cuál es cuál.
+  Poner una al azar sería mostrarle a un cliente un producto distinto del que pide
+- La mayoría de la **coctelería**: el catálogo trae una sola foto por página, no por variedad
+
+**Para agregar una:** guarda el JPG en `carta/` y agrégale `img: "assets/img/carta/<archivo>.jpg"`
+al ítem en `data/content.js`. No hay que tocar código.
+
+Los que apuntan a un archivo grande de `assets/img/` en vez de a `carta/` lo hacen a propósito:
+esa misma imagen ya se descarga para la tarjeta destacada o para la cabecera de la sección, así
+que reusarla no cuesta bytes extra.
 
 ## Pendiente
 - **`hero.jpg`** — la foto más grande de los catálogos es de 619 px de ancho y el hero ocupa la
