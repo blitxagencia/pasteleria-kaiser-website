@@ -228,18 +228,13 @@ section { padding: clamp(3.4rem, 7vw, 6rem) 0; }
 
 /* ---------- Fotos ampliables y su visor ---------- */
 .ampliable { cursor: zoom-in; }
-/* El armazón del visor (position, inset, display, fondo) vive en main.js → wireZoom().
-   Acá va solo lo estético, para que una hoja de estilos vieja no lo desarme. */
-.visor figure { margin: 0; max-width: min(92vw, 900px); text-align: center; }
-.visor img { max-width: 100%; max-height: 78vh; border-radius: var(--r); display: block; margin-inline: auto; box-shadow: 0 24px 60px rgba(0,0,0,.5); }
-.visor figcaption { margin-top: .9rem; color: #fff; font-family: var(--ff-serif); font-size: 1.15rem; }
-.visor-x {
-  position: fixed; top: 1rem; right: 1.2rem; z-index: 1;
-  width: 44px; height: 44px; border: 0; border-radius: 50%; cursor: pointer;
-  background: rgba(255,255,255,.15); color: #fff; font-size: 1.8rem; line-height: 1;
-  display: grid; place-items: center;
-}
-.visor-x:hover { background: rgba(255,255,255,.28); }
+/* ⚠️ El visor se estiliza ENTERO desde main.js → wireZoom(), no desde acá.
+   Es un elemento que solo existe si corre el JS, así que el JS se hace cargo de cómo
+   se ve. Con las reglas repartidas entre los dos archivos, una hoja de estilos vieja
+   en el navegador bastaba para desarmarlo. Lo de abajo son adornos: si faltan, el
+   visor sigue funcionando igual. */
+.visor figcaption { font-family: var(--ff-serif); }
+.visor-x:hover { background: rgba(255,255,255,.32) !important; }
 /* Quien navega con teclado tiene que ver dónde está parado */
 .ampliable:focus-visible, .visor-x:focus-visible { outline: 3px solid var(--rosa-soft); outline-offset: 3px; }
 @media (prefers-reduced-motion: no-preference) {

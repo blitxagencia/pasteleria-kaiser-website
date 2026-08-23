@@ -443,15 +443,34 @@
     visor.setAttribute("aria-modal", "true");
     visor.innerHTML = '<button class="visor-x" aria-label="Cerrar">&times;</button>' +
       '<figure><img alt="" /><figcaption></figcaption></figure>';
-    // El armazón va inline y no en el CSS a propósito. Este elemento lo crea el JS, y
-    // si la hoja de estilos llegara cacheada o vieja, con las reglas en el CSS el
-    // visor se desarma y las fotos caen al pie de la página. Ya pasó dos veces.
-    // El CSS se queda con lo estético: color, sombra, tipografía, animación.
-    visor.style.cssText = "position:fixed;inset:0;z-index:200;display:none;" +
-      "align-items:center;justify-content:center;padding:4vmin;background:rgba(30,8,15,.88)";
-    document.body.appendChild(visor);
+    // Todo el visor se estiliza acá y NO en styles.css, a propósito. Es un elemento
+    // que existe solo si corre el JS, así que el JS se hace cargo entero de cómo se
+    // ve. Repartirlo entre los dos archivos ya nos costó dos rondas: bastaba con que
+    // el navegador entregara una hoja de estilos vieja para que el visor se desarmara
+    // (las fotos caían al pie de la página y la X quedaba suelta al medio).
+    // styles.css se queda solo con el foco de teclado y la animación, que si faltan
+    // no rompen nada.
+    var css = {
+      visor: "position:fixed;inset:0;z-index:200;display:none;align-items:center;" +
+        "justify-content:center;padding:4vmin;background:rgba(30,8,15,.88)",
+      fig: "margin:0;max-width:min(92vw,900px);text-align:center",
+      img: "max-width:100%;max-height:78vh;width:auto;height:auto;display:block;" +
+        "margin:0 auto;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.5)",
+      pie: "margin-top:.9rem;color:#fff;font-size:1.15rem",
+      x: "position:fixed;top:1rem;right:1.2rem;z-index:1;width:44px;height:44px;" +
+        "border:0;border-radius:50%;cursor:pointer;background:rgba(255,255,255,.18);" +
+        "color:#fff;font-size:1.8rem;line-height:1;display:grid;place-items:center;padding:0",
+    };
+    visor.style.cssText = css.visor;
+    var boton = visor.querySelector(".visor-x");
+    var figura = visor.querySelector("figure");
     var img = visor.querySelector("img");
     var pie = visor.querySelector("figcaption");
+    boton.style.cssText = css.x;
+    figura.style.cssText = css.fig;
+    img.style.cssText = css.img;
+    pie.style.cssText = css.pie;
+    document.body.appendChild(visor);
     var previo = null;
 
     function abrir(el) {
