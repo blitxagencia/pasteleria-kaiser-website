@@ -174,7 +174,9 @@ section { padding: clamp(3.4rem, 7vw, 6rem) 0; }
 .esp-card.lead { grid-row: span 2; }
 .esp-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
 .esp-card:hover img { transform: scale(1.06); }
-.esp-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(43,7,17,.9) 6%, rgba(43,7,17,.15) 55%, transparent 80%); }
+/* pointer-events: none o esta capa se come el clic sobre la foto que tiene debajo */
+.esp-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(43,7,17,.9) 6%, rgba(43,7,17,.15) 55%, transparent 80%); }
+.esp-card { cursor: zoom-in; }
 .esp-card .esp-body { position: absolute; left: 0; bottom: 0; z-index: 1; padding: 1.4rem; color: #fff; }
 .esp-card .tag { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--rosa-soft); font-weight: 600; }
 .esp-card h3 { font-size: 1.4rem; margin: .25rem 0 .4rem; }

@@ -464,7 +464,12 @@
     }
 
     document.addEventListener("click", function (e) {
-      var el = e.target.closest ? e.target.closest("img.ampliable") : null;
+      if (!e.target.closest) return;
+      // En las tarjetas destacadas la foto está debajo del degradado y del texto,
+      // así que se acepta el clic en cualquier parte de la tarjeta.
+      var tarjeta = e.target.closest(".esp-card");
+      var el = e.target.closest("img.ampliable") ||
+        (tarjeta && tarjeta.querySelector("img.ampliable"));
       if (el) { e.preventDefault(); abrir(el); return; }
       if (visor.classList.contains("open") && !e.target.closest("figure")) cerrar();
     });
