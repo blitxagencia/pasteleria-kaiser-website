@@ -187,10 +187,11 @@
     var nota = gr.nota ? '<p class="grupo-nota">' + gr.nota + "</p>" : "";
     // Foto del grupo: se usa cuando la del catálogo es de un surtido y no de una
     // variedad. Colgarla de un ítem diría que ese ítem se ve así, y no es cierto.
+    // Va DEBAJO del título, no al lado, para que se lea de quién es la foto.
     var foto = gr.img ? '<div class="g-thumb">' + zoom(gr.img, gr.nombre) + "</div>" : "";
     var items = gr.items.map(function (it) { return renderItem(it, gr.nombre, gr.precio, gr.nota); }).join("");
-    return '<div class="grupo"><div class="grupo-head">' + foto + "<h3>" + gr.nombre + "</h3>" + precio + "</div>" +
-      nota + '<div class="items-grid">' + items + "</div></div>";
+    return '<div class="grupo"><div class="grupo-head"><h3>' + gr.nombre + "</h3>" + precio + "</div>" +
+      foto + nota + '<div class="items-grid">' + items + "</div></div>";
   }
 
   function renderTamanos() {
@@ -442,6 +443,12 @@
     visor.setAttribute("aria-modal", "true");
     visor.innerHTML = '<button class="visor-x" aria-label="Cerrar">&times;</button>' +
       '<figure><img alt="" /><figcaption></figcaption></figure>';
+    // El armazón va inline y no en el CSS a propósito. Este elemento lo crea el JS, y
+    // si la hoja de estilos llegara cacheada o vieja, con las reglas en el CSS el
+    // visor se desarma y las fotos caen al pie de la página. Ya pasó dos veces.
+    // El CSS se queda con lo estético: color, sombra, tipografía, animación.
+    visor.style.cssText = "position:fixed;inset:0;z-index:200;display:none;" +
+      "align-items:center;justify-content:center;padding:4vmin;background:rgba(30,8,15,.88)";
     document.body.appendChild(visor);
     var img = visor.querySelector("img");
     var pie = visor.querySelector("figcaption");
@@ -451,16 +458,24 @@
       img.src = el.getAttribute("data-full") || el.src;
       img.alt = el.alt || "";
       pie.textContent = el.getAttribute("data-pie") || el.alt || "";
+      visor.style.display = "flex";
       visor.classList.add("open");
+      // Al esconder la barra de desplazamiento la página se ensancha de golpe y
+      // todo salta a la derecha. Se compensa con el ancho exacto que desaparece.
+      var barra = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
+      if (barra > 0) document.body.style.paddingRight = barra + "px";
       previo = el;
-      visor.querySelector(".visor-x").focus();
+      // preventScroll o el navegador arrastra la página hasta el botón
+      visor.querySelector(".visor-x").focus({ preventScroll: true });
     }
     function cerrar() {
+      visor.style.display = "none";
       visor.classList.remove("open");
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
       img.src = "";                       // suelta la imagen grande de memoria
-      if (previo) { previo.focus(); previo = null; }
+      if (previo) { previo.focus({ preventScroll: true }); previo = null; }
     }
 
     document.addEventListener("click", function (e) {
