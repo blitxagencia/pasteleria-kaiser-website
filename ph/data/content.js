@@ -339,8 +339,12 @@ window.KAISER = {
          2026-09-03 16:44: se le preguntó derecho por la de 15 ("se paga al
          retirar o se paga completo?") y contestó "Se paga completo". Ahora
          se nombra explícita, porque era el tamaño que este FAQ prometía mal.
-         El mínimo de anticipación de la de 15 sigue sin confirmarse. */
-      r: "Para las tortas de 10 y 25 personas necesitamos 2 días de anticipación como mínimo, y no necesitas pagar por adelantado: nos dejas tu nombre y apellido y queda reservada. Todos los demás tamaños, incluida la de 15 personas, se confirman con el pago total, que tiene que quedar listo a más tardar 3 días antes del día del retiro. Para las de 30 personas en adelante necesitamos 3 días de anticipación como mínimo.",
+         La anticipación de la de 15 la cerró Benjamín el mismo día: 3 días,
+         igual que las grandes. No es palabra de Nicolás, es la consecuencia
+         de su propia regla — si el pago tiene que estar listo 3 días antes
+         del retiro y el pedido se reserva solo pagado, un pedido a 2 días
+         era imposible de cumplir. */
+      r: "Para las tortas de 10 y 25 personas necesitamos 2 días de anticipación como mínimo, y no necesitas pagar por adelantado: nos dejas tu nombre y apellido y queda reservada. Todos los demás tamaños, desde la de 15 personas en adelante, necesitan 3 días de anticipación como mínimo y se confirman con el pago total, que tiene que quedar listo a más tardar 3 días antes del día del retiro.",
     },
     {
       p: "¿Hacen despacho a domicilio?",
