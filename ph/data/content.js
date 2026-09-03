@@ -330,8 +330,15 @@ window.KAISER = {
       p: "¿Con cuánta anticipación tengo que encargar?",
       /* 2026-08-14: Nicolás cambió el mínimo de "1 o 2 días" a 2 días para
          las tortas de 10 y 25. Antes decía "basta con 1 o 2 días", que era
-         textual del WhatsApp de PH de agosto. La regla la fija Kaiser. */
-      r: "Para las tortas de 10 y 25 personas necesitamos 2 días de anticipación como mínimo, y no necesitas pagar por adelantado: nos dejas tu nombre y apellido y queda reservada. Para los tamaños más grandes, de 30 personas en adelante, necesitamos 3 días como mínimo y el pago total para confirmar la reserva.",
+         textual del WhatsApp de PH de agosto. La regla la fija Kaiser.
+         2026-09-03: Nicolás corrigió el pago. Antes decía que solo las de 30
+         en adelante se pagaban al reservar, y eso le prometía a la torta de
+         15 personas un pago al retiro que Kaiser no da. Ahora: 10 y 25 al
+         retiro, TODO el resto por adelantado, y el pago 3 días antes del
+         retiro (Nicolás: "en este caso fueron 2 pero mejor dejémoslo en 3").
+         El mínimo de anticipación de la de 15 sigue sin confirmarse; el pago
+         a 3 días ya la obliga en la práctica, pero eso no lo dijo él. */
+      r: "Para las tortas de 10 y 25 personas necesitamos 2 días de anticipación como mínimo, y no necesitas pagar por adelantado: nos dejas tu nombre y apellido y queda reservada. Para los tamaños más grandes, de 30 personas en adelante, necesitamos 3 días como mínimo. Todos los tamaños distintos de 10 y 25 personas se confirman con el pago total, que tiene que quedar listo a más tardar 3 días antes del día del retiro.",
     },
     {
       p: "¿Hacen despacho a domicilio?",
@@ -339,7 +346,10 @@ window.KAISER = {
     },
     {
       p: "¿Cuándo se paga?",
-      r: "Puedes pagar al momento de retirar tu pedido, no hay problema. La única excepción son las tortas de 30 personas o más, que se confirman con el pago total al momento de reservar.",
+      /* 2026-09-03: Nicolás. Antes la excepción eran "30 personas o más", lo
+         que dejaba a la de 15 prometida como pago al retiro. La regla real es
+         al revés: solo 10 y 25 pagan al retirar. */
+      r: "Las tortas de 10 y 25 personas las puedes pagar al momento de retirar tu pedido, no hay problema. Los demás tamaños se confirman con el pago total, que tiene que quedar listo a más tardar 3 días antes del día en que retiras.",
     },
     {
       p: "¿Se puede escribir un mensaje en la torta?",
