@@ -26,6 +26,42 @@ Las 3 sucursales tienen carta, precios, dirección, horario y WhatsApp propios. 
 - **`hu/` — 33 tortas**, 11 kuchenes/pie/tartaleta y 15 grupos de coctelería, con dirección (Quilapán 6898), horario, WhatsApp (+56 9 7623 5401) y correo reales. Ver `hu/README.md`.
 - Lo que falta por sucursal (Instagram/TikTok/Facebook, valoración de Google, fotos propias) está en el README de cada carpeta.
 
+## Cómo se publica (leer antes de empujar)
+
+El repo está git-conectado a Netlify: cada push a `main` publica el sitio solo.
+Dos cosas que ya costaron una tarde:
+
+1. **El repo tiene que seguir siendo público.** El plan gratuito de Netlify
+   permite **un solo contribuidor de Git en repos privados**. Con dos cuentas
+   distintas empujando, el deploy queda en `Failed` con *"unrecognized Git
+   contributor"* — y Netlify bloquea **antes de compilar**, así que no hay ningún
+   log de build que mirar: el repo se ve perfecto y el sitio simplemente no
+   cambia. Se probó volver a privado firmando todo con la misma cuenta y tampoco
+   alcanzó (Netlify cuenta contribuidores por período de facturación).
+2. **Un deploy que ya falló no se reintenta solo.** Arreglar la causa no
+   republica nada. Hay que apretar *Retry* en Netlify, o empujar otro commit.
+
+**Verificar siempre**, que no es lo mismo que "hice push":
+
+```
+curl -s https://pasteleriakaiser.cl/ph/data/content.js | grep '"15"'
+```
+
+Si el cambio tocó `js/main.js` además de los datos, revisar los dos: un
+`content.js` nuevo con un `main.js` viejo se ve casi bien y cobra mal.
+
+## Precios: el 25p no es único
+
+Desde el 2026-09-08 la escala del grupo (`escalaTortas`, `escalaBizcocho`, …) es
+solo el **valor por defecto**. Cada torta puede traer lo suyo:
+
+- `precios: { "25": 46500 }` — pisa la escala solo en ese tamaño.
+- `omite: ["15"]` — esa torta no viene en ese tamaño.
+
+Los aplica `mergedScale()` en `<sucursal>/js/main.js`. **Cambiar solo la escala
+no cambia el precio de todas las tortas**, y el carrito cobra lo que diga cada
+una.
+
 ## Cómo actualizar cuando llegue la info
 
 Por sucursal, todo vive en `<sucursal>/data/content.js` (mismo patrón que ya usa `ph/`): dirección, WhatsApp, redes, horario y fotos se cambian ahí sin tocar el HTML. Las fotos van en `<sucursal>/assets/img/` con el mismo nombre de archivo que reemplazan.
