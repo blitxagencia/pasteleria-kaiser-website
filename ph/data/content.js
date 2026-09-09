@@ -71,7 +71,12 @@ window.KAISER = {
     { personas: "50", forma: "Rectangular", medida: "38,5 x 30 cm" },
   ],
 
-  /* Escala de precios estándar de tortas por N de personas */
+  /* Escala de precios estándar de tortas por N de personas.
+     Actualizada el 2026-09-08 con las láminas que mandó Nicolás.
+     ⚠️ El 25p NO es único: hay tortas de $43.500, $45.000 y $46.500. La escala
+     de acá es solo el valor por defecto del grupo — cada torta puede traerse el
+     suyo con `precios: { "25": 46500 }`, y `omite: ["15"]` si no viene en un
+     tamaño. Los lee `mergedScale()` en js/main.js. */
   escalaTortas: {
     "10": 31500, "15": 39500, "25": 45000, "30": 56000,
     "35": 62000, "40": 67000, "50": 75000,
