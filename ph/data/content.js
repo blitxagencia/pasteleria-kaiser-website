@@ -73,14 +73,14 @@ window.KAISER = {
 
   /* Escala de precios estándar de tortas por N de personas */
   escalaTortas: {
-    "10": 31500, "15": 39000, "25": 43500, "30": 52000,
-    "35": 57000, "40": 62000, "50": 71000,
+    "10": 31500, "15": 39500, "25": 45000, "30": 56000,
+    "35": 62000, "40": 67000, "50": 75000,
   },
-  escalaHelada: { "10": 31500, "15": 39000, "25": 46500 },
-  escalaBizcocho: { "10": 31500, "15": 39000, "25": 43500 },
+  escalaHelada: { "10": 31500, "15": 39500, "25": 46500 },
+  escalaBizcocho: { "10": 31500, "15": 39500, "25": 45000 },
   /* Sin azúcar / light. Misma escala que las heladas hoy, pero es otro producto:
      si Kaiser sube una, la otra no tiene por qué moverse. Catálogo de Tortas PH 2025, pág. 10. */
-  escalaLight: { "10": 31500, "15": 39000, "25": 46500 },
+  escalaLight: { "10": 31500, "15": 39500, "25": 46500 },
   escalaHojaLight: { "10": 41000, "25": 57000 },
 
   /* ---- Especialidades destacadas (selección editorial) ---- */
@@ -132,12 +132,12 @@ window.KAISER = {
             { n: "Amapola", d: "Panqueque de vainilla con amapola, crema Bariloche (chocolate y manjar), mermelada de guinda y crema pastelera.", img: "assets/img/carta/amapola.jpg" },
             { n: "Plátano", d: "Panqueque de vainilla, capas de mil hojas, crema pastelera con Baileys y pasta de almendras, chantilly esencia de plátano, manjar y merengue.", img: "assets/img/carta/platano.jpg" },
             { n: "Locura Kaiser", d: "Panqueque de chocolate, discos de merengue, mil hojas, mousse de lúcuma, manjar puro, mermelada de frambuesa y chantilly.", img: "assets/img/torta-panqueque.jpg" },
-            { n: "Lúcuma Manjar", d: "Panqueque de vainilla, mousse de lúcuma y manjar.", img: "assets/img/carta/lucuma-manjar.jpg" },
+            { n: "Lúcuma Manjar", d: "Panqueque de vainilla, mousse de lúcuma y manjar.", precios: { "25": 43500 }, img: "assets/img/carta/lucuma-manjar.jpg" },
             { n: "Pie de Limón", d: "Panqueque de vainilla, mousse de limón y merengue.", img: "assets/img/carta/pie-de-limon-torta.jpg" },
-            { n: "Manjar Nuez", d: "Panqueque de vainilla, manjar crema y nueces, ganache de chocolate.", img: "assets/img/carta/manjar-nuez.jpg" },
+            { n: "Manjar Nuez", d: "Panqueque de vainilla, manjar crema y nueces, ganache de chocolate.", precios: { "25": 43500 }, img: "assets/img/carta/manjar-nuez.jpg" },
             { n: "Panqueque Maracuyá", d: "Panqueque de chocolate y vainilla, discos de merengue, mousse de maracuyá y salsa de maracuyá.", tope: "25", img: "assets/img/carta/panqueque-maracuya.jpg" },
             { n: "Panqueque Merengue Lúcuma", d: "Panqueque de vainilla, discos de merengue y mousse de lúcuma.", tope: "25", img: "assets/img/carta/panqueque-merengue-lucuma.jpg" },
-            { n: "Naranja Manjar", d: "Panqueque de vainilla, salsa de naranja y manjar.", img: "assets/img/carta/naranja-manjar.jpg" },
+            { n: "Naranja Manjar", d: "Panqueque de vainilla, salsa de naranja y manjar.", precios: { "25": 43500 }, img: "assets/img/carta/naranja-manjar.jpg" },
             { n: "Torta de Frutas", d: "Panqueque de vainilla, chantilly y fruta a elección (piña, durazno o cerezas).", tope: "25", img: "assets/img/carta/torta-de-frutas.jpg" },
           ],
         },
@@ -147,8 +147,8 @@ window.KAISER = {
           items: [
             { n: "Chocopaste", d: "Panqueque de chocolate, mousse de chocolate, manjar puro y crema pastelera.", img: "assets/img/carta/chocopaste.jpg" },
             { n: "Choconuez", d: "Panqueque de chocolate, mousse de chocolate, nueces, manjar crema, mermelada de frutillas y ganache.", img: "assets/img/carta/choconuez.jpg" },
-            { n: "Selva Negra", d: "Panqueque de chocolate, mousse de chocolate, mermelada de frambuesa, chantilly, cerezas y chips de chocolate.", img: "assets/img/real-selvanegra.jpg" },
-            { n: "Trufa", d: "Panqueque de chocolate remojado en aguardiente, trufa y manjar.", img: "assets/img/carta/trufa.jpg" },
+            { n: "Selva Negra", d: "Panqueque de chocolate, mousse de chocolate, mermelada de frambuesa, chantilly, cerezas y chips de chocolate.", precios: { "25": 46500 }, img: "assets/img/real-selvanegra.jpg" },
+            { n: "Trufa", d: "Panqueque de chocolate remojado en aguardiente, trufa y manjar.", precios: { "25": 46500 }, img: "assets/img/carta/trufa.jpg" },
             { n: "Café", d: "Panqueque de chocolate, mousse de café, mousse de chocolate, chantilly y frambuesas.", img: "assets/img/carta/cafe.jpg" },
             { n: "Cappuccino", d: "Panqueque de chocolate, mousse de cappuccino, mousse de chocolate y chips de chocolate.", img: "assets/img/carta/cappuccino.jpg" },
           ],
@@ -158,7 +158,7 @@ window.KAISER = {
           precio: "escalaTortas",
           items: [
             { n: "Hoja de la Casa", d: "Mil hojas, manjar crema, nueces, mermelada de guinda, chantilly y hojarasca molida.", img: "assets/img/torta-milhojas.jpg" },
-            { n: "Hoja Frambuesa", d: "Mil hojas, manjar, chantilly, frambuesas y merengue.", img: "assets/img/carta/hoja-frambuesa.jpg" },
+            { n: "Hoja Frambuesa", d: "Mil hojas, manjar, chantilly, frambuesas y merengue.", precios: { "25": 46500 }, img: "assets/img/carta/hoja-frambuesa.jpg" },
             { n: "Hoja Tres Sabores", d: "Mil hojas y panqueque de vainilla, mousse de manjar, crema pastelera, chantilly, frambuesas y manjar.", img: "assets/img/carta/hoja-tres-sabores.jpg" },
             { n: "Hoja Manjar", d: "Mil hojas y manjar puro.", img: "assets/img/carta/hoja-manjar.jpg" },
             { n: "Hoja Manjar Pastelera", d: "Mil hojas, manjar y crema pastelera.", img: "assets/img/carta/hoja-manjar-pastelera.jpg" },
@@ -179,9 +179,10 @@ window.KAISER = {
           nombre: "Tortas de bizcocho",
           precio: "escalaBizcocho",
           items: [
-            { n: "Torta Tropical", d: "Bizcocho de vainilla, mousse de piña, mango y maracuyá, con trozos de piña y mango.", img: "assets/img/carta/torta-tropical.jpg" },
-            { n: "Red Velvet", d: "Bizcocho de vainilla rojo, cheesecake philadelphia y manjar.", img: "assets/img/carta/red-velvet.jpg" },
+            { n: "Torta Tropical", d: "Bizcocho de vainilla, mousse de piña, mango y maracuyá, con trozos de piña y mango.", omite: ["15"], img: "assets/img/carta/torta-tropical.jpg" },
+            { n: "Red Velvet", d: "Bizcocho de vainilla rojo, cheesecake philadelphia y manjar.", precios: { "25": 46500 }, omite: ["15"], img: "assets/img/carta/red-velvet.jpg" },
             { n: "Carrot Cake", d: "Bizcocho de zanahoria con nueces, manjar y frosting de queso philadelphia.", img: "assets/img/carta/carrot-cake.jpg" },
+            { n: "Bizcocho de Chocolate", d: "Bizcocho de chocolate, ganache de chocolate y manjar.", precios: { "25": 46500 } },
           ],
         },
         {
@@ -190,7 +191,6 @@ window.KAISER = {
           nota: "Endulzadas sin azúcar. Consulta por disponibilidad al encargar.",
           items: [
             { n: "Torta de Yogurt", d: "Panqueque de vainilla, mousse de yogurt light, cubierta con mermelada de frambuesa light.", img: "assets/img/carta/torta-de-yogurt.jpg" },
-            { n: "Torta de Naranja Light", d: "Panqueque de vainilla, salsa de naranja light, cubierta con salsa de naranja light y decorada con chocolate.", img: "assets/img/carta/torta-de-naranja-light.jpg" },
           ],
         },
         {
@@ -208,7 +208,7 @@ window.KAISER = {
     {
       id: "kuchen",
       titulo: "Kuchen y Pie",
-      nota: "Chico (6 a 8 personas) $19.000 · Grande (10 a 12 personas) $23.000, salvo indicado.",
+      nota: "Chico (6 a 8 personas) $19.000 · Grande (10 a 12 personas) $23.000, salvo indicado. El Kuchen de Nuez y el Cheesecake de Frutos Rojos valen $25.000 en tamaño grande.",
       img: "assets/img/kuchen.jpg",
       grupos: [
         {
@@ -216,10 +216,10 @@ window.KAISER = {
           items: [
             { n: "Kuchen de Manzana", d: "Manzanas verdes, crema pastelera, mermelada de damasco y nueces. Solo en temporada de manzana verde.", precioFijo: "$19.000 / $23.000", img: "assets/img/carta/kuchen-de-manzana.jpg" },
             { n: "Streusel de Frambuesa", d: "Crema pastelera, frambuesas naturales, cubierto con migas.", precioFijo: "$19.000 / $23.000", img: "assets/img/carta/streusel-de-frambuesa.jpg" },
-            { n: "Cheesecake de Frutos Rojos", d: "Base de queso philadelphia con azúcar, cubierto con frambuesas y arándanos, con corona de azúcar rubia, almendras, nueces y canela.", precioFijo: "$19.000 / $23.000", img: "assets/img/cheesecake.jpg" },
+            { n: "Cheesecake de Frutos Rojos", d: "Base de queso philadelphia con azúcar, cubierto con frambuesas y arándanos, con corona de azúcar rubia, almendras, nueces y canela.", precioFijo: "$19.000 / $25.000", img: "assets/img/cheesecake.jpg" },
             { n: "Pie de Limón", d: "Mousse de limón hecho con jugo de limón natural, cubierto con merengue.", precioFijo: "$19.000 / $23.000", img: "assets/img/carta/pie-de-limon.jpg" },
             { n: "Pie de Maracuyá", d: "Mousse de maracuyá, cubierto con salsa de maracuyá.", precioFijo: "$19.000 / $23.000", img: "assets/img/carta/pie-de-maracuya.jpg" },
-            { n: "Kuchen de Nuez", d: "Relleno de nueces con leche condensada.", precioFijo: "$19.000 / $23.000", img: "assets/img/kuchen.jpg" },
+            { n: "Kuchen de Nuez", d: "Relleno de nueces con leche condensada.", precioFijo: "$19.000 / $25.000", img: "assets/img/kuchen.jpg" },
             { n: "Cheesecake New York", d: "Base de galletas molidas con mantequilla, relleno de cheesecake horneado, cubierto con mermelada de frambuesa. Solo tamaño grande.", precioFijo: "$34.000", img: "assets/img/carta/cheesecake-new-york.jpg" },
           ],
         },

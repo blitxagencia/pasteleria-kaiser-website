@@ -25,6 +25,25 @@
     return null;
   }
 
+  // El precio de 25 personas dejo de ser uno solo por grupo (8-sep-2026):
+  // hay tortas que valen $43.500, otras $45.000 y otras $46.500. Un item
+  // puede traer `precios: { "25": 46500 }` y eso pisa la escala del grupo
+  // SOLO en ese tamano. Sin esto, el carrito cobraba el precio del grupo.
+  // `omite: ["15"]` saca un tamaño que el grupo sí tiene pero esa torta no.
+  // Confirmado por Nicolas el 8-sep-2026: la Torta Tropical y la Red Velvet
+  // dejaron de hacerse en 15 personas; la Carrot Cake y el Bizcocho de
+  // Chocolate siguen. Sin esto el carrito dejaba pedir un tamaño que no existe.
+  function mergedScale(it, scaleName) {
+    var base = scaleObj(scaleName);
+    if (!base) return null;
+    if (!it || (!it.precios && !it.omite)) return base;
+    var out = {};
+    Object.keys(base).forEach(function (k) { out[k] = base[k]; });
+    if (it.precios) Object.keys(it.precios).forEach(function (k) { out[k] = it.precios[k]; });
+    if (it.omite) it.omite.forEach(function (k) { delete out[k]; });
+    return out;
+  }
+
   function scaleRange(obj) {
     // Ordena por precio (no por texto de la llave): JS reordena solo las
     // llaves numéricas puras ("25") antes que las con guión ("10-12"),
@@ -52,7 +71,7 @@
 
   function buildOpts(it, scaleName, nota) {
     if (scaleName) {
-      var sc = scaleObj(scaleName);
+      var sc = mergedScale(it, scaleName);
       return Object.keys(sc).map(function (k) { return { label: k + " personas", price: sc[k], units: 0 }; });
     }
     if (it.precioFijo) {
@@ -173,6 +192,11 @@
     var idx = registerItem(it, grupoNombre, scaleName, nota);
     var price = it.precioFijo ? '<span class="i-price">' + it.precioFijo + "</span>" : "";
     var tope = it.tope ? '<span class="i-tope">hasta ' + it.tope + " pers.</span>" : "";
+    // Si la torta no viene en algun tamaño del grupo, decirlo en la tarjeta:
+    // el rango del titulo es del grupo y solo, sin esto, prometeria de mas.
+    if (!it.tope && it.omite && it.omite.length) {
+      tope = '<span class="i-tope">sin ' + it.omite.join(" ni ") + " pers.</span>";
+    }
     var media = it.img ? '<div class="i-thumb">' + zoom(it.img, it.n) + "</div>" : "";
     var add = idx >= 0 ? '<button class="add-btn" data-idx="' + idx + '" aria-label="Agregar ' + it.n + ' al pedido">+ Agregar</button>' : "";
     var body = '<div class="i-body"><div class="i-top"><span class="i-name">' + it.n + "</span>" + tope +
@@ -183,7 +207,23 @@
 
   function renderGrupo(gr) {
     var precio = "";
-    if (gr.precio) { var o = scaleObj(gr.precio); if (o) precio = '<span class="g-precio">' + scaleRange(o) + "</span>"; }
+    if (gr.precio) {
+      // El rango del titulo se calcula sobre los precios REALES de los items
+      // del grupo, no sobre la escala pelada: si una torta del grupo vale mas
+      // que la escala, el rango tiene que incluirla o el titulo miente.
+      var o = scaleObj(gr.precio);
+      if (o) {
+        var real = {};
+        Object.keys(o).forEach(function (k) { real[k] = o[k]; });
+        gr.items.forEach(function (it) {
+          if (!it.precios) return;
+          Object.keys(it.precios).forEach(function (k) {
+            if (real[k] === undefined || it.precios[k] > real[k]) real[k] = it.precios[k];
+          });
+        });
+        precio = '<span class="g-precio">' + scaleRange(real) + "</span>";
+      }
+    }
     var nota = gr.nota ? '<p class="grupo-nota">' + gr.nota + "</p>" : "";
     // Foto del grupo: se usa cuando la del catálogo es de un surtido y no de una
     // variedad. Colgarla de un ítem diría que ese ítem se ve así, y no es cierto.
