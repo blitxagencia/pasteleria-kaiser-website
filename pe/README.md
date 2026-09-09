@@ -13,19 +13,19 @@ pe/
 ├─ css/styles.css      diseño (paleta, tipografías, layout) — igual al de PH
 ├─ js/main.js          arma la carta y las interacciones — tiene 1 diferencia vs PH/HU (ver abajo)
 ├─ data/content.js     ← TODO el contenido editable vive acá
-└─ assets/img/         fotos (todavía de stock, ver "Pendiente" abajo)
+└─ assets/img/         fotos (ver "Qué falta" abajo)
 ```
 
 **`js/main.js` tiene un cambio propio de este sitio:** se agregó soporte para una 4ª escala de precios, `escalaTortasPremium` (línea ~20-22, función `scaleObj`). Es porque Trufa, Choconuez, Selva Negra y Pasta de Almendras cuestan más que el resto de las tortas de chocolate en el catálogo real — no es un error, es la única sucursal con esta variación de precio por receta. Si algún día se actualiza `main.js` en `ph/` o `hu/`, no te olvides que este archivo quedó levemente distinto a propósito.
 
-## Qué es REAL vs PENDIENTE
+## Qué falta por completar
 
-**Real (del catálogo de WhatsApp, 2026-07-27 — no oficial, pero es la carta real de Peñaflor):**
+**Real (del catálogo de WhatsApp, 2026-07-27 — pero es la carta real de Peñaflor):**
 - **Carta completa y propia**: 32 tortas (incluye una escala de precio "premium" para 4 recetas de chocolate), 9 kuchen/pie/tartaleta, y 15 grupos de coctelería (incluye ítems que ni PH ni HU tienen: ceviche, pastel de jaiba, postres individuales por caja).
 - **Precios reales de tortas**: escala base $28.500 a $67.000 (10 a 50 personas), escala premium $30.500 a $72.000 para Trufa/Choconuez/Selva Negra/Pasta de Almendras. Heladas, tortas light y bizcocho tope en 25 personas.
 - **Precios reales de coctelería**: por 100 unidades salvo indicado (postres individuales por caja de 6/12, pastel de jaiba por 50 unidades).
 - **Dirección real:** Av. Miraflores 2103, Peñaflor.
-- **Horario real** (no oficial, ver nota abajo): Lunes cerrado · Martes a viernes 11:30–20:00 · Sábado y domingo 10:00–20:00.
+- **Horario** (ver nota abajo): Lunes cerrado · Martes a viernes 11:30–20:00 · Sábado y domingo 10:00–20:00.
 - **WhatsApp real: +569 9957 5267.** Este sitio SÍ puede usarse para vender de verdad — a diferencia de HU, acá no falta el número.
 - **Instagram real:** @pasteleriadeliciaskaiser_ (aparece así en 2 de las 3 veces que sale en su catálogo; la tercera lo mostraba sin el guion bajo final — usamos la versión más repetida).
 - **Correo real:** psdeliciaskaiser@gmail.com (agregado como tarjeta nueva en "Ubicación" y en el footer).
@@ -34,8 +34,8 @@ pe/
 **PENDIENTE:**
 - **Precio de Kuchen, Pie y Tartaleta** → su catálogo solo daba tamaños (chico 6-8 pers. / grande 10-12 pers.), sin montos. Quedó anotado en la carta como "consultar por WhatsApp" — no se inventó ningún precio.
 - **TikTok / Facebook** → no vinieron en la info.
-- **Confirmación oficial de horario y dirección** → salió de un catálogo de WhatsApp no oficial (mismo caso que Huechuraba).
-- **Fotos reales recortadas** → el catálogo tiene foto de cada producto, pero incrustadas en capturas con texto. El sitio sigue con fotos de stock por categoría hasta que alguien recorte las reales.
+- **Confirmar horario y dirección con la sucursal** → salieron del catálogo de WhatsApp (mismo caso que Huechuraba).
+- **Fotos reales recortadas** → el catálogo tiene foto de cada producto, pero incrustadas en capturas con texto. El sitio sigue con fotos genéricas por categoría hasta que alguien recorte las reales.
 
 ## Valoración y reseñas (real, 2026-07-27)
 

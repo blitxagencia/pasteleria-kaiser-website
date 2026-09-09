@@ -17,14 +17,14 @@ pasteleria-kaiser-website/
 
 Rutas finales, una vez con dominio: `dominio.cl/` (selector) → `dominio.cl/ph`, `dominio.cl/pe`, `dominio.cl/hu`.
 
-## Qué es REAL y qué es PLACEHOLDER
+## Estado de cada sucursal
 
-Las 3 sucursales tienen carta, precios, dirección, horario y **WhatsApp real** — las 3 podrían venderse hoy. Lo único que queda pendiente en `pe/` y `hu/` son detalles menores (redes sociales, valoración de Google, fotos reales recortadas), no bloqueantes para vender.
+Las 3 sucursales tienen carta, precios, dirección, horario y WhatsApp propios. En `pe/` y `hu/` quedan detalles por completar: redes sociales, valoración de Google y las fotos propias de cada producto.
 
-- **`ph/` es el sitio real** que ya se armó con la carta que pasó Ian — sin tocar, intacto.
+- **`ph/`** es el sitio de Padre Hurtado, el primero que se armó.
 - **`pe/` — 32 tortas** (con una escala de precio "premium" para 4 recetas), 9 kuchen/pie/tartaleta (sin precio — su catálogo no lo traía) y 15 grupos de coctelería, con dirección (Av. Miraflores 2103), horario, WhatsApp (+569 9957 5267) y correo reales. Peñaflor es la Casa Matriz de la cadena, no una sucursal más. Ver `pe/README.md`, incluido el pequeño cambio que se hizo en su `js/main.js` para soportar la escala de precio premium.
 - **`hu/` — 33 tortas**, 11 kuchenes/pie/tartaleta y 15 grupos de coctelería, con dirección (Quilapán 6898), horario, WhatsApp (+56 9 7623 5401) y correo reales. Ver `hu/README.md`.
-- Detalle pendiente por sucursal (Instagram/TikTok/Facebook, valoración de Google, fotos reales) en el README de cada carpeta.
+- Lo que falta por sucursal (Instagram/TikTok/Facebook, valoración de Google, fotos propias) está en el README de cada carpeta.
 
 ## Cómo actualizar cuando llegue la info
 

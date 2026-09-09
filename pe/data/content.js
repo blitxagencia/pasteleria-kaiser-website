@@ -7,8 +7,7 @@
 window.KAISER = {
 
   /* ---- Negocio y contacto ----
-     Del catálogo de WhatsApp que pasó Ian (2026-07-27) — no oficial,
-     igual confirmar con el dueño. Peñaflor es la CASA MATRIZ de Kaiser
+     Del catálogo de WhatsApp de la sucursal (2026-07-27). Confirmar con la sucursal antes de cambiarlos. Peñaflor es la CASA MATRIZ de Kaiser
      (lo dice su propio catálogo), no una sucursal más. */
   biz: {
     nombre: "Pastelería Kaiser",
@@ -31,7 +30,7 @@ window.KAISER = {
 
   /* ---- Horario real (catálogo de WhatsApp, 2026-07-27) ---- */
   horario: {
-    placeholder: false, // real, pero no oficial — confirmar con el dueño si se puede
+    placeholder: false,
     dias: {
       1: null,                             // Lun: cerrado
       2: { abre: "11:30", cierra: "20:00" }, // Mar
@@ -114,8 +113,8 @@ window.KAISER = {
   /* =========================================================
      CARTA COMPLETA · organizada por secciones y categorías
      Fuente: catálogo de WhatsApp de la Casa Matriz Peñaflor
-     (no oficial, pasado por Ian el 2026-07-27). Fotos todavía
-     son de stock — faltan las fotos reales recortadas del catálogo.
+     (2026-07-27). Las fotos por producto se van reemplazando a
+     medida que llegan las del catálogo de la sucursal.
      ========================================================= */
   carta: [
 

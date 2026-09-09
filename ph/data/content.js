@@ -25,14 +25,14 @@ window.KAISER = {
     mapsQuery: "Pastelería Kaiser Rodolfo Jaramillo 2660 Padre Hurtado",
   },
 
-  /* ---- Horario · REAL ----
+  /* ---- Horario ----
      Fuente: perfil de WhatsApp Business de la propia sucursal,
      verificado el 2026-08-03. Formato 24h. day: 0=domingo .. 6=sábado.
      Cerrado = null.
 
-     ⚠️ Confirmar el horario contra el WhatsApp Business de la
-     sucursal antes de cambiarlo.
-     El lunes la sucursal cierra. */
+     ⚠️ Antes de tocar esto, confirmarlo contra el WhatsApp Business de
+     la sucursal. El lunes cierra: publicar un día de más manda gente al
+     local para nada. */
   horario: {
     placeholder: false,
     dias: {
@@ -318,9 +318,8 @@ window.KAISER = {
 
   /* ---- Preguntas frecuentes ----
 
-     Cada respuesta sale de lo que la pastelería ya le
-     contesta a sus clientes por WhatsApp. Las fuentes textuales están
-     en projects/pasteleria-kaiser/faq-real-clientes.md.
+     Cada respuesta sale de lo que la pastelería ya le contesta a sus
+     clientes por WhatsApp; las fuentes textuales están guardadas aparte.
 
      Estas seis son las preguntas que más se repiten en el historial y
      que el sitio no respondía. Cada una que el sitio contesta es un

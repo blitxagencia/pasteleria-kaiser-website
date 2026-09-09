@@ -8,7 +8,7 @@ window.KAISER = {
 
   /* ---- Negocio y contacto ----
      Dirección, horario, email y web: reales (catálogo de WhatsApp
-     que pasó Ian, 2026-07-27 — no oficial, igual confirmar con el dueño). */
+     de la sucursal). Confirmar con la sucursal antes de cambiarlos. */
   biz: {
     nombre: "Pastelería Kaiser",
     sucursal: "Sucursal Huechuraba",
@@ -31,7 +31,7 @@ window.KAISER = {
   /* ---- Horario real (catálogo de WhatsApp, 2026-07-27) ----
      Formato 24h. day: 0=domingo .. 6=sábado. Cerrado = null. */
   horario: {
-    placeholder: false, // real, pero no oficial — confirmar con el dueño si se puede
+    placeholder: false,
     dias: {
       1: null,                             // Lun: cerrado
       2: { abre: "12:00", cierra: "19:30" }, // Mar
@@ -105,9 +105,9 @@ window.KAISER = {
 
   /* =========================================================
      CARTA COMPLETA · organizada por secciones y categorías
-     Fuente: catálogo de WhatsApp de la sucursal (no oficial,
-     pasado por Ian el 2026-07-27). Fotos todavía son de stock —
-     faltan las fotos reales recortadas del catálogo.
+     Fuente: catálogo de WhatsApp de la sucursal (2026-07-27).
+     Las fotos por producto se van reemplazando a medida que llegan
+     las del catálogo de la sucursal.
      ========================================================= */
   carta: [
 

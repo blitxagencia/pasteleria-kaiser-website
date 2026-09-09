@@ -18,7 +18,7 @@ ph/
 
 ## Qué es REAL vs REFERENCIAL
 
-**Real (de las cartas de Padre Hurtado que pasó Ian):**
+**Real (de las cartas de Padre Hurtado de la sucursal):**
 - Toda la carta: Tortas (panqueque, chocolate, mil hojas, heladas, bizcocho), Kuchen y Pie, Coctelería completa.
 - Todos los precios y la tabla de tamaños.
 - Dirección, WhatsApp (+569 74899392), Instagram (@pasteleriakaiserph), lema y año 2005.
