@@ -33,14 +33,32 @@
   // Confirmado por Nicolas el 8-sep-2026: la Torta Tropical y la Red Velvet
   // dejaron de hacerse en 15 personas; la Carrot Cake y el Bizcocho de
   // Chocolate siguen. Sin esto el carrito dejaba pedir un tamaño que no existe.
+  // `tope: "25"` es el techo de esa torta: no se hace en ningun tamaño mayor.
+  // Se estaba ignorando acá, y el carrito ofrecia 30, 35, 40 y 50 personas
+  // para la Torta de Frutas, el Panqueque Maracuya y el Merengue Lucuma, que
+  // llegan hasta 25. La ficha decia "hasta 25 pers." al lado, contradiciendo
+  // al selector, y el pedido que salia por WhatsApp pedia un tamaño que no
+  // existe.
+  //
+  // Va DENTRO de mergedScale a proposito: es el unico lugar donde se resuelven
+  // los tamaños de una torta, asi que lo hereda cualquiera que los pida.
   function mergedScale(it, scaleName) {
     var base = scaleObj(scaleName);
     if (!base) return null;
-    if (!it || (!it.precios && !it.omite)) return base;
+    // `tope` tiene que estar en esta guarda. Sin el, una torta que solo trae
+    // tope se iba por el atajo y recibia la escala completa del grupo.
+    if (!it || (!it.precios && !it.omite && !it.tope)) return base;
     var out = {};
     Object.keys(base).forEach(function (k) { out[k] = base[k]; });
     if (it.precios) Object.keys(it.precios).forEach(function (k) { out[k] = it.precios[k]; });
     if (it.omite) it.omite.forEach(function (k) { delete out[k]; });
+    if (it.tope) {
+      Object.keys(out).forEach(function (k) {
+        // parseInt y no Number: hay escalas con llaves tipo "10-12".
+        var n = parseInt(k, 10);
+        if (!isNaN(n) && n > Number(it.tope)) delete out[k];
+      });
+    }
     return out;
   }
 
