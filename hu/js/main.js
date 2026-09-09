@@ -48,10 +48,21 @@
     return /50\s*de\s*una/i.test(nota || "");
   }
 
+  // `tope: "25"` es el techo de esa torta: no se hace en ningun tamaño mayor.
+  // Sin este filtro el carrito ofrece la escala completa del grupo, o sea
+  // tamaños que no existen, mientras la ficha dice "hasta 25 pers." al lado.
+  function tamanosPermitidos(it, sc) {
+    return Object.keys(sc).filter(function (k) {
+      // parseInt y no Number: hay escalas con llaves tipo "10-12".
+      var n = parseInt(k, 10);
+      return !it.tope || isNaN(n) || n <= Number(it.tope);
+    });
+  }
+
   function buildOpts(it, scaleName, nota) {
     if (scaleName) {
       var sc = scaleObj(scaleName);
-      return Object.keys(sc).map(function (k) { return { label: k + " personas", price: sc[k], units: 0 }; });
+      return tamanosPermitidos(it, sc).map(function (k) { return { label: k + " personas", price: sc[k], units: 0 }; });
     }
     if (it.precioFijo) {
       var ms = it.precioFijo.match(/\$[\d.]+/g) || [];
