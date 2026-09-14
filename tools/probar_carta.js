@@ -134,5 +134,26 @@ ok("15" in escalaDe("Carrot Cake"), "ph · Carrot Cake: si debe ofrecer 15 perso
 ok(ph.D.escalaHojaLight["25"] === 57000, "ph · Mil hojas light: el 25p sigue en 57000");
 ok(ph.D.escalaTortas["10"] === 31500, "ph · el tamaño de 10 personas se mantuvo en 31500");
 
+/* --- Casos concretos de Peñaflor, contra su lista de precios del 14-sep-2026 --- */
+const pe = cargar("pe");
+const escalaPe = (n) => {
+  for (const sec of pe.D.carta || []) for (const gr of sec.grupos || [])
+    for (const it of gr.items || []) if (it.n === n) return pe.tamanos(it, gr.precio);
+  throw new Error("pe: no existe el producto " + n);
+};
+ok(escalaPe("Tres Sabores")["10"] === 28500, "pe · Tres Sabores: 10p debe costar 28500");
+ok(escalaPe("Mil Hojas Frambuesa")["15"] === 39500 && escalaPe("Mil Hojas Frambuesa")["50"] === 72000,
+   "pe · Mil Hojas Frambuesa: va con precio premium (15p 39500, 50p 72000)");
+ok(escalaPe("Almendra (también la llaman Plátano)")["50"] === 65000
+   && escalaPe("Almendra (también la llaman Plátano)")["40"] === 60000,
+   "pe · Almendra: 50p 65000 y el resto con la escala");
+ok(escalaPe("Torta Helada de Maracuyá")["50"] === 67000, "pe · heladas: llegan a 50 personas");
+for (const nombre of ["Torta Tropical", "Red Velvet", "Mil Hojas Frambuesa Sin Azúcar"])
+  ok(!("15" in escalaPe(nombre)), `pe · ${nombre}: no debe ofrecer 15 personas`);
+ok(escalaPe("Red Velvet")["10"] === 30500, "pe · Red Velvet: 10p debe costar 30500");
+ok(JSON.stringify(escalaPe("Torta Sin Azúcar Semifrío")) === '{"25":46500}',
+   "pe · Semifrío sin azúcar: solo 25 personas, 46500");
+ok(Math.max(...Object.keys(escalaPe("3 Leches")).map(Number)) === 25, "pe · 3 Leches: hasta 25 personas");
+
 console.log(`\n${revisados - fallos}/${revisados} comprobaciones OK · ${conTope} productos con tope en las 3 sucursales`);
 if (fallos) process.exit(1);

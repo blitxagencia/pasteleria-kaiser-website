@@ -21,7 +21,36 @@
     if (name === "escalaTortasPremium") return D.escalaTortasPremium;
     if (name === "escalaHelada") return D.escalaHelada;
     if (name === "escalaBizcocho") return D.escalaBizcocho;
+    if (name === "escalaLight") return D.escalaLight;
     return null;
+  }
+
+  // Lo mismo que Padre Hurtado desde el 8-sep-2026, traído a Peñaflor el
+  // 14-sep con su lista de precios: la escala del grupo es solo el valor por
+  // defecto. `precios: { "50": 65000 }` pisa esos tamaños (la Almendra, la Mil
+  // Hojas Frambuesa premium), `omite: ["15"]` saca un tamaño que esa torta no
+  // tiene (Tropical, Red Velvet) y `tope: "25"` corta los mayores.
+  //
+  // Va DENTRO de mergedScale a proposito: es el unico lugar donde se resuelven
+  // los tamaños de una torta, asi que lo hereda cualquiera que los pida.
+  function mergedScale(it, scaleName) {
+    var base = scaleObj(scaleName);
+    if (!base) return null;
+    // `tope` tiene que estar en esta guarda. Sin el, una torta que solo trae
+    // tope se iba por el atajo y recibia la escala completa del grupo.
+    if (!it || (!it.precios && !it.omite && !it.tope)) return base;
+    var out = {};
+    Object.keys(base).forEach(function (k) { out[k] = base[k]; });
+    if (it.precios) Object.keys(it.precios).forEach(function (k) { out[k] = it.precios[k]; });
+    if (it.omite) it.omite.forEach(function (k) { delete out[k]; });
+    if (it.tope) {
+      Object.keys(out).forEach(function (k) {
+        // parseInt y no Number: hay escalas con llaves tipo "10-12".
+        var n = parseInt(k, 10);
+        if (!isNaN(n) && n > Number(it.tope)) delete out[k];
+      });
+    }
+    return out;
   }
 
   function scaleRange(obj) {
@@ -49,21 +78,10 @@
     return /50\s*de\s*una/i.test(nota || "");
   }
 
-  // `tope: "25"` es el techo de esa torta: no se hace en ningun tamaño mayor.
-  // Sin este filtro el carrito ofrece la escala completa del grupo, o sea
-  // tamaños que no existen, mientras la ficha dice "hasta 25 pers." al lado.
-  function tamanosPermitidos(it, sc) {
-    return Object.keys(sc).filter(function (k) {
-      // parseInt y no Number: hay escalas con llaves tipo "10-12".
-      var n = parseInt(k, 10);
-      return !it.tope || isNaN(n) || n <= Number(it.tope);
-    });
-  }
-
   function buildOpts(it, scaleName, nota) {
     if (scaleName) {
-      var sc = scaleObj(scaleName);
-      return tamanosPermitidos(it, sc).map(function (k) { return { label: k + " personas", price: sc[k], units: 0 }; });
+      var sc = mergedScale(it, scaleName);
+      return Object.keys(sc).map(function (k) { return { label: k + " personas", price: sc[k], units: 0 }; });
     }
     if (it.precioFijo) {
       var ms = it.precioFijo.match(/\$[\d.]+/g) || [];
@@ -164,7 +182,23 @@
 
   function renderGrupo(gr) {
     var precio = "";
-    if (gr.precio) { var o = scaleObj(gr.precio); if (o) precio = '<span class="g-precio">' + scaleRange(o) + "</span>"; }
+    if (gr.precio) {
+      // El rango del titulo se calcula sobre los precios REALES de los items
+      // del grupo, no sobre la escala pelada: si una torta del grupo vale mas
+      // que la escala, el rango tiene que incluirla o el titulo miente.
+      // Sale del minimo y el maximo de lo que cobra cada torta (mergedScale),
+      // no de la escala: en Peñaflor la Red Velvet pisa el precio de 10 y
+      // quedarse con el mayor por tamaño escondia el $28.500 de la Carrot Cake.
+      var precios = [], personas = [];
+      gr.items.forEach(function (it) {
+        var sc = mergedScale(it, gr.precio) || {};
+        Object.keys(sc).forEach(function (k) { precios.push(sc[k]); personas.push(parseInt(k, 10)); });
+      });
+      if (precios.length) {
+        precio = '<span class="g-precio">' + Math.min.apply(null, personas) + " a " + Math.max.apply(null, personas) +
+          " personas · " + clp(Math.min.apply(null, precios)) + " a " + clp(Math.max.apply(null, precios)) + "</span>";
+      }
+    }
     var nota = gr.nota ? '<p class="grupo-nota">' + gr.nota + "</p>" : "";
     var items = gr.items.map(function (it) { return renderItem(it, gr.nombre, gr.precio, gr.nota); }).join("");
     return '<div class="grupo"><div class="grupo-head"><h3>' + gr.nombre + "</h3>" + precio + "</div>" +
@@ -180,7 +214,7 @@
     return '<div class="tamanos"><h4>Tamaños y precios de las tortas</h4>' +
       '<div class="tamanos-scroll"><table><thead><tr><th>Personas</th><th>Forma</th><th>Tamaño</th><th>Precio</th></tr></thead>' +
       "<tbody>" + rows + "</tbody></table></div>" +
-      '<p class="grupo-nota" style="margin-top:.8rem">Precios de tortas de panqueque, chocolate y mil hojas. Heladas y de bizcocho tienen su propia escala (hasta 25 personas).</p></div>';
+      '<p class="grupo-nota" style="margin-top:.8rem">Precios de tortas de panqueque, chocolate, mil hojas y heladas. Las premium, las light, las de bizcocho y las sin azúcar tienen su propio precio: míralo en cada torta.</p></div>';
   }
 
   function renderCarta() {

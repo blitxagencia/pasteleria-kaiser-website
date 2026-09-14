@@ -66,10 +66,12 @@ window.KAISER = {
     { personas: "50", forma: "Rectangular", medida: "38,5 x 30 cm" },
   ],
 
-  /* Escalas de precios reales (catálogo de WhatsApp, 2026-07-27).
-     La mayoría de las tortas usa "escalaTortas"; Trufa, Choconuez,
-     Selva Negra y Pasta de Almendras tienen una escala más cara
-     ("escalaTortasPremium") — así viene en su propio catálogo. */
+  /* Escalas de precios: lista de precios de Peñaflor (cargada el 2026-09-14).
+     La escala es solo el valor por defecto del grupo. Cada torta puede traer
+     `precios: { "50": 65000 }` (pisa esos tamaños), `omite: ["15"]` (no viene
+     en ese tamaño) o `tope: "25"` (no pasa de ahí). Los lee `mergedScale()` en
+     js/main.js. La premium es de Chocolate, Trufa, Choconuez, Selva Negra y
+     Pasta de Almendras, y la Mil Hojas Frambuesa la trae como `precios`. */
   escalaTortas: {
     "10": 28500, "15": 33500, "25": 40500, "30": 49000,
     "35": 54000, "40": 60000, "50": 67000,
@@ -78,8 +80,12 @@ window.KAISER = {
     "10": 30500, "15": 39500, "25": 46500, "30": 53000,
     "35": 59000, "40": 64000, "50": 72000,
   },
-  escalaHelada: { "10": 28500, "15": 33500, "25": 40500 },
+  escalaHelada: {
+    "10": 28500, "15": 33500, "25": 40500, "30": 49000,
+    "35": 54000, "40": 60000, "50": 67000,
+  },
   escalaBizcocho: { "10": 28500, "15": 33500, "25": 40500 },
+  escalaLight: { "10": 28500, "15": 33500, "25": 40500 },
 
   /* ---- Especialidades destacadas (selección editorial) ---- */
   especialidades: [
@@ -131,9 +137,12 @@ window.KAISER = {
           items: [
             { n: "Naranja Manjar", d: "Panqueque de vainilla, rellena con salsa de naranja y manjar." },
             { n: "Manjar Nuez", d: "Panqueques de vainilla, rellena manjar crema y nueces, cubierta con ganache de chocolate." },
+            { n: "Nuez Lúcuma", d: "Panqueques de vainilla, rellena con manjar, nueces y crema chantilly con pulpa de lúcuma." },
             { n: "Tres Sabores", d: "Panqueque de chocolate, rellena con manjar crema, crema pastelera, crema chantilly y frambuesas naturales." },
-            { n: "Amapolas", d: "Panqueque de vainilla con semillas de amapola, rellena con crema Bariloche (mezcla de chocolate con manjar), mermelada de guinda y crema pastelera." },
-            { n: "Plátano", d: "Panqueque de vainilla, capas de mil hojas, rellena con crema pastelera con esencia de Baileys y pasta de almendras, crema chantilly con esencia de plátano, y manjar, cubierto de merengue." },
+            { n: "4 Leches", d: "Panqueque de vainilla con semillas de amapola, manjar y crema pastelera, con remojo de 4 leches.", tope: "25" },
+            { n: "3 Leches", d: "Panqueque de vainilla y crema pastelera, con remojo de 3 leches.", tope: "25" },
+            { n: "Amapolas", d: "Panqueque de vainilla con semillas de amapola, capa de mil hojas, rellena con crema Bariloche (mezcla de chocolate con manjar), mermelada de guinda y crema pastelera." },
+            { n: "Almendra (también la llaman Plátano)", d: "Panqueque de vainilla con almendras, capas de mil hojas, rellena con manjar, crema pastelera con pasta de almendras y esencia de Baileys, y crema chantilly con esencia de plátano, cubierto de merengue.", precios: { "50": 65000 } },
             { n: "Panqueque Maracuyá", d: "Panqueques de chocolate y vainilla, discos de merengue, rellena con mousse de maracuyá, cubierta con salsa de maracuyá." },
             { n: "Panqueque Merengue Lúcuma", d: "Panqueques de vainilla, discos de merengue, rellena con mousse de lúcuma." },
             { n: "Torta de Frutas", d: "Panqueque de vainilla, rellena con crema chantilly y una fruta a elección (piña, duraznos o cerezas)." },
@@ -146,8 +155,8 @@ window.KAISER = {
           nombre: "Tortas de chocolate",
           precio: "escalaTortas",
           items: [
-            { n: "Chocopaste", d: "Panqueque de chocolate, rellena con mousse de chocolate, manjar puro y crema pastelera." },
-            { n: "Café", d: "Panqueques de chocolate, rellena con mousse de café, mousse de chocolate, crema chantilly y frambuesas naturales." },
+            { n: "Chocopastelera (Chocopaste)", d: "Panqueque de chocolate, rellena con mousse de chocolate, manjar puro y crema pastelera." },
+            { n: "Café", d: "Panqueques de chocolate, rellena con mousse de café con mermelada de frambuesa, mousse de chocolate, crema chantilly y frambuesas naturales." },
             { n: "Cappuccino", d: "Panqueque de chocolate, rellena con mousse de cappuccino, mousse de chocolate y chips de chocolate." },
             { n: "Diplomática", d: "Panqueque de chocolate, rellena con crema diplomática (mezcla de crema chantilly y crema pastelera) y mermelada de frambuesa, cubierta con merengue." },
             { n: "Menta", d: "Panqueque de chocolate, rellena con mousse de chocolate, mousse de menta, mousse de cappuccino y chips de chocolate." },
@@ -159,6 +168,7 @@ window.KAISER = {
           precio: "escalaTortasPremium",
           nota: "Recetas con más relleno/ingredientes especiales — precio distinto al resto de las tortas de chocolate.",
           items: [
+            { n: "Chocolate", d: "Panqueque de chocolate, rellena con mermelada de frambuesa y chocolate." },
             { n: "Trufa", d: "Panqueque de chocolate, remojo de agua ardiente, rellena con trufa y manjar.", img: "assets/img/torta-chocolate.jpg" },
             { n: "Choconuez", d: "Panqueques de chocolate, rellena con mousse de chocolate, nueces, manjar crema y mermelada de frutillas, cubierta con ganache de chocolate." },
             { n: "Selva Negra", d: "Panqueque de chocolate, rellena con mousse de chocolate, mermelada de frambuesa, crema chantilly y cerezas, cubierta con crema chantilly, cerezas y chips de chocolate." },
@@ -169,7 +179,7 @@ window.KAISER = {
           nombre: "Tortas de mil hojas",
           precio: "escalaTortas",
           items: [
-            { n: "Mil Hojas Frambuesa", d: "Capas de mil hojas, rellena con manjar, crema chantilly y frambuesas naturales, cubierta con merengue.", img: "assets/img/torta-milhojas.jpg" },
+            { n: "Mil Hojas Frambuesa", d: "Capas de mil hojas, rellena con manjar, crema chantilly y frambuesas naturales, cubierta con merengue.", precios: { "10": 30500, "15": 39500, "25": 46500, "30": 53000, "35": 59000, "40": 64000, "50": 72000 }, img: "assets/img/torta-milhojas.jpg" },
             { n: "Mil Hojas Tres Sabores", d: "Capas de mil hojas, rellena con mousse de manjar, crema pastelera, crema chantilly y frambuesas naturales, cubierta con manjar y crema chantilly." },
             { n: "Mil Hojas Manjar", d: "Capas de mil hojas, rellena con manjar puro." },
             { n: "Mil Hojas Manjar Pastelera", d: "Capas de mil hojas, rellena con manjar y crema pastelera." },
@@ -179,16 +189,16 @@ window.KAISER = {
         {
           nombre: "Tortas heladas",
           precio: "escalaHelada",
-          nota: "Disponible hasta 25 personas.",
           items: [
             { n: "Torta Helada de Frambuesa", d: "Discos de merengue, rellena con frambuesas naturales y crema chantilly." },
-            { n: "Torta Helada de Lúcuma", d: "Discos de merengue, rellena con mousse de lúcuma." },
-            { n: "Torta Helada de Frutillas", d: "Discos de merengue, rellena con frutillas de estación y crema chantilly.", tope: "25" },
+            { n: "Torta Helada de Lúcuma", d: "Discos de merengue, rellena con crema chantilly con pulpa de lúcuma." },
+            { n: "Torta Helada de Maracuyá", d: "Discos de merengue, rellena con mousse de maracuyá." },
+            { n: "Torta Helada de Frutillas", d: "Discos de merengue, rellena con frutillas y crema chantilly. Solo en temporada de frutillas." },
           ],
         },
         {
           nombre: "Tortas Light",
-          precio: "escalaHelada",
+          precio: "escalaLight",
           nota: "Disponible hasta 25 personas.",
           items: [
             { n: "Torta de Naranja Light", d: "Panqueque de vainilla, rellena con salsa de naranja light, cubierta con salsa de naranja light y decorada con chocolate." },
@@ -198,9 +208,38 @@ window.KAISER = {
         {
           nombre: "Tortas de bizcocho",
           precio: "escalaBizcocho",
-          nota: "Disponible hasta 25 personas.",
+          nota: "Disponible hasta 25 personas. La Torta Tropical y la Red Velvet no vienen en 15 personas.",
           items: [
             { n: "Carrot Cake", d: "Bizcocho de zanahorias con nueces, rellena con manjar y frosting de queso philadelphia." },
+            { n: "Bizcocho de Chocolate", d: "Bizcocho de chocolate, rellena con manjar y ganache de chocolate." },
+            { n: "Torta Tropical", d: "Bizcocho de vainilla, mousse de mango, maracuyá y piña.", omite: ["15"] },
+            { n: "Red Velvet", d: "Bizcocho rojo, relleno con manjar y cream cheese.", precios: { "10": 30500, "25": 46500 }, omite: ["15"] },
+          ],
+        },
+        {
+          nombre: "Tortas sin azúcar",
+          precio: "escalaBizcocho",
+          nota: "Ninguna de las dos es apta para diabéticos: la Mil Hojas lleva manjar sin azúcar y el semifrío lleva maltitol.",
+          items: [
+            { n: "Mil Hojas Frambuesa Sin Azúcar", d: "Mil hojas y manjar sin azúcar, con frambuesas naturales y crema chantilly. No apta para diabéticos.", precios: { "10": 33500, "25": 49500 }, omite: ["15"] },
+            { n: "Torta Sin Azúcar Semifrío", d: "Bizcocho de vainilla, ganache de chocolate, mousse de maracuyá y mermelada de maracuyá sin azúcar. Contiene maltitol. No apta para diabéticos.", precios: { "25": 46500 }, omite: ["10", "15"] },
+          ],
+        },
+        {
+          nombre: "Tortas mini rectangulares",
+          nota: "Para 6 a 8 personas.",
+          items: [
+            { n: "Mini de la Casa, Locura Kaiser o Pie de Limón", d: "", precioFijo: "$17.500" },
+            { n: "Mini Hoja Manjar o Hoja Frambuesa", d: "", precioFijo: "$20.000" },
+          ],
+        },
+        {
+          nombre: "Trozos de torta",
+          items: [
+            { n: "Trozo de torta", d: "$3.400" },
+            { n: "Trozo de Chocolate, Bizcocho de Chocolate, Trufa, Hoja Frambuesa, Choconuez, Pasta de Almendras, Selva Negra o Red Velvet", d: "$3.600" },
+            { n: "Trozo de Torta Sin Azúcar Semifrío", d: "$3.600" },
+            { n: "Trozo de Mil Hojas Frambuesa Sin Azúcar", d: "$3.900" },
           ],
         },
       ],
@@ -210,21 +249,68 @@ window.KAISER = {
     {
       id: "kuchen",
       titulo: "Kuchen, Pie y Tartaleta",
-      nota: "Chico: 6 a 8 personas · Grande: 10 a 12 personas. PENDIENTE el precio de esta categoría — su catálogo no incluía la lista de valores. Consulta directo por WhatsApp mientras la confirmamos.",
+      nota: "Chico: 6 a 8 personas · Grande: 10 a 12 personas. Precio: chico / grande.",
       img: "assets/img/kuchen.jpg",
       grupos: [
         {
           nombre: "Kuchen, pie y tartaleta",
           items: [
-            { n: "Pie de Limón", d: "Mousse de limón, hecho con jugo de limón natural, cubierto con merengue. Chico (6 a 8 pers.) o grande (10 a 12 pers.).", img: "assets/img/pie-limon.jpg" },
-            { n: "Pie de Maracuyá", d: "Mousse de maracuyá, cubierto con salsa de maracuyá. Chico (6 a 8 pers.) o grande (10 a 12 pers.)." },
-            { n: "Kuchen de Nuez", d: "Nueces con leche condensada. Chico (6 a 8 pers.) o grande (10 a 12 pers.).", img: "assets/img/kuchen.jpg" },
-            { n: "Kuchen de Manzana", d: "Manzanas verdes, crema pastelera, mermelada de damasco y nueces. Solo en temporada de manzana verde. Chico (6 a 8 pers.) o grande (10 a 12 pers.)." },
-            { n: "Streusel de Frambuesa", d: "Crema pastelera, frambuesas naturales, cubierto con migas. Chico (6 a 8 pers.) o grande (10 a 12 pers.)." },
-            { n: "Cheesecake de Berries", d: "Base de queso philadelphia endulzado, cubierto con frambuesas y arándanos, con corona de azúcar rubia, almendras, nueces y canela. Chico (6 a 8 pers.) o grande (10 a 12 pers.).", img: "assets/img/cheesecake.jpg" },
-            { n: "Tartaleta de Frutillas", d: "Base de crema pastelera, cubierta de frutillas. Solo en temporada de frutillas. Chico (6 a 8 pers.) o grande (10 a 12 pers.)." },
-            { n: "Tartaleta de Frutas", d: "Base de crema pastelera, cubierta con duraznos, piña y cerezas en almíbar. Chico (6 a 8 pers.) o grande (10 a 12 pers.)." },
-            { n: "Mix Kaiser", d: "Pie de limón, pie de maracuyá, kuchen de nuez y streusel de frambuesa — para probar de todo un poco. Chico (6 a 8 pers.) o grande (10 a 12 pers.)." },
+            { n: "Tartaleta de Frutas", d: "Base de crema pastelera, cubierta con duraznos, piña y cerezas en almíbar.", precioFijo: "$15.900 / $18.000" },
+            { n: "Tartaleta de Frutillas", d: "Base de crema pastelera, cubierta de frutillas. Solo en temporada de frutillas.", precioFijo: "$15.900 / $18.000" },
+            { n: "Streusel de Frambuesa (kuchen de frambuesa)", d: "Crema pastelera, frambuesas naturales, cubierto con migas.", precioFijo: "$15.900 / $18.000" },
+            { n: "Pie de Limón", d: "Mousse de limón, hecho con jugo de limón natural, cubierto con merengue.", precioFijo: "$15.900 / $18.900", img: "assets/img/pie-limon.jpg" },
+            { n: "Pie de Maracuyá", d: "Mousse de maracuyá, cubierto con salsa de maracuyá.", precioFijo: "$15.900 / $18.900" },
+            { n: "Kuchen de Manzana", d: "Manzanas verdes, crema pastelera, mermelada de damasco y nueces. Solo en temporada de manzana verde.", precioFijo: "$15.900 / $18.900" },
+            { n: "Cheesecake de Berries", d: "Base de queso philadelphia endulzado, cubierto con frambuesas y arándanos, con corona de azúcar rubia, almendras, nueces y canela.", precioFijo: "$16.900 / $20.900", img: "assets/img/cheesecake.jpg" },
+            { n: "Kuchen de Nuez", d: "Nueces con leche condensada.", precioFijo: "$16.900 / $20.900", img: "assets/img/kuchen.jpg" },
+            { n: "Mix Kaiser", d: "Pie de limón, pie de maracuyá, kuchen de nuez y streusel de frambuesa — para probar de todo un poco. El grande mide 26 cm de diámetro.", precioFijo: "$17.000 / $19.900" },
+            { n: "Kuchen Sureño", d: "Solo tamaño grande.", precioFijo: "$25.500" },
+            { n: "Cheesecake New York (frambuesa o maracuyá)", d: "Cheesecake horneado, cubierto con mermelada de frambuesa o de maracuyá. Tamaño grande. También por trozo ($3.200) o en pote ($5.000).", precioFijo: "$30.000" },
+          ],
+        },
+        {
+          nombre: "Trozos de kuchen y pie",
+          items: [
+            { n: "Trozo de Cheesecake de Berries, Kuchen de Nuez, Pie de Limón o Pie de Maracuyá", d: "$2.400" },
+            { n: "Trozo de Kuchen de Frambuesa, Kuchen de Manzana o Tartaleta de Frutas", d: "$2.300" },
+          ],
+        },
+      ],
+    },
+
+    /* ---------- DULCES Y EMPANADAS ---------- */
+    {
+      id: "dulces",
+      titulo: "Dulces y empanadas",
+      nota: "",
+      img: "assets/img/kuchen.jpg",
+      grupos: [
+        {
+          nombre: "Empanadas",
+          nota: "De viernes a domingo. Por ahora, solo de pino.",
+          items: [
+            { n: "Empanada de pino (de horno)", d: "Pino de carne picada.", precioFijo: "$2.900 c/u" },
+          ],
+        },
+        {
+          nombre: "Brazos de reina y brownie",
+          items: [
+            { n: "Brazo de Reina Blanco", d: "Bizcocho de vainilla, relleno con manjar, cubierto con azúcar flor.", precioFijo: "$11.500" },
+            { n: "Brazo de Reina Chocolate", d: "Bizcocho de chocolate, relleno con mermelada de guinda y mousse de chocolate.", precioFijo: "$12.000" },
+            { n: "Brownie", d: "Cubierto con manjar y merengue. También por trozo ($2.700).", precioFijo: "$22.500" },
+          ],
+        },
+        {
+          nombre: "Galletas y dulces",
+          items: [
+            { n: "Rollos de canela", d: "", precioFijo: "$1.600" },
+            { n: "Alfajores", d: "", precioFijo: "$1.100" },
+            { n: "Alfajores de maicena", d: "", precioFijo: "$600 c/u" },
+            { n: "Muffins", d: "Consulta por WhatsApp cuántos trae.", precioFijo: "$6.200" },
+            { n: "Galletas de limón", d: "Por kilo.", precioFijo: "$12.000 / kilo" },
+            { n: "Crumb cookie chip de chocolate", d: "Rellena de ganache de chocolate.", precioFijo: "$1.900" },
+            { n: "Crumb cookie red velvet", d: "Con chips de chocolate blanco, rellena de frosting.", precioFijo: "$2.400" },
+            { n: "Crumb cookie de zanahoria, canela y nuez", d: "Rellena de frosting.", precioFijo: "$1.900" },
           ],
         },
       ],

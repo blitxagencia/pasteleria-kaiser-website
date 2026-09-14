@@ -18,6 +18,10 @@ pe/
 
 **`js/main.js` tiene un cambio propio de este sitio:** se agregó soporte para una 4ª escala de precios, `escalaTortasPremium` (línea ~20-22, función `scaleObj`). Es porque Trufa, Choconuez, Selva Negra y Pasta de Almendras cuestan más que el resto de las tortas de chocolate en el catálogo real — no es un error, es la única sucursal con esta variación de precio por receta. Si algún día se actualiza `main.js` en `ph/` o `hu/`, no te olvides que este archivo quedó levemente distinto a propósito.
 
+## Precios: lista de Peñaflor del 2026-09-14
+
+Kuchen, pie y tartaleta ya tienen precio (chico / grande); las heladas llegan a 50 personas; la Mil Hojas Frambuesa va con precio premium; la Almendra (Plátano) vale $65.000 en 50 personas; entran tortas nuevas (4 Leches, 3 Leches, Nuez Lúcuma, Chocolate, Helada de Maracuyá, Bizcocho de Chocolate, Tropical, Red Velvet, dos sin azúcar), tortas mini, trozos, y una sección nueva de dulces y empanadas. `js/main.js` resuelve los tamaños con `mergedScale` (`precios`, `omite`, `tope`), igual que Padre Hurtado. Los mismos precios están en la carta del agente de WhatsApp.
+
 ## Qué falta por completar
 
 **Real (del catálogo de WhatsApp, 2026-07-27 — pero es la carta real de Peñaflor):**
@@ -32,7 +36,6 @@ pe/
 - **Tortas de matrimonio:** su catálogo trae un producto aparte (diseños personalizados, degustación de 4 mini tortas, cobertura fondant o buttercream). No armamos una sección completa para esto —no tenía precios ni fotos individuales— pero se menciona como nota dentro de la sección "Tortas" invitando a escribir por WhatsApp.
 
 **PENDIENTE:**
-- **Precio de Kuchen, Pie y Tartaleta** → su catálogo solo daba tamaños (chico 6-8 pers. / grande 10-12 pers.), sin montos. Quedó anotado en la carta como "consultar por WhatsApp" — no se inventó ningún precio.
 - **TikTok / Facebook** → no vinieron en la info.
 - **Confirmar horario y dirección con la sucursal** → salieron del catálogo de WhatsApp (mismo caso que Huechuraba).
 - **Fotos reales recortadas** → el catálogo tiene foto de cada producto, pero incrustadas en capturas con texto. El sitio sigue con fotos genéricas por categoría hasta que alguien recorte las reales.
