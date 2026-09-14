@@ -235,6 +235,7 @@ window.KAISER = {
         },
         {
           nombre: "Trozos de torta",
+          nota: "Solo venta en el local, no se encargan.",
           items: [
             { n: "Trozo de torta", d: "$3.400" },
             { n: "Trozo de Chocolate, Bizcocho de Chocolate, Trufa, Hoja Frambuesa, Choconuez, Pasta de Almendras, Selva Negra o Red Velvet", d: "$3.600" },
@@ -264,12 +265,12 @@ window.KAISER = {
             { n: "Cheesecake de Berries", d: "Base de queso philadelphia endulzado, cubierto con frambuesas y arándanos, con corona de azúcar rubia, almendras, nueces y canela.", precioFijo: "$16.900 / $20.900", img: "assets/img/cheesecake.jpg" },
             { n: "Kuchen de Nuez", d: "Nueces con leche condensada.", precioFijo: "$16.900 / $20.900", img: "assets/img/kuchen.jpg" },
             { n: "Mix Kaiser", d: "Pie de limón, pie de maracuyá, kuchen de nuez y streusel de frambuesa — para probar de todo un poco. El grande mide 26 cm de diámetro.", precioFijo: "$17.000 / $19.900" },
-            { n: "Kuchen Sureño", d: "Solo tamaño grande.", precioFijo: "$25.500" },
             { n: "Cheesecake New York (frambuesa o maracuyá)", d: "Cheesecake horneado, cubierto con mermelada de frambuesa o de maracuyá. Tamaño grande. También por trozo ($3.200) o en pote ($5.000).", precioFijo: "$30.000" },
           ],
         },
         {
           nombre: "Trozos de kuchen y pie",
+          nota: "Solo venta en el local, no se encargan.",
           items: [
             { n: "Trozo de Cheesecake de Berries, Kuchen de Nuez, Pie de Limón o Pie de Maracuyá", d: "$2.400" },
             { n: "Trozo de Kuchen de Frambuesa, Kuchen de Manzana o Tartaleta de Frutas", d: "$2.300" },
@@ -287,9 +288,9 @@ window.KAISER = {
       grupos: [
         {
           nombre: "Empanadas",
-          nota: "De viernes a domingo. Por ahora, solo de pino.",
+          nota: "De viernes a domingo. Por ahora, solo de pino. Solo venta en el local, no se encargan.",
           items: [
-            { n: "Empanada de pino (de horno)", d: "Pino de carne picada.", precioFijo: "$2.900 c/u" },
+            { n: "Empanada de pino (de horno)", d: "Pino de carne picada · $2.900 c/u" },
           ],
         },
         {
@@ -306,7 +307,7 @@ window.KAISER = {
             { n: "Rollos de canela", d: "", precioFijo: "$1.600" },
             { n: "Alfajores", d: "", precioFijo: "$1.100" },
             { n: "Alfajores de maicena", d: "", precioFijo: "$600 c/u" },
-            { n: "Muffins", d: "Consulta por WhatsApp cuántos trae.", precioFijo: "$6.200" },
+            { n: "Muffin", d: "1 unidad, hecha en molde rectangular de queque inglés. De chip de chocolate, frambuesa o arándanos.", precioFijo: "$6.200" },
             { n: "Galletas de limón", d: "Por kilo.", precioFijo: "$12.000 / kilo" },
             { n: "Crumb cookie chip de chocolate", d: "Rellena de ganache de chocolate.", precioFijo: "$1.900" },
             { n: "Crumb cookie red velvet", d: "Con chips de chocolate blanco, rellena de frosting.", precioFijo: "$2.400" },

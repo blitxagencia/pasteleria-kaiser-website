@@ -22,7 +22,7 @@ Rutas finales, una vez con dominio: `dominio.cl/` (selector) → `dominio.cl/ph`
 Las 3 sucursales tienen carta, precios, dirección, horario y WhatsApp propios. En `pe/` y `hu/` quedan detalles por completar: redes sociales, valoración de Google y las fotos propias de cada producto.
 
 - **`ph/`** es el sitio de Padre Hurtado, el primero que se armó.
-- **`pe/` — 32 tortas** (con una escala de precio "premium" para 4 recetas), 11 kuchen/pie/tartaleta con precio (lista de Peñaflor del 2026-09-14), dulces y empanadas y 15 grupos de coctelería, con dirección (Av. Miraflores 2103), horario, WhatsApp (+569 9957 5267) y correo reales. Peñaflor es la Casa Matriz de la cadena, no una sucursal más. Ver `pe/README.md`, incluido el pequeño cambio que se hizo en su `js/main.js` para soportar la escala de precio premium.
+- **`pe/` — 32 tortas** (con una escala de precio "premium" para 4 recetas), 10 kuchen/pie/tartaleta con precio (lista de Peñaflor del 2026-09-14), dulces y empanadas y 15 grupos de coctelería, con dirección (Av. Miraflores 2103), horario, WhatsApp (+569 9957 5267) y correo reales. Peñaflor es la Casa Matriz de la cadena, no una sucursal más. Ver `pe/README.md`, incluido el pequeño cambio que se hizo en su `js/main.js` para soportar la escala de precio premium.
 - **`hu/` — 33 tortas**, 11 kuchenes/pie/tartaleta y 15 grupos de coctelería, con dirección (Quilapán 6898), horario, WhatsApp (+56 9 7623 5401) y correo reales. Ver `hu/README.md`.
 - Lo que falta por sucursal (Instagram/TikTok/Facebook, valoración de Google, fotos propias) está en el README de cada carpeta.
 
