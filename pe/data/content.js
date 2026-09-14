@@ -148,7 +148,7 @@ window.KAISER = {
             { n: "Torta de Frutas", d: "Panqueque de vainilla, rellena con crema chantilly y una fruta a elección (piña, duraznos o cerezas)." },
             { n: "Locura Kaiser", d: "Panqueque de chocolate, discos de merengue y capas de mil hojas, rellena con mousse de lúcuma, manjar puro, mermelada de frambuesa y crema chantilly.", img: "assets/img/torta-panqueque.jpg" },
             { n: "Lúcuma Manjar", d: "Panqueques de vainilla, rellena con mousse de lúcuma y manjar." },
-            { n: "Pie de Limón", d: "Panqueques de vainilla, rellena con mousse de limón, cubierta con merengue." },
+            { n: "Torta Pie de Limón", d: "Panqueques de vainilla, rellena con mousse de limón, cubierta con merengue." },
           ],
         },
         {
