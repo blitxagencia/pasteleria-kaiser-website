@@ -146,7 +146,7 @@
     g.innerHTML = D.especialidades.map(function (e, i) {
       var lead = (i === 0 || e.destacada) ? " lead" : "";
       return '<article class="esp-card' + lead + '">' +
-        '<img src="' + e.img + '" alt="' + e.nombre + '" loading="lazy" />' +
+        zoom(e.img, e.nombre) +
         '<div class="esp-body"><span class="tag">' + e.cat + "</span>" +
         "<h3>" + e.nombre + "</h3><p>" + e.desc + "</p></div></article>";
     }).join("");
@@ -167,12 +167,26 @@
     if (link && D.biz.reviewsUrl) link.href = D.biz.reviewsUrl;
   }
 
+  /* ---------- Fotos ampliables ----------
+     Cada foto de la carta existe dos veces: la miniatura de 176px que se ve en la
+     lista, y una versión grande en carta/grande/ que SOLO se descarga cuando alguien
+     hace clic. Ampliar la miniatura se vería borrosa; bajar la grande de entrada
+     costaría más de 1 MB que casi nadie mira. */
+  function zoom(src, alt) {
+    var grande = src.indexOf("assets/img/carta/") === 0
+      ? src.replace("assets/img/carta/", "assets/img/carta/grande/")
+      : src;
+    return '<img src="' + src + '" alt="' + alt + '" loading="lazy" class="ampliable" ' +
+      'data-full="' + grande + '" data-pie="' + alt + '" />';
+  }
+
+
   /* ---------- Carta ---------- */
   function renderItem(it, grupoNombre, scaleName, nota) {
     var idx = registerItem(it, grupoNombre, scaleName, nota);
     var price = it.precioFijo ? '<span class="i-price">' + it.precioFijo + "</span>" : "";
     var tope = it.tope ? '<span class="i-tope">hasta ' + it.tope + " pers.</span>" : "";
-    var media = it.img ? '<div class="i-thumb"><img src="' + it.img + '" alt="' + it.n + '" loading="lazy" /></div>' : "";
+    var media = it.img ? '<div class="i-thumb">' + zoom(it.img, it.n) + "</div>" : "";
     var add = idx >= 0 ? '<button class="add-btn" data-idx="' + idx + '" aria-label="Agregar ' + it.n + ' al pedido">+ Agregar</button>' : "";
     var body = '<div class="i-body"><div class="i-top"><span class="i-name">' + it.n + "</span>" + tope +
       '<span class="i-lead"></span>' + price + "</div>" +
@@ -200,9 +214,12 @@
       }
     }
     var nota = gr.nota ? '<p class="grupo-nota">' + gr.nota + "</p>" : "";
+    // Foto del grupo: se usa cuando la del catálogo es de un surtido y no de una
+    // variedad (los tapaditos). Colgarla de un ítem diría que ese ítem se ve así.
+    var foto = gr.img ? '<div class="g-thumb">' + zoom(gr.img, gr.nombre) + "</div>" : "";
     var items = gr.items.map(function (it) { return renderItem(it, gr.nombre, gr.precio, gr.nota); }).join("");
     return '<div class="grupo"><div class="grupo-head"><h3>' + gr.nombre + "</h3>" + precio + "</div>" +
-      nota + '<div class="items-grid">' + items + "</div></div>";
+      foto + nota + '<div class="items-grid">' + items + "</div></div>";
   }
 
   function renderTamanos() {
@@ -443,6 +460,104 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
+  /* ---------- Visor de fotos ----------
+     Un solo listener en el documento en vez de uno por foto: las fotos se dibujan
+     después (renderCarta) y se vuelven a dibujar al cambiar de pestaña, así que
+     engancharlas una por una dejaría muertas las que aparezcan más tarde. */
+  function wireZoom() {
+    var visor = document.createElement("div");
+    visor.className = "visor";
+    visor.setAttribute("role", "dialog");
+    visor.setAttribute("aria-modal", "true");
+    // El botón cuelga de un marco que envuelve la imagen, no del visor. Con
+    // display:inline-block el marco se encoge al ancho real de la foto, así que la X
+    // queda en SU esquina y no en la de la pantalla, que en fotos angostas quedaba
+    // muy lejos del contenido.
+    visor.innerHTML = '<figure><span class="visor-marco"><img alt="" />' +
+      '<button class="visor-x" aria-label="Cerrar">&times;</button></span>' +
+      "<figcaption></figcaption></figure>";
+    // Todo el visor se estiliza acá y NO en styles.css, a propósito. Es un elemento
+    // que existe solo si corre el JS, así que el JS se hace cargo entero de cómo se
+    // ve. Repartirlo entre los dos archivos ya nos costó dos rondas: bastaba con que
+    // el navegador entregara una hoja de estilos vieja para que el visor se desarmara
+    // (las fotos caían al pie de la página y la X quedaba suelta al medio).
+    // styles.css se queda solo con el foco de teclado y la animación, que si faltan
+    // no rompen nada.
+    var css = {
+      visor: "position:fixed;inset:0;z-index:200;display:none;align-items:center;" +
+        "justify-content:center;padding:4vmin;background:rgba(30,8,15,.88)",
+      fig: "margin:0;max-width:min(92vw,900px);text-align:center",
+      marco: "position:relative;display:inline-block;max-width:100%;line-height:0",
+      img: "max-width:100%;max-height:78vh;width:auto;height:auto;display:block;" +
+        "border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.5)",
+      pie: "margin-top:.9rem;color:#fff;font-size:1.15rem;line-height:1.3",
+      x: "position:absolute;top:-14px;right:-14px;z-index:1;width:40px;height:40px;" +
+        "border:2px solid rgba(255,255,255,.75);border-radius:50%;cursor:pointer;" +
+        "background:#5a0c1e;color:#fff;font-size:1.5rem;line-height:1;" +
+        "display:grid;place-items:center;padding:0;box-shadow:0 4px 14px rgba(0,0,0,.45)",
+    };
+    visor.style.cssText = css.visor;
+    var boton = visor.querySelector(".visor-x");
+    var figura = visor.querySelector("figure");
+    var marco = visor.querySelector(".visor-marco");
+    var img = visor.querySelector("img");
+    var pie = visor.querySelector("figcaption");
+    boton.style.cssText = css.x;
+    figura.style.cssText = css.fig;
+    marco.style.cssText = css.marco;
+    img.style.cssText = css.img;
+    pie.style.cssText = css.pie;
+    document.body.appendChild(visor);
+    var previo = null;
+
+    function abrir(el) {
+      img.src = el.getAttribute("data-full") || el.src;
+      img.alt = el.alt || "";
+      pie.textContent = el.getAttribute("data-pie") || el.alt || "";
+      visor.style.display = "flex";
+      visor.classList.add("open");
+      // Al esconder la barra de desplazamiento la página se ensancha de golpe y
+      // todo salta a la derecha. Se compensa con el ancho exacto que desaparece.
+      var barra = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = "hidden";
+      if (barra > 0) document.body.style.paddingRight = barra + "px";
+      previo = el;
+      // preventScroll o el navegador arrastra la página hasta el botón
+      visor.querySelector(".visor-x").focus({ preventScroll: true });
+    }
+    function cerrar() {
+      visor.style.display = "none";
+      visor.classList.remove("open");
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+      img.src = "";                       // suelta la imagen grande de memoria
+      if (previo) { previo.focus({ preventScroll: true }); previo = null; }
+    }
+
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest) return;
+      // En las tarjetas destacadas la foto está debajo del degradado y del texto,
+      // así que se acepta el clic en cualquier parte de la tarjeta.
+      var tarjeta = e.target.closest(".esp-card");
+      var el = e.target.closest("img.ampliable") ||
+        (tarjeta && tarjeta.querySelector("img.ampliable"));
+      if (el) { e.preventDefault(); abrir(el); return; }
+      if (!visor.classList.contains("open")) return;
+      // El botón vive DENTRO de figure desde que cuelga de la foto, así que hay que
+      // atenderlo antes: si no, el "clic fuera de figure" ya no lo alcanza.
+      if (e.target.closest(".visor-x") || !e.target.closest("figure")) cerrar();
+    });
+    // El teclado tiene que servir igual que el mouse: hay gente que no usa mouse.
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && visor.classList.contains("open")) return cerrar();
+      if ((e.key === "Enter" || e.key === " ") && document.activeElement &&
+          document.activeElement.classList.contains("ampliable")) {
+        e.preventDefault(); abrir(document.activeElement);
+      }
+    });
+  }
+
+
   /* ---------- Init ---------- */
   wireLinks();
   renderStats();
@@ -453,4 +568,5 @@
   renderHorario();
   wireHeader();
   wireReveal();
+  wireZoom();
 })();
