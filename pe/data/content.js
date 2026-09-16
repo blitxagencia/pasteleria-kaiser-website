@@ -146,7 +146,7 @@ window.KAISER = {
             { n: "Panqueque Maracuyá", d: "Panqueques de chocolate y vainilla, discos de merengue, rellena con mousse de maracuyá, cubierta con salsa de maracuyá.", img: "assets/img/carta/panqueque-maracuya.jpg" },
             { n: "Panqueque Merengue Lúcuma", d: "Panqueques de vainilla, discos de merengue, rellena con mousse de lúcuma.", img: "assets/img/carta/panqueque-merengue-lucuma.jpg" },
             { n: "Torta de Frutas", d: "Panqueque de vainilla, rellena con crema chantilly y una fruta a elección (piña, duraznos o cerezas).", img: "assets/img/carta/torta-de-frutas.jpg" },
-            { n: "Locura Kaiser", d: "Panqueque de chocolate, discos de merengue y capas de mil hojas, rellena con mousse de lúcuma, manjar puro, mermelada de frambuesa y crema chantilly.", img: "assets/img/torta-panqueque.jpg" },
+            { n: "Locura Kaiser", d: "Panqueque de chocolate, discos de merengue y capas de mil hojas, rellena con mousse de lúcuma, manjar puro, mermelada de frambuesa y crema chantilly.", img: "assets/img/carta/locura-kaiser.jpg" },
             { n: "Lúcuma Manjar", d: "Panqueques de vainilla, rellena con mousse de lúcuma y manjar.", img: "assets/img/carta/lucuma-manjar.jpg" },
             { n: "Torta Pie de Limón", d: "Panqueques de vainilla, rellena con mousse de limón, cubierta con merengue.", img: "assets/img/carta/pie-de-limon-torta.jpg" },
           ],
@@ -158,7 +158,7 @@ window.KAISER = {
             { n: "Chocopastelera (Chocopaste)", d: "Panqueque de chocolate, rellena con mousse de chocolate, manjar puro y crema pastelera.", img: "assets/img/carta/chocopaste.jpg" },
             { n: "Café", d: "Panqueques de chocolate, rellena con mousse de café con mermelada de frambuesa, mousse de chocolate, crema chantilly y frambuesas naturales.", img: "assets/img/carta/cafe.jpg" },
             { n: "Cappuccino", d: "Panqueque de chocolate, rellena con mousse de cappuccino, mousse de chocolate y chips de chocolate.", img: "assets/img/carta/cappuccino.jpg" },
-            { n: "Diplomática", d: "Panqueque de chocolate, rellena con crema diplomática (mezcla de crema chantilly y crema pastelera) y mermelada de frambuesa, cubierta con merengue." },
+            { n: "Diplomática", d: "Panqueque de chocolate, rellena con crema diplomática (mezcla de crema chantilly y crema pastelera) y mermelada de frambuesa, cubierta con merengue.", img: "assets/img/carta/diplomatica.jpg" },
             { n: "Menta", d: "Panqueque de chocolate, rellena con mousse de chocolate, mousse de menta, mousse de cappuccino y chips de chocolate." },
             { n: "Cheesecake de Berries", d: "Panqueque de chocolate, rellena con mousse de queso philadelphia y chips de chocolate, cubierta con arándanos y frambuesas.", img: "assets/img/cheesecake.jpg", tope: "25" },
           ],
@@ -171,8 +171,8 @@ window.KAISER = {
             { n: "Chocolate", d: "Panqueque de chocolate, rellena con mermelada de frambuesa y chocolate." },
             { n: "Trufa", d: "Panqueque de chocolate, remojo de agua ardiente, rellena con trufa y manjar.", img: "assets/img/carta/trufa.jpg" },
             { n: "Choconuez", d: "Panqueques de chocolate, rellena con mousse de chocolate, nueces, manjar crema y mermelada de frutillas, cubierta con ganache de chocolate.", img: "assets/img/carta/choconuez.jpg" },
-            { n: "Selva Negra", d: "Panqueque de chocolate, rellena con mousse de chocolate, mermelada de frambuesa, crema chantilly y cerezas, cubierta con crema chantilly, cerezas y chips de chocolate." },
-            { n: "Pasta de Almendras", d: "Panqueque de chocolate, rellena con mousse de chocolate, pasta de almendras, y mermelada de naranja." },
+            { n: "Selva Negra", d: "Panqueque de chocolate, rellena con mousse de chocolate, mermelada de frambuesa, crema chantilly y cerezas, cubierta con crema chantilly, cerezas y chips de chocolate.", img: "assets/img/carta/selva-negra.jpg" },
+            { n: "Pasta de Almendras", d: "Panqueque de chocolate, rellena con mousse de chocolate, pasta de almendras, y mermelada de naranja.", img: "assets/img/carta/pasta-almendras.jpg" },
           ],
         },
         {
@@ -183,7 +183,7 @@ window.KAISER = {
             { n: "Mil Hojas Tres Sabores", d: "Capas de mil hojas, rellena con mousse de manjar, crema pastelera, crema chantilly y frambuesas naturales, cubierta con manjar y crema chantilly.", img: "assets/img/carta/hoja-tres-sabores.jpg" },
             { n: "Mil Hojas Manjar", d: "Capas de mil hojas, rellena con manjar puro.", img: "assets/img/carta/hoja-manjar.jpg" },
             { n: "Mil Hojas Manjar Pastelera", d: "Capas de mil hojas, rellena con manjar y crema pastelera.", img: "assets/img/carta/hoja-manjar-pastelera.jpg" },
-            { n: "Mil Hojas de la Casa", d: "Capas de mil hojas, rellena con manjar crema, nueces, mermelada de guinda y crema chantilly, cubierta con mil hojas molida." },
+            { n: "Mil Hojas de la Casa", d: "Capas de mil hojas, rellena con manjar crema, nueces, mermelada de guinda y crema chantilly, cubierta con mil hojas molida.", img: "assets/img/carta/mil-hojas-de-la-casa.jpg" },
           ],
         },
         {
@@ -263,7 +263,7 @@ window.KAISER = {
             { n: "Pie de Maracuyá", d: "Mousse de maracuyá, cubierto con salsa de maracuyá.", precioFijo: "$15.900 / $18.900", img: "assets/img/carta/pie-de-maracuya.jpg" },
             { n: "Kuchen de Manzana", d: "Manzanas verdes, crema pastelera, mermelada de damasco y nueces. Solo en temporada de manzana verde.", precioFijo: "$15.900 / $18.900", img: "assets/img/carta/kuchen-de-manzana.jpg" },
             { n: "Cheesecake de Berries", d: "Base de queso philadelphia endulzado, cubierto con frambuesas y arándanos, con corona de azúcar rubia, almendras, nueces y canela.", precioFijo: "$16.900 / $20.900", img: "assets/img/carta/cheesecake-de-berries.jpg" },
-            { n: "Kuchen de Nuez", d: "Nueces con leche condensada.", precioFijo: "$16.900 / $20.900", img: "assets/img/kuchen.jpg" },
+            { n: "Kuchen de Nuez", d: "Nueces con leche condensada.", precioFijo: "$16.900 / $20.900", img: "assets/img/carta/kuchen-de-nuez.jpg" },
             { n: "Mix Kaiser", d: "Pie de limón, pie de maracuyá, kuchen de nuez y streusel de frambuesa — para probar de todo un poco. El grande mide 26 cm de diámetro.", precioFijo: "$17.000 / $19.900", img: "assets/img/carta/mix-kaiser.jpg" },
             { n: "Cheesecake New York (frambuesa o maracuyá)", d: "Cheesecake horneado, cubierto con mermelada de frambuesa o de maracuyá. Tamaño grande. También por trozo ($3.200) o en pote ($5.000).", precioFijo: "$30.000", img: "assets/img/carta/cheesecake-new-york.jpg" },
           ],
@@ -363,10 +363,11 @@ window.KAISER = {
         },
         {
           nombre: "Brochetas",
+          img: "assets/img/carta/brochetas-carne-chorizo.jpg",
           nota: "Pedido mínimo 50 unidades.",
           items: [
             { n: "Carne y chorizo", d: "", precioFijo: "$83.000 / 100 u", img: "assets/img/carta/brochetas-carne-chorizo.jpg" },
-            { n: "Pollo y cerdo", d: "", precioFijo: "$74.000 / 100 u", img: "assets/img/brochetas.jpg" },
+            { n: "Pollo y cerdo", d: "", precioFijo: "$74.000 / 100 u" },
             { n: "Queso chanco y albahaca", d: "Queso chanco, tomate cherry y albahaca.", precioFijo: "$47.000 / 100 u", img: "assets/img/carta/brochetas-caprese.jpg" },
             { n: "Frutas de estación", d: "", precioFijo: "$72.000 / 100 u", img: "assets/img/carta/brochetas-de-frutas.jpg" },
           ],
@@ -389,7 +390,7 @@ window.KAISER = {
           nombre: "Postres Individuales",
           nota: "Pedido mínimo 50 unidades. Postres de 160 cc, en 6 variedades: panacota con coulis de frambuesa · mousse de pie de limón · tiramisú · mousse de maracuyá · manjarate · suspiro limeño. Precio por caja: 6 unidades $16.990 · 12 unidades $29.990.",
           items: [
-            { n: "Postres individuales surtidos", d: "Caja de 6 unidades: $16.990 · Caja de 12 unidades: $29.990." },
+            { n: "Postres individuales surtidos", d: "Caja de 6 unidades: $16.990 · Caja de 12 unidades: $29.990.", img: "assets/img/carta/postres-individuales.jpg" },
           ],
         },
         {
@@ -403,7 +404,7 @@ window.KAISER = {
           nombre: "Ceviche de Pescado",
           nota: "Pedido mínimo 50 unidades. Montado en pocillos individuales.",
           items: [
-            { n: "Ceviche de pescado a la peruana", d: "", precioFijo: "$137.000 / 100 u" },
+            { n: "Ceviche de pescado a la peruana", d: "", precioFijo: "$137.000 / 100 u", img: "assets/img/carta/ceviche-pescado.jpg" },
           ],
         },
         {
@@ -429,6 +430,7 @@ window.KAISER = {
         },
         {
           nombre: "Petit Bouche",
+          img: "assets/img/carta/petit-bouche.jpg",
           nota: "Pedido mínimo 50 unidades. Tacitas de masa quiche.",
           items: [
             { n: "Camarón y queso", d: "", precioFijo: "$40.000 / 100 u" },
