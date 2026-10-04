@@ -321,44 +321,46 @@ window.KAISER = {
     {
       id: "cocteleria",
       titulo: "Coctelería",
-      nota: "Valor por 100 unidades, salvo indicado. Pedido mínimo según cada producto.",
-      img: "assets/img/canapes.jpg",
+      nota: "Precios de la lista de Peñaflor cargada el 2026-10-04. Valor por 100 unidades, salvo indicado. Pedido mínimo según cada producto.",
+      img: "assets/img/carta/canapes-premium.jpg",
       grupos: [
         {
           nombre: "Tapaditos",
           img: "assets/img/carta/tapaditos.jpg",
           nota: "Pedido mínimo 100 unidades.",
           items: [
-            { n: "Filetitos de pollo a la mostaza", d: "Lechuga y palmito.", precioFijo: "$61.000 / 100 u" },
-            { n: "Pasta de ave pimentón", d: "", precioFijo: "$42.000 / 100 u" },
-            { n: "Churrasco italiano", d: "", precioFijo: "$57.000 / 100 u" },
-            { n: "Lomito italiano", d: "", precioFijo: "$54.000 / 100 u" },
-            { n: "Jamón de pavo", d: "Jamón de pavo, palmito, lechuga y queso crema.", precioFijo: "$57.000 / 100 u" },
-            { n: "Queso chanco", d: "Queso chanco, tomates asados y aceitunas.", precioFijo: "$42.000 / 100 u" },
-            { n: "Queso fresco", d: "Queso fresco, lechuga, tomate y ají verde.", precioFijo: "$42.000 / 100 u" },
+            { n: "Filetitos de pollo a la mostaza", d: "Lechuga y palmito.", precioFijo: "$63.000 / 100 u" },
+            { n: "Pasta de ave pimentón", d: "", precioFijo: "$46.000 / 100 u" },
+            { n: "Churrasco italiano", d: "", precioFijo: "$64.000 / 100 u" },
+            { n: "Lomito italiano", d: "", precioFijo: "$58.000 / 100 u" },
+            { n: "Jamón de pavo", d: "Jamón de pavo, palmito, lechuga y queso crema.", precioFijo: "$59.000 / 100 u" },
+            { n: "Queso chanco", d: "Queso chanco, tomates asados y aceitunas.", precioFijo: "$44.000 / 100 u" },
+            { n: "Queso fresco", d: "Queso fresco, lechuga, tomate y ají verde.", precioFijo: "$45.000 / 100 u" },
           ],
         },
         {
           nombre: "Crostinis",
           nota: "Pedido mínimo 50 unidades. Sobre crujiente pan baguette.",
           items: [
-            { n: "Salmón ahumado", d: "Salmón ahumado, queso crema y sésamo negro.", precioFijo: "$74.000 / 100 u", img: "assets/img/carta/crostini-salmon.jpg" },
-            { n: "Queso crema y salame", d: "Pasta de queso crema, salame, palmitos y ciboulette.", precioFijo: "$41.000 / 100 u", img: "assets/img/carta/crostini-queso-salame.jpg" },
+            { n: "Pasta de ave y palta", d: "", precioFijo: "$56.000 / 100 u" },
+            { n: "Salmón ahumado", d: "Salmón ahumado, queso crema y sésamo negro.", precioFijo: "$76.000 / 100 u", img: "assets/img/carta/crostini-salmon.jpg" },
+            { n: "Queso crema y salame", d: "Pasta de queso crema, salame, palmitos y ciboulette.", precioFijo: "$43.000 / 100 u", img: "assets/img/carta/crostini-queso-salame.jpg" },
           ],
         },
         {
           nombre: "Bruschettas",
           nota: "Pedido mínimo 50 unidades. Sobre crujiente pan baguette.",
           items: [
-            { n: "Ricotta y tomate cherry", d: "Pasta de ricota, queso crema y albahaca y aceitunas, decorada con tomate cherry asado.", precioFijo: "$53.000 / 100 u" },
-            { n: "Queso de cabra", d: "Queso de cabra, espinaca y tomate cherry.", precioFijo: "$47.000 / 100 u" },
+            { n: "Ricotta y tomate cherry", d: "Pasta de ricota, queso crema y albahaca y aceitunas, decorada con tomate cherry asado.", precioFijo: "$55.000 / 100 u" },
+            { n: "Queso de cabra", d: "Queso de cabra, espinaca y tomate cherry. Solo de temporada.", precioFijo: "$68.000 / 100 u" },
           ],
         },
         {
           nombre: "Canapés Premium",
           nota: "Pedido mínimo 100 unidades. Surtido de 6 variedades.",
           items: [
-            { n: "Canapés Premium surtidos", d: "Palmito, jamón, queso crema y sésamo negro · huevo de codorniz, pepinillo y mayonesa · camarón salteado, queso crema y ciboulette · salame, queso crema y almendra ahumada · espárragos, mayonesa y pimentón · choclito oriental, ciboulette, queso crema y un toque de merquén.", precioFijo: "$40.000 / 100 u", img: "assets/img/carta/canapes-premium.jpg" },
+            { n: "Canapés Premium surtidos", d: "Palmito, jamón, queso crema y sésamo negro · huevo de codorniz, pepinillo y mayonesa · camarón salteado, queso crema y ciboulette · salame, queso crema y almendra ahumada · espárragos, mayonesa y pimentón · choclito oriental, ciboulette, queso crema y un toque de merquén.", precioFijo: "$45.000 / 100 u", img: "assets/img/carta/canapes-premium.jpg" },
+            { n: "Canapés solo de Camarón", d: "Para quienes prefieren solo la variedad de camarón, en vez del surtido.", precioFijo: "$55.000 / 100 u" },
           ],
         },
         {
@@ -366,9 +368,9 @@ window.KAISER = {
           img: "assets/img/carta/brochetas-carne-chorizo.jpg",
           nota: "Pedido mínimo 50 unidades.",
           items: [
-            { n: "Carne y chorizo", d: "", precioFijo: "$83.000 / 100 u", img: "assets/img/carta/brochetas-carne-chorizo.jpg" },
-            { n: "Pollo y cerdo", d: "", precioFijo: "$74.000 / 100 u" },
-            { n: "Queso chanco y albahaca", d: "Queso chanco, tomate cherry y albahaca.", precioFijo: "$47.000 / 100 u", img: "assets/img/carta/brochetas-caprese.jpg" },
+            { n: "Carne y chorizo", d: "", precioFijo: "$110.000 / 100 u", img: "assets/img/carta/brochetas-carne-chorizo.jpg" },
+            { n: "Pollo y cerdo", d: "", precioFijo: "$76.000 / 100 u" },
+            { n: "Queso chanco y albahaca", d: "Queso chanco, tomate cherry y albahaca.", precioFijo: "$61.000 / 100 u", img: "assets/img/carta/brochetas-caprese.jpg" },
             { n: "Frutas de estación", d: "", precioFijo: "$72.000 / 100 u", img: "assets/img/carta/brochetas-de-frutas.jpg" },
           ],
         },
@@ -376,14 +378,14 @@ window.KAISER = {
           nombre: "Bolitas de Carne",
           nota: "Pedido mínimo 50 unidades. Con salsa de queso para untar.",
           items: [
-            { n: "Bolitas de carne", d: "Vacuno y sésamo.", precioFijo: "$89.000 / 100 u", img: "assets/img/carta/bolitas-de-carne.jpg" },
+            { n: "Bolitas de carne", d: "Vacuno y sésamo.", precioFijo: "$122.000 / 100 u", img: "assets/img/carta/bolitas-de-carne.jpg" },
           ],
         },
         {
           nombre: "Queso Apanado",
           nota: "Pedido mínimo 50 unidades.",
           items: [
-            { n: "Cubitos de queso crema apanados", d: "Con salsa de vino tinto para untar.", precioFijo: "$61.000 / 100 u", img: "assets/img/carta/queso-apanado.jpg" },
+            { n: "Cubitos de queso crema apanados", d: "Con salsa de vino tinto para untar.", precioFijo: "$75.000 / 100 u", img: "assets/img/carta/queso-apanado.jpg" },
           ],
         },
         {
@@ -397,7 +399,7 @@ window.KAISER = {
           nombre: "Mini Sopaipillas",
           nota: "Pedido mínimo 50 unidades. Con pebre para servir.",
           items: [
-            { n: "Mini sopaipillas de cóctel", d: "", precioFijo: "$40.000 / 100 u", img: "assets/img/carta/mini-sopaipillas.jpg" },
+            { n: "Mini sopaipillas de cóctel", d: "", precioFijo: "$45.000 / 100 u", img: "assets/img/carta/mini-sopaipillas.jpg" },
           ],
         },
         {
@@ -418,14 +420,14 @@ window.KAISER = {
           nombre: "Mini Hamburguesas",
           nota: "Pedido mínimo 100 unidades.",
           items: [
-            { n: "Mini hamburguesas caseras", d: "Vacuno, con queso.", precioFijo: "$89.000 / 100 u" },
+            { n: "Mini hamburguesas caseras", d: "Vacuno, con queso.", precioFijo: "$110.000 / 100 u" },
           ],
         },
         {
           nombre: "Pastelitos de Cóctel",
           nota: "Pedido mínimo 50 unidades. 6 variedades surtidas.",
           items: [
-            { n: "Pastelitos de cóctel surtidos", d: "Mini pie de limón · mini pie de maracuyá · mini tartaleta de frutas · mini alfajor · mini cheesecake de berries · mini mil hojas manjar.", precioFijo: "$40.000 / 100 u", img: "assets/img/carta/mini-pastelitos.jpg" },
+            { n: "Pastelitos de cóctel surtidos", d: "Mini pie de limón · mini pie de maracuyá · mini tartaleta de frutas · mini alfajor · mini cheesecake de berries · mini mil hojas manjar.", precioFijo: "$45.000 / 100 u", img: "assets/img/carta/mini-pastelitos.jpg" },
           ],
         },
         {
@@ -433,18 +435,18 @@ window.KAISER = {
           img: "assets/img/carta/petit-bouche.jpg",
           nota: "Pedido mínimo 50 unidades. Tacitas de masa quiche.",
           items: [
-            { n: "Camarón y queso", d: "", precioFijo: "$40.000 / 100 u" },
-            { n: "Espinacas a la crema", d: "", precioFijo: "$40.000 / 100 u" },
-            { n: "Salame y queso", d: "", precioFijo: "$40.000 / 100 u" },
-            { n: "Choclo y champiñón", d: "En salsa bechamel.", precioFijo: "$40.000 / 100 u" },
+            { n: "Camarón y queso", d: "", precioFijo: "$45.000 / 100 u" },
+            { n: "Espinacas a la crema", d: "", precioFijo: "$43.000 / 100 u" },
+            { n: "Salame y queso", d: "", precioFijo: "$43.000 / 100 u" },
+            { n: "Choclo y champiñón", d: "En salsa bechamel.", precioFijo: "$43.000 / 100 u" },
           ],
         },
         {
           nombre: "Mini Pizzas",
-          nota: "Pedido mínimo 50 unidades. 2 variedades.",
+          nota: "Pedido mínimo 50 unidades. 2 variedades, mismo precio.",
           items: [
-            { n: "Napolitana", d: "Queso, tomate, jamón y aceitunas.", precioFijo: "$45.000 / 100 u", img: "assets/img/carta/pizzetas-napolitanas.jpg" },
-            { n: "De verduras", d: "Queso, palmito, espárragos, tomate y aceituna.", precioFijo: "$45.000 / 100 u", img: "assets/img/carta/pizzetas-de-verduras.jpg" },
+            { n: "Napolitana", d: "Queso, tomate, jamón y aceitunas.", precioFijo: "$49.000 / 100 u", img: "assets/img/carta/pizzetas-napolitanas.jpg" },
+            { n: "De verduras", d: "Queso, palmito, espárragos, tomate y aceituna.", precioFijo: "$49.000 / 100 u", img: "assets/img/carta/pizzetas-de-verduras.jpg" },
           ],
         },
       ],
