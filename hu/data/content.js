@@ -226,7 +226,7 @@ window.KAISER = {
         },
         {
           nombre: "Tapaditos Fríos",
-          nota: "",
+          nota: "Se piden de 100 en 100.",
           items: [
             { n: "Filetitos de pollo a la mostaza", d: "Montado en lechuga y palmito o pepinillo.", precioFijo: "$61.000 / 100 u", img: "assets/img/tapaditos.jpg" },
             { n: "Pasta casera de ave y pimiento", d: "", precioFijo: "$42.000 / 100 u" },
@@ -237,7 +237,7 @@ window.KAISER = {
         },
         {
           nombre: "Tapaditos Vegetarianos",
-          nota: "",
+          nota: "Se piden de 100 en 100.",
           items: [
             { n: "Queso chanco", d: "Queso chanco con tomate asado y aceitunas.", precioFijo: "$42.000 / 100 u" },
             { n: "Queso fresco", d: "Lechuga, queso fresco, tomate y ají verde.", precioFijo: "$42.000 / 100 u" },
