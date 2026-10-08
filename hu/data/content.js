@@ -219,7 +219,7 @@ window.KAISER = {
       grupos: [
         {
           nombre: "Canapés Premium",
-          nota: "Surtido de 6 variedades, sobre pan de miga blanco.",
+          nota: "Surtido de 6 variedades, sobre pan de miga blanco. Se piden de 100 en 100.",
           items: [
             { n: "Canapés Premium surtidos", d: "Palmito, jamón, queso crema y sésamo negro · huevitos de codorniz con pepinillo y mayonesa · camarón salteado, queso crema y ciboulette · salame, queso crema y almendra ahumada · espárragos, mayonesa y pimentón · choclito oriental, ciboulette, queso crema y mayonesa con toque de merquén.", precioFijo: "$40.000 / 100 u", img: "assets/img/canapes.jpg" },
           ],
