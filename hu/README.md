@@ -19,8 +19,8 @@ hu/
 ## Qué falta por completar
 
 **Real (del catálogo de WhatsApp, 2026-07-27 — pero es la carta real de Huechuraba):**
-- **Carta completa y propia** de Huechuraba: 20 tortas de panqueque/chocolate, 5 mil hojas, 3 heladas/light, 2 de bizcocho, 11 kuchen/pie/tartaleta/cheesecake, y 15 grupos de coctelería. Distinta de la de Padre Hurtado — ya no comparten carta.
-- **Precios reales** (lista vigente 02-sep-2025 a abril-2026): tabla de tamaños de torta (10-12 a 50 personas, $28.000 a $64.000), trozo de torta ($3.700) y trozo de pie ($2.800), kuchen/pie/tartaleta ($15.500), cheesecake y Mix Kaiser ($16.500), y cada precio de coctelería por 100 unidades.
+- **Carta completa y propia** de Huechuraba: 20 tortas de panqueque/chocolate, 5 mil hojas, 3 heladas/light, 2 de bizcocho, 12 kuchen/pie/tartaleta/cheesecake, y 15 grupos de coctelería. Distinta de la de Padre Hurtado — ya no comparten carta.
+- **Precios reales** (lista vigente 02-sep-2025 a abril-2026): tabla de tamaños de torta (10-12 a 50 personas, $28.000 a $64.000), trozo de torta ($3.700) y trozo de pie ($2.800), kuchen/pie/tartaleta ($15.500), cheesecake de frutos rojos y Mix Kaiser ($16.500), y cada precio de coctelería por 100 unidades. **Corregido por Benjamín el 10-oct-2026:** Pie Limón, Pie de Maracuyá y Kuchen de Nuez vienen en dos tamaños, chico (6 a 8 trozos aprox.) $15.500 y grande (10 a 12 trozos aprox.) $22.000; el grande viene trozado en 10, o en 12 si se pide. Y se agregó el Cheesecake New York, un solo tamaño de 10 trozos aprox., $30.000.
 - **Dirección real:** Quilapán 6898, Huechuraba.
 - **Horario** (ver nota abajo): Lunes cerrado · Martes a sábado 12:00–19:30 · Domingo 12:00–19:00.
 - **Correo real:** Dkaiserhuechuraba@gmail.com (agregado en el footer y en una tarjeta de contacto nueva en "Ubicación" — Huechuraba es la única sucursal con este dato por ahora).

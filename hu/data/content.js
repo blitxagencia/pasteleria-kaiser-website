@@ -188,22 +188,23 @@ window.KAISER = {
     {
       id: "kuchen",
       titulo: "Kuchen, Pie y Tartaleta",
-      nota: "$15.500 cada uno, salvo indicado. Cheesecake y Mix Kaiser: $16.500.",
+      nota: "$15.500 cada uno, salvo indicado. Pie Limón, Pie de Maracuyá y Kuchen de Nuez vienen en dos tamaños: chico (6 a 8 trozos aprox.) $15.500 y grande (10 a 12 trozos aprox.) $22.000. Cheesecake de Frutos Rojos y Mix Kaiser: $16.500. Cheesecake New York: $30.000.",
       img: "assets/img/kuchen.jpg",
       grupos: [
         {
           nombre: "Kuchen, pie y tartaleta",
           items: [
-            { n: "Pie Limón", d: "Mousse de pie limón (leche condensada y crema chantilly) con jugo de limón natural y merengue.", precioFijo: "$15.500", img: "assets/img/pie-limon.jpg" },
-            { n: "Pie de Maracuyá", d: "Mousse de maracuyá (leche condensada y crema chantilly) con pulpa natural.", precioFijo: "$15.500" },
+            { n: "Pie Limón", d: "Mousse de pie limón (leche condensada y crema chantilly) con jugo de limón natural y merengue.", precioFijo: "$15.500 / $22.000", img: "assets/img/pie-limon.jpg" },
+            { n: "Pie de Maracuyá", d: "Mousse de maracuyá (leche condensada y crema chantilly) con pulpa natural.", precioFijo: "$15.500 / $22.000" },
             { n: "Streusel de Frambuesa", d: "Crema pastelera y frambuesa cocida y endulzada, con masa de streusel.", precioFijo: "$15.500" },
             { n: "Streusel de Arándanos", d: "Crema pastelera, arándanos cocidos y endulzados, con masa de streusel.", precioFijo: "$15.500" },
             { n: "Kuchen de Manzana", d: "Toque de crema pastelera, manzana verde cocida al dente, nueces y tamizado con mermelada de damasco.", precioFijo: "$15.500" },
-            { n: "Kuchen de Nuez", d: "Leche condensada con nueces.", precioFijo: "$15.500", img: "assets/img/kuchen.jpg" },
+            { n: "Kuchen de Nuez", d: "Leche condensada con nueces.", precioFijo: "$15.500 / $22.000", img: "assets/img/kuchen.jpg" },
             { n: "Tartaleta de Frutas", d: "Crema pastelera con piña, durazno y cereza.", precioFijo: "$15.500" },
             { n: "Tartaleta de Frutillas", d: "Crema pastelera con frutillas.", precioFijo: "$15.500" },
             { n: "Tartaleta de Arándanos", d: "Crema pastelera con arándanos.", precioFijo: "$15.500" },
             { n: "Cheesecake de Frutos Rojos", d: "Queso Philadelphia dulce con miga de azúcar rubia, canela, nueces y almendras molidas, arándanos y frambuesa.", precioFijo: "$16.500", img: "assets/img/cheesecake.jpg" },
+            { n: "Cheesecake New York", d: "Un solo tamaño, de 10 trozos aprox.", precioFijo: "$30.000" },
             { n: "Mix Kaiser", d: "Trozo de pie limón, pie maracuyá, kuchen de nuez y streusel de frambuesa — para probar de todo un poco.", precioFijo: "$16.500" },
           ],
         },

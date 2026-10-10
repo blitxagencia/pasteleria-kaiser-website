@@ -68,8 +68,10 @@
       var ms = it.precioFijo.match(/\$[\d.]+/g) || [];
       var per100 = /100\s*u/i.test(it.precioFijo);
       if (ms.length >= 2) {
-        return [{ label: "Chico (6 a 8 pers.)", price: parseCLP(ms[0]), units: 0 },
-                { label: "Grande (10 a 12 pers.)", price: parseCLP(ms[1]), units: 0 }];
+        // En Huechuraba el pie y el kuchen se cuentan en trozos, no en
+        // personas (Benjamín, 10-oct).
+        return [{ label: "Chico (6 a 8 trozos)", price: parseCLP(ms[0]), units: 0 },
+                { label: "Grande (10 a 12 trozos)", price: parseCLP(ms[1]), units: 0 }];
       }
       if (ms.length === 1) {
         var full = parseCLP(ms[0]);
