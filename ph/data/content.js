@@ -247,9 +247,9 @@ window.KAISER = {
         },
         {
           nombre: "Mini Pastelitos",
-          nota: "Pedido mínimo 50 unidades. Seis variedades surtidas.",
+          nota: "Pedido mínimo 50 unidades. Cinco variedades surtidas.",
           items: [
-            { n: "Mini pastelitos surtidos", d: "Pie de limón · pie de maracuyá · alfajor de manjar bañado en chocolate · cheesecake de frutos rojos · mil hojas con manjar · tartaleta de frutas.", precioFijo: "$48.000 / 100 u", img: "assets/img/carta/mini-pastelitos.jpg" },
+            { n: "Mini pastelitos surtidos", d: "Pie de limón · pie de maracuyá · alfajor de manjar bañado en chocolate · cheesecake de frutos rojos · mil hojas con manjar.", precioFijo: "$48.000 / 100 u", img: "assets/img/carta/mini-pastelitos.jpg" },
           ],
         },
         {
