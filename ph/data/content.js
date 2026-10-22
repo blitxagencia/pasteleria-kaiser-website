@@ -66,27 +66,24 @@ window.KAISER = {
     { personas: "15", forma: "Redonda", medida: "22 cm diámetro" },
     { personas: "25", forma: "Redonda", medida: "26 cm diámetro" },
     { personas: "30", forma: "Cuadrada", medida: "25 x 25 cm" },
-    { personas: "35", forma: "Redonda", medida: "30 cm diámetro" },
-    { personas: "40", forma: "Rectangular", medida: "38,5 x 28 cm" },
-    { personas: "50", forma: "Rectangular", medida: "38,5 x 30 cm" },
   ],
 
   /* Escala de precios estándar de tortas por N de personas.
-     Actualizada el 2026-09-08 con las láminas que mandó Nicolás.
-     ⚠️ El 25p NO es único: hay tortas de $43.500, $45.000 y $46.500. La escala
-     de acá es solo el valor por defecto del grupo — cada torta puede traerse el
-     suyo con `precios: { "25": 46500 }`, y `omite: ["15"]` si no viene en un
-     tamaño. Los lee `mergedScale()` en js/main.js. */
-  escalaTortas: {
-    "10": 31500, "15": 39500, "25": 45000, "30": 56000,
-    "35": 62000, "40": 67000, "50": 75000,
-  },
-  escalaHelada: { "10": 31500, "15": 39500, "25": 46500 },
-  escalaBizcocho: { "10": 31500, "15": 39500, "25": 45000 },
+     Actualizada el 2026-10-22 con las láminas que mandó Nicolás (la anterior era
+     del 2026-09-08). Por ahora las tortas llegan hasta 30 personas: "las de 40
+     no estamos tomando pedidos y las de 50 las eliminaremos del catálogo".
+     ⚠️ El 15 y el 25 NO son únicos: el 15 va de $40.000 a $43.500 y el 25 de
+     $45.000 a $48.500 según la torta. La escala de acá es solo el valor por
+     defecto del grupo — cada torta trae el suyo con `precios: { "25": 46000 }`,
+     y `omite: ["15"]` si no viene en un tamaño. Los lee `mergedScale()` en
+     js/main.js. */
+  escalaTortas: { "10": 33500, "15": 41500, "25": 47000, "30": 59000 },
+  escalaHelada: { "10": 33500, "15": 41500, "25": 47000 },
+  escalaBizcocho: { "10": 33500, "15": 41500, "25": 47000 },
   /* Sin azúcar / light. Misma escala que las heladas hoy, pero es otro producto:
      si Kaiser sube una, la otra no tiene por qué moverse. Catálogo de Tortas PH 2025, pág. 10. */
   escalaLight: { "10": 31500, "15": 39500, "25": 46500 },
-  escalaHojaLight: { "10": 41000, "25": 57000 },
+  escalaHojaLight: { "10": 42000, "25": 60000 },
 
   /* ---- Especialidades destacadas (selección editorial) ---- */
   especialidades: [
@@ -126,44 +123,44 @@ window.KAISER = {
     {
       id: "tortas",
       titulo: "Tortas",
-      nota: "Precio según cantidad de personas. Consulta tamaños en la tabla más abajo.",
+      nota: "Precio según cantidad de personas, hasta 30 personas. Consulta tamaños en la tabla más abajo.",
       img: "assets/img/torta-panqueque.jpg",
       grupos: [
         {
           nombre: "Tortas de panqueque",
           precio: "escalaTortas",
           items: [
-            { n: "Tres Sabores", d: "Panqueque de chocolate, manjar crema, crema pastelera, chantilly y frambuesas.", img: "assets/img/carta/tres-sabores.jpg" },
-            { n: "Amapola", d: "Panqueque de vainilla con amapola, crema Bariloche (chocolate y manjar), mermelada de guinda y crema pastelera.", img: "assets/img/carta/amapola.jpg" },
-            { n: "Plátano", d: "Panqueque de vainilla, capas de mil hojas, crema pastelera con Baileys y pasta de almendras, chantilly esencia de plátano, manjar y merengue.", img: "assets/img/carta/platano.jpg" },
-            { n: "Locura Kaiser", d: "Panqueque de chocolate, discos de merengue, mil hojas, mousse de lúcuma, manjar puro, mermelada de frambuesa y chantilly.", img: "assets/img/torta-panqueque.jpg" },
-            { n: "Lúcuma Manjar", d: "Panqueque de vainilla, mousse de lúcuma y manjar.", precios: { "25": 43500 }, img: "assets/img/carta/lucuma-manjar.jpg" },
+            { n: "Tres Sabores", d: "Panqueque de chocolate, manjar crema, crema pastelera, chantilly y frambuesas.", precios: { "15": 40000, "25": 45000 }, img: "assets/img/carta/tres-sabores.jpg" },
+            { n: "Amapola", d: "Panqueque de vainilla con amapola, crema Bariloche (chocolate y manjar), mermelada de guinda y crema pastelera.", precios: { "15": 40000 }, img: "assets/img/carta/amapola.jpg" },
+            { n: "Plátano", d: "Panqueque de vainilla, capas de mil hojas, crema pastelera con Baileys y pasta de almendras, chantilly esencia de plátano, manjar y merengue.", precios: { "15": 40000 }, img: "assets/img/carta/platano.jpg" },
+            { n: "Locura Kaiser", d: "Panqueque de chocolate, discos de merengue, mil hojas, mousse de lúcuma, manjar puro, mermelada de frambuesa y chantilly.", precios: { "15": 40000 }, img: "assets/img/torta-panqueque.jpg" },
+            { n: "Lúcuma Manjar", d: "Panqueque de vainilla, mousse de lúcuma y manjar.", precios: { "15": 40000, "25": 46000 }, img: "assets/img/carta/lucuma-manjar.jpg" },
             { n: "Pie de Limón", d: "Panqueque de vainilla, mousse de limón y merengue.", img: "assets/img/carta/pie-de-limon-torta.jpg" },
-            { n: "Manjar Nuez", d: "Panqueque de vainilla, manjar crema y nueces, ganache de chocolate.", precios: { "25": 43500 }, img: "assets/img/carta/manjar-nuez.jpg" },
-            { n: "Panqueque Maracuyá", d: "Panqueque de chocolate y vainilla, discos de merengue, mousse de maracuyá y salsa de maracuyá.", tope: "25", img: "assets/img/carta/panqueque-maracuya.jpg" },
-            { n: "Panqueque Merengue Lúcuma", d: "Panqueque de vainilla, discos de merengue y mousse de lúcuma.", tope: "25", img: "assets/img/carta/panqueque-merengue-lucuma.jpg" },
-            { n: "Naranja Manjar", d: "Panqueque de vainilla, salsa de naranja y manjar.", precios: { "25": 43500 }, img: "assets/img/carta/naranja-manjar.jpg" },
-            { n: "Torta de Frutas", d: "Panqueque de vainilla, chantilly y fruta a elección (piña, durazno o cerezas).", tope: "25", img: "assets/img/carta/torta-de-frutas.jpg" },
+            { n: "Manjar Nuez", d: "Panqueque de vainilla, manjar crema y nueces, ganache de chocolate.", precios: { "25": 46000 }, img: "assets/img/carta/manjar-nuez.jpg" },
+            { n: "Panqueque Maracuyá", d: "Panqueque de chocolate y vainilla, discos de merengue, mousse de maracuyá y salsa de maracuyá.", img: "assets/img/carta/panqueque-maracuya.jpg" },
+            { n: "Panqueque Merengue Lúcuma", d: "Panqueque de vainilla, discos de merengue y mousse de lúcuma.", img: "assets/img/carta/panqueque-merengue-lucuma.jpg" },
+            { n: "Naranja Manjar", d: "Panqueque de vainilla, salsa de naranja y manjar.", precios: { "25": 46000 }, img: "assets/img/carta/naranja-manjar.jpg" },
+            { n: "Torta de Frutas", d: "Panqueque de vainilla, chantilly y fruta a elección (piña, durazno o cerezas).", img: "assets/img/carta/torta-de-frutas.jpg" },
           ],
         },
         {
           nombre: "Tortas de chocolate",
           precio: "escalaTortas",
           items: [
-            { n: "Chocopaste", d: "Panqueque de chocolate, mousse de chocolate, manjar puro y crema pastelera.", img: "assets/img/carta/chocopaste.jpg" },
-            { n: "Choconuez", d: "Panqueque de chocolate, mousse de chocolate, nueces, manjar crema, mermelada de frutillas y ganache.", img: "assets/img/carta/choconuez.jpg" },
-            { n: "Selva Negra", d: "Panqueque de chocolate, mousse de chocolate, mermelada de frambuesa, chantilly, cerezas y chips de chocolate.", precios: { "25": 46500 }, img: "assets/img/real-selvanegra.jpg" },
-            { n: "Trufa", d: "Panqueque de chocolate remojado en aguardiente, trufa y manjar.", precios: { "25": 46500 }, img: "assets/img/carta/trufa.jpg" },
-            { n: "Café", d: "Panqueque de chocolate, mousse de café, mousse de chocolate, chantilly y frambuesas.", img: "assets/img/carta/cafe.jpg" },
-            { n: "Cappuccino", d: "Panqueque de chocolate, mousse de cappuccino, mousse de chocolate y chips de chocolate.", img: "assets/img/carta/cappuccino.jpg" },
+            { n: "Chocopaste", d: "Panqueque de chocolate, mousse de chocolate, manjar puro y crema pastelera.", omite: ["15"], img: "assets/img/carta/chocopaste.jpg" },
+            { n: "Choconuez", d: "Panqueque de chocolate, mousse de chocolate, nueces, manjar crema, mermelada de frutillas y ganache.", precios: { "15": 40000, "25": 48500 }, img: "assets/img/carta/choconuez.jpg" },
+            { n: "Selva Negra", d: "Panqueque de chocolate, mousse de chocolate, mermelada de frambuesa, chantilly, cerezas y chips de chocolate.", precios: { "25": 48500 }, img: "assets/img/real-selvanegra.jpg" },
+            { n: "Trufa", d: "Panqueque de chocolate remojado en aguardiente, trufa y manjar.", precios: { "25": 48500 }, img: "assets/img/carta/trufa.jpg" },
+            { n: "Café", d: "Panqueque de chocolate, mousse de café, mousse de chocolate, chantilly y frambuesas.", precios: { "15": 40000 }, img: "assets/img/carta/cafe.jpg" },
+            { n: "Cappuccino", d: "Panqueque de chocolate, mousse de cappuccino, mousse de chocolate y chips de chocolate.", precios: { "15": 40000 }, img: "assets/img/carta/cappuccino.jpg" },
           ],
         },
         {
           nombre: "Tortas de mil hojas",
           precio: "escalaTortas",
           items: [
-            { n: "Hoja de la Casa", d: "Mil hojas, manjar crema, nueces, mermelada de guinda, chantilly y hojarasca molida.", img: "assets/img/torta-milhojas.jpg" },
-            { n: "Hoja Frambuesa", d: "Mil hojas, manjar, chantilly, frambuesas y merengue.", precios: { "25": 46500 }, img: "assets/img/carta/hoja-frambuesa.jpg" },
+            { n: "Hoja de la Casa", d: "Mil hojas, manjar crema, nueces, mermelada de guinda, chantilly y hojarasca molida.", precios: { "15": 40000 }, img: "assets/img/torta-milhojas.jpg" },
+            { n: "Hoja Frambuesa", d: "Mil hojas, manjar, chantilly, frambuesas y merengue.", precios: { "15": 43500, "25": 48500 }, img: "assets/img/carta/hoja-frambuesa.jpg" },
             { n: "Hoja Tres Sabores", d: "Mil hojas y panqueque de vainilla, mousse de manjar, crema pastelera, chantilly, frambuesas y manjar.", img: "assets/img/carta/hoja-tres-sabores.jpg" },
             { n: "Hoja Manjar", d: "Mil hojas y manjar puro.", img: "assets/img/carta/hoja-manjar.jpg" },
             { n: "Hoja Manjar Pastelera", d: "Mil hojas, manjar y crema pastelera.", img: "assets/img/carta/hoja-manjar-pastelera.jpg" },
@@ -184,10 +181,10 @@ window.KAISER = {
           nombre: "Tortas de bizcocho",
           precio: "escalaBizcocho",
           items: [
-            { n: "Torta Tropical", d: "Bizcocho de vainilla, mousse de piña, mango y maracuyá, con trozos de piña y mango.", omite: ["15"], img: "assets/img/carta/torta-tropical.jpg" },
-            { n: "Red Velvet", d: "Bizcocho de vainilla rojo, cheesecake philadelphia y manjar.", precios: { "25": 46500 }, omite: ["15"], img: "assets/img/carta/red-velvet.jpg" },
-            { n: "Carrot Cake", d: "Bizcocho de zanahoria con nueces, manjar y frosting de queso philadelphia.", img: "assets/img/carta/carrot-cake.jpg" },
-            { n: "Bizcocho de Chocolate", d: "Bizcocho de chocolate, ganache de chocolate y manjar.", precios: { "25": 46500 } },
+            { n: "Torta Tropical", d: "Bizcocho de vainilla, mousse de piña, mango y maracuyá, con trozos de piña y mango.", precios: { "25": 45000 }, omite: ["15"], img: "assets/img/carta/torta-tropical.jpg" },
+            { n: "Red Velvet", d: "Bizcocho de vainilla rojo, cheesecake philadelphia y manjar.", precios: { "10": 34500, "25": 48500 }, omite: ["15"], img: "assets/img/carta/red-velvet.jpg" },
+            { n: "Carrot Cake", d: "Bizcocho de zanahoria con nueces, manjar y frosting de queso philadelphia.", precios: { "10": 37000, "25": 51500 }, omite: ["15"], img: "assets/img/carta/carrot-cake.jpg" },
+            { n: "Bizcocho de Chocolate", d: "Bizcocho de chocolate, ganache de chocolate y manjar.", precios: { "10": 34500 } },
           ],
         },
         {
@@ -195,7 +192,7 @@ window.KAISER = {
           precio: "escalaLight",
           nota: "Endulzadas sin azúcar. Consulta por disponibilidad al encargar.",
           items: [
-            { n: "Torta de Yogurt", d: "Panqueque de vainilla, mousse de yogurt light, cubierta con mermelada de frambuesa light.", img: "assets/img/carta/torta-de-yogurt.jpg" },
+            { n: "Torta de Yogurt", d: "Panqueque de vainilla, mousse de yogurt light, cubierta con mermelada de frambuesa light. Precio por confirmar: consúltalo por WhatsApp.", omite: ["10", "15", "25", "30"], img: "assets/img/carta/torta-de-yogurt.jpg" },
           ],
         },
         {

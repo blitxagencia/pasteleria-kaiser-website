@@ -103,7 +103,8 @@ for (const suc of ["ph", "pe", "hu"]) {
   }
 }
 
-/* --- Casos concretos de Padre Hurtado, contra el catalogo del 8-sep-2026 --- */
+/* --- Casos concretos de Padre Hurtado, contra las láminas del 22-oct-2026
+       (antes, el catálogo del 8-sep). Desde el 22-oct llega hasta 30 personas. --- */
 const ph = cargar("ph");
 const buscar = (n) => {
   for (const sec of ph.D.carta || []) for (const gr of sec.grupos || [])
@@ -112,27 +113,41 @@ const buscar = (n) => {
 };
 const escalaDe = (n) => { const [it, gr] = buscar(n); return ph.tamanos(it, gr.precio); };
 
+/* "Por el momento llegaremos hasta 30 personas" (Nicolás): ninguna torta pasa de 30. */
+for (const sec of ph.D.carta || []) for (const gr of sec.grupos || []) {
+  if (!gr.precio) continue;
+  for (const it of gr.items || [])
+    ok(Object.keys(ph.tamanos(it, gr.precio) || {}).every((k) => parseInt(k, 10) <= 30),
+       `ph · ${it.n}: ningún tamaño sobre 30 personas`);
+}
+ok((ph.D.tamanos || []).every((t) => parseInt(t.personas, 10) <= 30),
+   "ph · la tabla de tamaños llega hasta 30");
+
+/* Las que antes llegaban a 25 y ahora llegan a 30. */
 for (const nombre of ["Torta de Frutas", "Panqueque Maracuyá", "Panqueque Merengue Lúcuma"]) {
   const sc = escalaDe(nombre);
-  ok(Math.max(...Object.keys(sc).map(Number)) === 25, `ph · ${nombre}: el tamaño maximo debe ser 25`);
-  ok(sc["25"] === 45000, `ph · ${nombre}: 25p debe costar 45000 y da ${sc["25"]}`);
+  ok(sc["30"] === 59000 && sc["25"] === 47000, `ph · ${nombre}: llega a 30 (59000) y 25p 47000`);
 }
 
-/* El 25p no es uno solo por grupo: la excepcion pisa la escala, y solo ahi. */
-ok(escalaDe("Selva Negra")["25"] === 46500, "ph · Selva Negra: 25p debe costar 46500 (excepcion del item)");
-ok(escalaDe("Selva Negra")["50"] === 75000, "ph · Selva Negra: 50p debe costar 75000 (escala del grupo)");
-ok(escalaDe("Lúcuma Manjar")["25"] === 43500, "ph · Lúcuma Manjar: 25p debe costar 43500");
-ok(escalaDe("Hoja Tres Sabores")["25"] === 45000,
-   "ph · Hoja Tres Sabores: 25p se queda en la escala del grupo, 45000");
+/* El 15 y el 25 no son uno solo por grupo: la excepcion pisa la escala, y solo ahi. */
+ok(escalaDe("Selva Negra")["25"] === 48500 && escalaDe("Selva Negra")["15"] === 41500,
+   "ph · Selva Negra: 25p 48500 (excepcion del item) y 15p 41500 (escala)");
+ok(escalaDe("Lúcuma Manjar")["25"] === 46000 && escalaDe("Lúcuma Manjar")["15"] === 40000,
+   "ph · Lúcuma Manjar: 15p 40000 y 25p 46000");
+ok(escalaDe("Hoja Frambuesa")["15"] === 43500, "ph · Hoja Frambuesa: 15p 43500");
+ok(escalaDe("Hoja Tres Sabores")["25"] === 47000,
+   "ph · Hoja Tres Sabores: 25p se queda en la escala del grupo, 47000");
+ok(!("15" in escalaDe("Chocopaste")), "ph · Chocopaste: la lámina no trae 15 personas");
 
-/* Estas dos dejaron de hacerse en 15 personas; la Carrot Cake sigue. */
-for (const nombre of ["Torta Tropical", "Red Velvet"])
+/* Desde el 22-oct la Carrot Cake tampoco viene en 15. */
+for (const nombre of ["Torta Tropical", "Red Velvet", "Carrot Cake"])
   ok(!("15" in escalaDe(nombre)), `ph · ${nombre}: no debe ofrecer 15 personas`);
-ok("15" in escalaDe("Carrot Cake"), "ph · Carrot Cake: si debe ofrecer 15 personas");
+ok(escalaDe("Carrot Cake")["10"] === 37000, "ph · Carrot Cake: 10p 37000");
+ok(JSON.stringify(escalaDe("Torta de Yogurt")) === "{}",
+   "ph · Torta de Yogurt: no viene en las láminas, no se vende por el carrito");
 
-/* Las dos escalas que no se movieron. */
-ok(ph.D.escalaHojaLight["25"] === 57000, "ph · Mil hojas light: el 25p sigue en 57000");
-ok(ph.D.escalaTortas["10"] === 31500, "ph · el tamaño de 10 personas se mantuvo en 31500");
+ok(ph.D.escalaHojaLight["25"] === 60000, "ph · Mil hojas light: el 25p en 60000");
+ok(ph.D.escalaTortas["10"] === 33500, "ph · el tamaño de 10 personas en 33500");
 
 /* --- Casos concretos de Peñaflor, contra su lista de precios de octubre 2026
        (cargada el 16-oct; antes, la del 14-sep) --- */
