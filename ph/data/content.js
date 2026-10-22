@@ -80,9 +80,6 @@ window.KAISER = {
   escalaTortas: { "10": 33500, "15": 41500, "25": 47000, "30": 59000 },
   escalaHelada: { "10": 33500, "15": 41500, "25": 47000 },
   escalaBizcocho: { "10": 33500, "15": 41500, "25": 47000 },
-  /* Sin azúcar / light. Misma escala que las heladas hoy, pero es otro producto:
-     si Kaiser sube una, la otra no tiene por qué moverse. Catálogo de Tortas PH 2025, pág. 10. */
-  escalaLight: { "10": 31500, "15": 39500, "25": 46500 },
   escalaHojaLight: { "10": 42000, "25": 60000 },
 
   /* ---- Especialidades destacadas (selección editorial) ---- */
@@ -185,14 +182,6 @@ window.KAISER = {
             { n: "Red Velvet", d: "Bizcocho de vainilla rojo, cheesecake philadelphia y manjar.", precios: { "10": 34500, "25": 48500 }, omite: ["15"], img: "assets/img/carta/red-velvet.jpg" },
             { n: "Carrot Cake", d: "Bizcocho de zanahoria con nueces, manjar y frosting de queso philadelphia.", precios: { "10": 37000, "25": 51500 }, omite: ["15"], img: "assets/img/carta/carrot-cake.jpg" },
             { n: "Bizcocho de Chocolate", d: "Bizcocho de chocolate, ganache de chocolate y manjar.", precios: { "10": 34500 } },
-          ],
-        },
-        {
-          nombre: "Tortas sin azúcar",
-          precio: "escalaLight",
-          nota: "Endulzadas sin azúcar. Consulta por disponibilidad al encargar.",
-          items: [
-            { n: "Torta de Yogurt", d: "Panqueque de vainilla, mousse de yogurt light, cubierta con mermelada de frambuesa light. Precio por confirmar: consúltalo por WhatsApp.", omite: ["10", "15", "25", "30"], img: "assets/img/carta/torta-de-yogurt.jpg" },
           ],
         },
         {
