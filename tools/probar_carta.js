@@ -75,7 +75,7 @@ function cargar(suc, mainAlternativo) {
       return out;
     };
   }
-  return { D, tamanos };
+  return { D, tamanos, extraer };
 }
 
 /* --- Barrido de las tres: cada producto contra su propia ficha --- */
@@ -177,6 +177,59 @@ for (const nombre of ["Menta", "Torta de Frutas", "Torta Sin Azúcar Semifrío"]
 ok(JSON.stringify(escalaPe("Manjar Nuez")) === '{"10":30500,"15":35500,"25":42500,"30":54000,"50":72000}',
    "pe · Manjar Nuez: sin 35 ni 40 personas");
 ok(Math.max(...Object.keys(escalaPe("3 Leches")).map(Number)) === 25, "pe · 3 Leches: hasta 25 personas");
+
+/* --- Casos concretos de Huechuraba, contra el comunicado de don Víctor
+       (rige desde el martes 27-oct-2026; "en Huechuraba los precios son por
+       tamaño y no por sabor") y sus respuestas del 24-oct --- */
+const hu = cargar("hu");
+// "Pie Limón" es torta de panqueque y también pie: los kuchen se buscan en su sección.
+const buscarHu = (n, secId) => {
+  for (const sec of hu.D.carta || []) if (!secId || sec.id === secId) for (const gr of sec.grupos || [])
+    for (const it of gr.items || []) if (it.n === n) return [it, gr];
+  throw new Error("hu: no existe el producto " + n);
+};
+// Las opciones del carrito salen del buildOpts real, con todo lo que usa.
+const fnsHu = ["clp", "scaleObj", "scaleRange", "tamanosPermitidos", "parseCLP", "minUnits", "allowsMix", "buildOpts"];
+const huFns = new Function("D", fnsHu.map((n) => hu.extraer(n, true)).join(";\n") +
+  "; return {" + fnsHu.join(",") + "};")(hu.D);
+const opcionesHu = (n) => { const [it, gr] = buscarHu(n, "kuchen"); return huFns.buildOpts(it, gr.precio, gr.nota)
+  .map((o) => (o.label ? o.label + " " : "") + o.price).join(" | "); };
+
+const escalaNuevaHu = { "10-12": 31500, "15-20": 38000, "25": 47500, "30": 53000, "35": 58000, "40": 63000, "50": 69000 };
+for (const k of Object.keys(escalaNuevaHu))
+  ok(hu.D.escalaTortas[k] === escalaNuevaHu[k], `hu · tortas de ${k} personas: ${escalaNuevaHu[k]}`);
+ok(Object.keys(hu.D.escalaTortas).length === 7, "hu · la escala de tortas tiene los 7 tamaños, ni más ni menos");
+ok(hu.D.tamanos.every((t) => hu.D.escalaTortas[t.personas]), "hu · cada fila de la tabla de tamaños tiene su precio");
+
+const tortasHu = hu.D.carta.find((s) => s.id === "tortas");
+for (const gr of tortasHu.grupos)
+  if (gr.nombre !== "Torta baja en azúcar")
+    ok(gr.precio === "escalaTortas", `hu · ${gr.nombre}: mismo precio que todas (por tamaño, no por sabor)`);
+{
+  const [it, gr] = buscarHu("Torta baja en azúcar");
+  const sc = hu.tamanos(it, gr.precio);
+  ok(Object.keys(sc).length === 2 && sc["10-12"] === 39000 && sc["25"] === 59000,
+     "hu · torta baja en azúcar: solo 10-12 ($39.000) y 25 ($59.000)");
+  ok(/^10-12 y 25 personas/.test(huFns.scaleRange(sc)),
+     "hu · el encabezado de la baja en azúcar no hace creer que hay de 15-20: " + huFns.scaleRange(sc));
+}
+
+for (const n of ["Pie Limón", "Pie de Maracuyá", "Kuchen de Nuez"])
+  ok(opcionesHu(n) === "Chico (6 a 8 trozos) 19500 | Grande (10 a 12 trozos) 26000", `hu · ${n}: ${opcionesHu(n)}`);
+ok(opcionesHu("Cheesecake de Frutos Rojos") === "Chico (8 trozos) 21000 | Grande (10 a 12 trozos) 27000",
+   "hu · Cheesecake de Frutos Rojos, chico de 8 trozos: " + opcionesHu("Cheesecake de Frutos Rojos"));
+for (const n of ["Streusel de Frambuesa", "Streusel de Arándanos", "Kuchen de Manzana",
+                 "Tartaleta de Frutas", "Tartaleta de Frutillas", "Tartaleta de Arándanos"])
+  ok(opcionesHu(n) === "19500", `hu · ${n}: igual que el kuchen y pie chico, 19500 (es ${opcionesHu(n)})`);
+ok(opcionesHu("Mix Kaiser") === "20000", "hu · Mix Kaiser: 20000");
+ok(opcionesHu("Cheesecake New York") === "36000", "hu · Cheesecake New York: 36000");
+
+// Ningún precio viejo en tortas ni kuchen (47.500 y 59.000 no: hoy son la de 25 y la baja en azúcar de 25).
+const textoHu = JSON.stringify([hu.D.escalaTortas, tortasHu, hu.D.carta.find((s) => s.id === "kuchen")]);
+for (const viejo of ["28000", "34500", "43500", "52500", "64000", "$15.500", "$22.000", "$16.500", "$30.000", "$3.700", "$2.800"])
+  ok(!textoHu.includes(viejo), `hu · no queda el precio viejo ${viejo}`);
+for (const trozo of ["torta $4.000", "pie o kuchen $3.200", "Cheesecake New York $3.500"])
+  ok(tortasHu.nota.includes(trozo), `hu · la nota de tortas trae el trozo: ${trozo}`);
 
 console.log(`\n${revisados - fallos}/${revisados} comprobaciones OK · ${conTope} productos con tope en las 3 sucursales`);
 if (fallos) process.exit(1);

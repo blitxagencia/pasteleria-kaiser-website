@@ -20,6 +20,7 @@
     if (name === "escalaTortas") return D.escalaTortas;
     if (name === "escalaHelada") return D.escalaHelada;
     if (name === "escalaBizcocho") return D.escalaBizcocho;
+    if (name === "escalaBajaAzucar") return D.escalaBajaAzucar;
     return null;
   }
 
@@ -30,7 +31,9 @@
     var keys = Object.keys(obj).sort(function (a, b) { return obj[a] - obj[b]; });
     var min = obj[keys[0]], max = obj[keys[keys.length - 1]];
     var pmin = keys[0], pmax = keys[keys.length - 1];
-    return pmin + " a " + pmax + " personas · " + clp(min) + " a " + clp(max);
+    // Con dos tamaños, "10-12 a 25" haría creer que hay de 15-20 (la baja en azúcar).
+    var entre = keys.length === 2 ? " y " : " a ";
+    return pmin + entre + pmax + " personas · " + clp(min) + entre + clp(max);
   }
 
   /* ---------- Registro de ítems y precios para el carrito ---------- */
@@ -69,8 +72,9 @@
       var per100 = /100\s*u/i.test(it.precioFijo);
       if (ms.length >= 2) {
         // En Huechuraba el pie y el kuchen se cuentan en trozos, no en
-        // personas (Benjamín, 10-oct).
-        return [{ label: "Chico (6 a 8 trozos)", price: parseCLP(ms[0]), units: 0 },
+        // personas (Benjamín, 10-oct). El cheesecake chico es de 8 (don
+        // Víctor, 24-oct): lo dice el ítem con `chico`.
+        return [{ label: "Chico (" + (it.chico || "6 a 8 trozos") + ")", price: parseCLP(ms[0]), units: 0 },
                 { label: "Grande (10 a 12 trozos)", price: parseCLP(ms[1]), units: 0 }];
       }
       if (ms.length === 1) {
@@ -181,7 +185,7 @@
     return '<div class="tamanos"><h4>Tamaños y precios de las tortas</h4>' +
       '<div class="tamanos-scroll"><table><thead><tr><th>Personas</th><th>Forma</th><th>Tamaño</th><th>Precio</th></tr></thead>' +
       "<tbody>" + rows + "</tbody></table></div>" +
-      '<p class="grupo-nota" style="margin-top:.8rem">Precios de tortas de panqueque, chocolate y mil hojas. Heladas y de bizcocho tienen su propia escala (hasta 25 personas).</p></div>';
+      '<p class="grupo-nota" style="margin-top:.8rem">El mismo precio para todos los sabores: panqueque, chocolate, mil hojas, heladas y bizcocho. La torta baja en azúcar tiene su propio precio, solo en 10-12 y 25 personas.</p></div>';
   }
 
   function renderCarta() {
