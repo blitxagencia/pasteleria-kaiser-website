@@ -234,57 +234,62 @@ window.KAISER = {
       grupos: [
         {
           nombre: "Canapés Premium",
-          nota: "Surtido de 6 variedades, sobre pan de miga blanco. Se piden de 100 en 100.",
+          nota: "Surtido de 6 variedades, o solo de camarón, sobre pan de miga blanco. Se piden de 100 en 100.",
           items: [
-            { n: "Canapés Premium surtidos", d: "Palmito, jamón, queso crema y sésamo negro · huevitos de codorniz con pepinillo y mayonesa · camarón salteado, queso crema y ciboulette · salame, queso crema y almendra ahumada · espárragos, mayonesa y pimentón · choclito oriental, ciboulette, queso crema y mayonesa con toque de merquén.", precioFijo: "$40.000 / 100 u", img: "assets/img/canapes.jpg" },
+            { n: "Canapés Premium surtidos", d: "Palmito, jamón, queso crema y sésamo negro · huevitos de codorniz con pepinillo y mayonesa · camarón salteado, queso crema y ciboulette · salame, queso crema y almendra ahumada · espárragos, mayonesa y pimentón · choclito oriental, ciboulette, queso crema y mayonesa con toque de merquén.", precioFijo: "$48.000 / 100 u", img: "assets/img/canapes.jpg" },
+            { n: "Canapés solo de camarón", d: "Todos de camarón salteado, queso crema y ciboulette, en vez del surtido.", precioFijo: "$55.000 / 100 u" },
           ],
         },
         {
           nombre: "Tapaditos Fríos",
           nota: "Se piden de 100 en 100.",
           items: [
-            { n: "Filetitos de pollo a la mostaza", d: "Montado en lechuga y palmito o pepinillo.", precioFijo: "$61.000 / 100 u", img: "assets/img/tapaditos.jpg" },
-            { n: "Pasta casera de ave y pimiento", d: "", precioFijo: "$42.000 / 100 u" },
-            { n: "Churrasco italiano", d: "", precioFijo: "$57.000 / 100 u" },
-            { n: "Lomito italiano", d: "", precioFijo: "$54.000 / 100 u" },
-            { n: "Jamón de pavo y palmito", d: "Lechuga, jamón de pavo y palmito, con un toque de queso crema.", precioFijo: "$57.000 / 100 u" },
+            { n: "Filetitos de pollo a la mostaza", d: "Montado en lechuga y palmito o pepinillo.", precioFijo: "$63.000 / 100 u", img: "assets/img/tapaditos.jpg" },
+            { n: "Pasta casera de ave y pimiento", d: "", precioFijo: "$46.000 / 100 u" },
+            { n: "Pasta de ave palta", d: "", precioFijo: "$56.000 / 100 u" },
+            { n: "Churrasco italiano", d: "", precioFijo: "$64.000 / 100 u" },
+            { n: "Lomito italiano", d: "", precioFijo: "$64.000 / 100 u" },
+            { n: "Jamón de pavo y palmito", d: "Lechuga, jamón de pavo y palmito, con un toque de queso crema.", precioFijo: "$59.000 / 100 u" },
           ],
         },
         {
           nombre: "Tapaditos Vegetarianos",
           nota: "Se piden de 100 en 100.",
           items: [
-            { n: "Queso chanco", d: "Queso chanco con tomate asado y aceitunas.", precioFijo: "$42.000 / 100 u" },
-            { n: "Queso fresco", d: "Lechuga, queso fresco, tomate y ají verde.", precioFijo: "$42.000 / 100 u" },
+            { n: "Queso chanco", d: "Queso chanco con tomate asado y aceitunas.", precioFijo: "$50.000 / 100 u" },
+            { n: "Queso fresco", d: "Lechuga, queso fresco, tomate y ají verde.", precioFijo: "$49.000 / 100 u" },
           ],
         },
         {
           nombre: "Mini Pastelitos Cóctel",
           nota: "Pedido mínimo 50 unidades. 5 variedades surtidas.",
           items: [
-            { n: "Mini pastelitos surtidos", d: "Mini pie limón · mini pie maracuyá · mini alfajores · mini cheesecake de berries · mini mil hoja manjar.", precioFijo: "$40.000 / 100 u" },
+            { n: "Mini pastelitos surtidos", d: "Mini pie limón · mini pie maracuyá · mini alfajores · mini cheesecake de berries · mini mil hoja manjar.", precioFijo: "$48.000 / 100 u" },
           ],
         },
         {
           nombre: "Petit Bouche",
-          nota: "Pedido mínimo 50 unidades. Tacitas de masa rellenas.",
+          nota: "Pedido mínimo 50 unidades. Tacitas de masa rellenas. En un pedido de 100 unidades se pueden elegir 2 variedades y se cobra proporcional a lo que se pide de cada una.",
           items: [
-            { n: "Petit Bouche surtido", d: "Choclo, salsa bechamel y champiñón · camarón y queso · salsa de queso, salame y ciboulette · espinacas a la crema.", precioFijo: "$40.000 / 100 u" },
+            { n: "Camarón y queso", d: "", precioFijo: "$50.000 / 100 u" },
+            { n: "Espinacas a la crema", d: "", precioFijo: "$43.000 / 100 u" },
+            { n: "Salame y queso", d: "Salsa de queso, salame y ciboulette.", precioFijo: "$43.000 / 100 u" },
+            { n: "Choclo y champiñón", d: "Choclo y champiñón en salsa bechamel.", precioFijo: "$43.000 / 100 u" },
           ],
         },
         {
           nombre: "Mini Pizzas",
           nota: "Pedido mínimo 50 unidades. 2 variedades.",
           items: [
-            { n: "Napolitana", d: "Tomate, queso y aceitunas.", precioFijo: "$45.000 / 100 u", img: "assets/img/pizzetas.jpg" },
-            { n: "De verduras", d: "Palmito, choclito oriental, tomate y queso.", precioFijo: "$45.000 / 100 u" },
+            { n: "Napolitana", d: "Queso, tomate, jamón y aceitunas.", precioFijo: "$54.000 / 100 u", img: "assets/img/pizzetas.jpg" },
+            { n: "De verduras", d: "Queso, palmitos, espárragos, tomate y aceituna.", precioFijo: "$54.000 / 100 u" },
           ],
         },
         {
           nombre: "Mini Sopaipillas",
           nota: "Pedido mínimo 50 unidades. Con pebre en pocillos.",
           items: [
-            { n: "Mini sopaipillas de cóctel", d: "", precioFijo: "$40.000 / 100 u" },
+            { n: "Mini sopaipillas de cóctel", d: "", precioFijo: "$45.000 / 100 u" },
           ],
         },
         {
@@ -298,8 +303,8 @@ window.KAISER = {
           nombre: "Crostinis",
           nota: "Pedido mínimo 50 unidades. Sobre pan baguette.",
           items: [
-            { n: "Salmón ahumado", d: "Montado en queso crema, salmón ahumado con sésamo negro.", precioFijo: "$74.000 / 100 u" },
-            { n: "Queso crema y salame", d: "Montado en pasta casera de queso crema, salame, palmito y ciboulette.", precioFijo: "$41.000 / 100 u" },
+            { n: "Salmón ahumado", d: "Montado en queso crema, salmón ahumado con sésamo negro.", precioFijo: "$76.000 / 100 u" },
+            { n: "Queso crema y salame", d: "Montado en pasta casera de queso crema, salame, palmito y ciboulette.", precioFijo: "$50.000 / 100 u" },
           ],
         },
         {
@@ -313,8 +318,8 @@ window.KAISER = {
           nombre: "Bruschetas",
           nota: "Pedido mínimo 50 unidades. Sobre pan baguette tostado al oliva.",
           items: [
-            { n: "Ricotta y tomate cherry", d: "Suave pasta de ricotta con un toque de queso crema, albahaca y aceitunas picadas, decorado con tomate cherry asado.", precioFijo: "$53.000 / 100 u" },
-            { n: "Queso de cabra", d: "Queso de cabra, hojas de espinacas y tomate cherry.", precioFijo: "$47.000 / 100 u" },
+            { n: "Ricotta y tomate cherry", d: "Suave pasta de ricotta con un toque de queso crema, albahaca y aceitunas picadas, decorado con tomate cherry asado.", precioFijo: "$61.000 / 100 u" },
+            { n: "Queso de cabra", d: "Queso de cabra, hojas de espinacas y tomate cherry. Solo de temporada: consulta disponibilidad.", precioFijo: "$68.000 / 100 u" },
           ],
         },
         {

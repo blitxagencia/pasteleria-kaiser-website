@@ -231,5 +231,46 @@ for (const viejo of ["28000", "34500", "43500", "52500", "64000", "$15.500", "$2
 for (const trozo of ["torta $4.000", "pie o kuchen $3.200", "Cheesecake New York $3.500"])
   ok(tortasHu.nota.includes(trozo), `hu · la nota de tortas trae el trozo: ${trozo}`);
 
+/* Coctelería de Huechuraba desde el 27-oct: la carta impresa marcada a mano por
+   don Víctor y sus respuestas del mismo día. Cada producto con lo que cobra el
+   carrito (50 y 100 unidades donde el mínimo es 50), y la lista completa: que no
+   sobre ni falte ninguno. */
+const COCTEL_HU = {
+  "Canapés Premium surtidos": "100u 48000", "Canapés solo de camarón": "100u 55000",
+  "Filetitos de pollo a la mostaza": "100u 63000", "Pasta casera de ave y pimiento": "100u 46000",
+  "Pasta de ave palta": "100u 56000", "Churrasco italiano": "100u 64000",
+  "Lomito italiano": "100u 64000", "Jamón de pavo y palmito": "100u 59000",
+  "Queso chanco": "100u 50000", "Queso fresco": "100u 49000",
+  "Mini pastelitos surtidos": "50u 24000 | 100u 48000",
+  "Camarón y queso": "50u 25000 | 100u 50000", "Espinacas a la crema": "50u 21500 | 100u 43000",
+  "Salame y queso": "50u 21500 | 100u 43000", "Choclo y champiñón": "50u 21500 | 100u 43000",
+  "Napolitana": "50u 27000 | 100u 54000", "De verduras": "50u 27000 | 100u 54000",
+  "Mini sopaipillas de cóctel": "50u 22500 | 100u 45000",
+  // Se mantienen (don Víctor, 27-oct).
+  "Mini hamburguesas caseras": "100u 89000", "Bolitas de carne": "50u 44500 | 100u 89000",
+  "Cubitos de queso crema apanado": "50u 30500 | 100u 61000",
+  "Brochetas de frutas": "50u 36000 | 100u 72000",
+  "Carne con chorrillo": "50u 41500 | 100u 83000", "Pollo con pulpa de cerdo": "50u 37000 | 100u 74000",
+  "Tomate cherry, queso de cabra y albahaca": "50u 23500 | 100u 47000",
+  "Salmón ahumado": "50u 38000 | 100u 76000", "Queso crema y salame": "50u 25000 | 100u 50000",
+  "Ricotta y tomate cherry": "50u 30500 | 100u 61000", "Queso de cabra": "50u 34000 | 100u 68000",
+};
+const coctelHu = hu.D.carta.find((s) => s.id === "cocteleria");
+const enSitioHu = [];
+for (const gr of coctelHu.grupos) for (const it of gr.items) {
+  enSitioHu.push(it.n);
+  const real = huFns.buildOpts(it, null, gr.nota).map((o) => `${o.units}u ${o.price}`).join(" | ");
+  ok(COCTEL_HU[it.n] === real, `hu · coctelería · ${it.n}: ${real} (esperado ${COCTEL_HU[it.n]})`);
+}
+ok(enSitioHu.length === Object.keys(COCTEL_HU).length && Object.keys(COCTEL_HU).every((n) => enSitioHu.includes(n)),
+   "hu · la coctelería trae justo esos productos (sin ceviche ni pastel de jaiba, con ave palta y canapés de camarón)");
+{
+  const pb = coctelHu.grupos.find((g) => g.nombre === "Petit Bouche");
+  ok(/2 variedades/.test(pb.nota) && /proporcional/.test(pb.nota) && !huFns.allowsMix(pb.nota),
+     "hu · petit bouche: 2 variedades en 100, proporcional, y se puede pedir 50 de una sola");
+  const cabra = coctelHu.grupos.flatMap((g) => g.items).find((i) => i.n === "Queso de cabra");
+  ok(/temporada/.test(cabra.d) && /disponibilidad/.test(cabra.d), "hu · bruscheta de queso de cabra: solo de temporada");
+}
+
 console.log(`\n${revisados - fallos}/${revisados} comprobaciones OK · ${conTope} productos con tope en las 3 sucursales`);
 if (fallos) process.exit(1);
