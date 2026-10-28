@@ -182,7 +182,7 @@ ok(Math.max(...Object.keys(escalaPe("3 Leches")).map(Number)) === 25, "pe · 3 L
        (rige desde el martes 27-oct-2026; "en Huechuraba los precios son por
        tamaño y no por sabor") y sus respuestas del 24-oct --- */
 const hu = cargar("hu");
-// "Pie Limón" es torta de panqueque y también pie: los kuchen se buscan en su sección.
+// Los kuchen se buscan en su sección (hasta el 28-oct, "Pie Limón" era torta y también pie).
 const buscarHu = (n, secId) => {
   for (const sec of hu.D.carta || []) if (!secId || sec.id === secId) for (const gr of sec.grupos || [])
     for (const it of gr.items || []) if (it.n === n) return [it, gr];
@@ -222,6 +222,15 @@ for (const n of ["Streusel de Frambuesa", "Streusel de Arándanos", "Kuchen de M
                  "Tartaleta de Frutas", "Tartaleta de Frutillas", "Tartaleta de Arándanos"])
   ok(opcionesHu(n) === "19500", `hu · ${n}: igual que el kuchen y pie chico, 19500 (es ${opcionesHu(n)})`);
 ok(opcionesHu("Mix Kaiser") === "20000", "hu · Mix Kaiser: 20000");
+// Ninguna torta con el mismo nombre que un kuchen (28-oct): el carrito mandaba "1x Pie Limón
+// (50 personas)" y el agente lo leía como el pie, "no hay formato para 50 personas".
+{
+  const nombres = (id) => hu.D.carta.find((s) => s.id === id).grupos.flatMap((g) => g.items.map((i) => i.n));
+  const repetidos = nombres("tortas").filter((n) => nombres("kuchen").includes(n));
+  ok(!repetidos.length && nombres("tortas").includes("Torta Pie Limón"),
+     "hu · ninguna torta se llama igual que un kuchen (la torta es \"Torta Pie Limón\")" +
+     (repetidos.length ? ": " + repetidos.join(", ") : ""));
+}
 ok(opcionesHu("Cheesecake New York") === "36000", "hu · Cheesecake New York: 36000");
 
 // Ningún precio viejo en tortas ni kuchen (47.500 y 59.000 no: hoy son la de 25 y la baja en azúcar de 25).

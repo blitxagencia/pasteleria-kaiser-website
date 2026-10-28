@@ -133,7 +133,7 @@ window.KAISER = {
             { n: "Merengue Maracuyá", d: "Panqueque de chocolate y vainilla, discos de merengue y mousse de maracuyá." },
             { n: "Naranja Manjar", d: "Panqueque de vainilla con salsa de naranja y manjar." },
             { n: "Lúcuma Manjar Nuez", d: "Panqueque de vainilla con crema de lúcuma y manjar crema con nueces." },
-            { n: "Pie Limón", d: "Panqueque de vainilla y mousse de pie limón." },
+            { n: "Torta Pie Limón", d: "Panqueque de vainilla y mousse de pie limón." },
             { n: "3 Sabores", d: "Panqueque de chocolate con crema pastelera, manjar crema y crema chantilly con frambuesa natural." },
             { n: "Frutas", d: "Panqueque de vainilla con crema chantilly acompañada de piña, durazno y cereza." },
             { n: "Merengue Lúcuma", d: "Panqueque de vainilla, discos de merengue con crema de lúcuma." },
