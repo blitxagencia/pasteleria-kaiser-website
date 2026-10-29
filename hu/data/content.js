@@ -262,9 +262,9 @@ window.KAISER = {
         },
         {
           nombre: "Mini Pastelitos Cóctel",
-          nota: "Pedido mínimo 50 unidades. 5 variedades surtidas.",
+          nota: "Pedido mínimo 50 unidades. 6 variedades surtidas.",
           items: [
-            { n: "Mini pastelitos surtidos", d: "Mini pie limón · mini pie maracuyá · mini alfajores · mini cheesecake de berries · mini mil hoja manjar.", precioFijo: "$48.000 / 100 u" },
+            { n: "Mini pastelitos surtidos", d: "Mini pie limón · mini pie maracuyá · mini tartaleta de frutas · mini alfajores · mini cheesecake de berries · mini mil hoja manjar.", precioFijo: "$48.000 / 100 u" },
           ],
         },
         {
