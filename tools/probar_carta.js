@@ -214,6 +214,15 @@ for (const gr of tortasHu.grupos)
      "hu · el encabezado de la baja en azúcar no hace creer que hay de 15-20: " + huFns.scaleRange(sc));
 }
 
+// La Bizcocho Zanahoria solo viene en 10-12, 15-20 y 25 (don Víctor, 29-oct): el agente le
+// ofrecía hasta 50 a un cliente.
+{
+  const [it, gr] = buscarHu("Bizcocho Zanahoria", "tortas");
+  const opc = huFns.buildOpts(it, gr.precio, gr.nota).map((o) => o.label + " " + o.price).sort().join(" | ");
+  ok(opc === "10-12 personas 31500 | 15-20 personas 38000 | 25 personas 47500",
+     "hu · Bizcocho Zanahoria: solo 10-12, 15-20 y 25 personas (es " + opc + ")");
+}
+
 for (const n of ["Pie Limón", "Pie de Maracuyá", "Kuchen de Nuez"])
   ok(opcionesHu(n) === "Chico (6 a 8 trozos) 19500 | Grande (10 a 12 trozos) 26000", `hu · ${n}: ${opcionesHu(n)}`);
 ok(opcionesHu("Cheesecake de Frutos Rojos") === "Chico (8 trozos) 21000 | Grande (10 a 12 trozos) 27000",

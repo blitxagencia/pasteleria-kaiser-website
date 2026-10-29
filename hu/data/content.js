@@ -183,7 +183,7 @@ window.KAISER = {
           nombre: "Tortas de bizcocho",
           precio: "escalaTortas",
           items: [
-            { n: "Bizcocho Zanahoria", d: "Bizcocho de zanahoria con nueces, con frosting de queso Philadelphia y manjar." },
+            { n: "Bizcocho Zanahoria", d: "Bizcocho de zanahoria con nueces, con frosting de queso Philadelphia y manjar.", tope: "25" },
             { n: "Bizcocho Chocolate", d: "Bizcocho de chocolate con mousse de chocolate y manjar." },
           ],
         },
