@@ -302,7 +302,26 @@
   var CART = [];
   var LS_KEY = "kaiserCartPH2";
 
-  function cartLoad() { try { CART = JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch (e) { CART = []; } }
+  // El carrito se guarda con los precios del día en que se armó. Al volver a la página
+  // cada línea toma los de la carta de hoy: sin esto, un carrito armado antes de un
+  // cambio de precios sigue mostrando y mandando por WhatsApp los montos viejos
+  // (reproducido con la lista de Huechuraba del 27-oct). Lo que ya no está en la carta,
+  // o ya no viene en ese tamaño, se saca.
+  function cartLoad() {
+    var guardado;
+    try { guardado = JSON.parse(localStorage.getItem(LS_KEY)); } catch (e) { guardado = null; }
+    CART = [];
+    if (!Array.isArray(guardado)) return;
+    guardado.forEach(function (e) {
+      var it = null;
+      for (var i = 0; i < ITEMS.length; i++) { if (e && ITEMS[i].n === e.n && ITEMS[i].cat === e.cat) { it = ITEMS[i]; break; } }
+      var antes = it && e.opts && e.opts[e.sel];
+      var sel = antes ? it.opts.map(function (o) { return o.label; }).indexOf(antes.label) : -1;
+      if (sel < 0 || !(e.qty > 0)) return;
+      CART.push({ n: it.n, cat: it.cat, opts: it.opts, sel: sel, qty: e.qty, mix: it.mix });
+    });
+    cartSave();
+  }
   function cartSave() { try { localStorage.setItem(LS_KEY, JSON.stringify(CART)); } catch (e) {} }
 
   function cartTotal() { return CART.reduce(function (s, e) { return s + e.opts[e.sel].price * e.qty; }, 0); }

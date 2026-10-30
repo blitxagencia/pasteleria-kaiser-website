@@ -290,5 +290,42 @@ ok(enSitioHu.length === Object.keys(COCTEL_HU).length && Object.keys(COCTEL_HU).
   ok(/temporada/.test(cabra.d) && /disponibilidad/.test(cabra.d), "hu · bruscheta de queso de cabra: solo de temporada");
 }
 
+/* --- El carrito guardado en el celular toma los precios de hoy (cartLoad) ---
+   El carrito se guarda con los precios del día en que se armó. Un carrito armado antes
+   del 27-oct, abierto después, seguía mostrando $43.500 por una torta de 25 personas que
+   ya valía $47.500, y lo mandaba así por WhatsApp. La función es la real de cada main.js;
+   el catálogo es de mentira, para probar los cuatro casos. --- */
+for (const suc of ["ph", "pe", "hu"]) {
+  const { extraer } = cargar(suc);
+  const ITEMS = [
+    { n: "Torta X", cat: "Tortas", sel: 0, mix: false,
+      opts: [{ label: "25 personas", price: 47500, units: 0 }, { label: "50 personas", price: 69000, units: 0 }] },
+    { n: "Kuchen Y", cat: "Kuchen", sel: 0, mix: false, opts: [{ label: "", price: 19500, units: 0 }] },
+    { n: "Torta Z", cat: "Tortas", sel: 0, mix: false, opts: [{ label: "25 personas", price: 47500, units: 0 }] },
+  ];
+  const guardado = [
+    { n: "Torta X", cat: "Tortas", sel: 1, qty: 2,
+      opts: [{ label: "50 personas", price: 64000, units: 0 }, { label: "25 personas", price: 43500, units: 0 }] },
+    { n: "Kuchen Y", cat: "Kuchen", sel: 0, qty: 1, opts: [{ label: "", price: 15500, units: 0 }] },
+    // Cambió de nombre (como "Pie Limón" -> "Torta Pie Limón"): ya no está en la carta.
+    { n: "Pie Limón", cat: "Tortas", sel: 0, qty: 1, opts: [{ label: "25 personas", price: 43500, units: 0 }] },
+    // Ya no viene en ese tamaño (como la Bizcocho Zanahoria de 50 en Huechuraba).
+    { n: "Torta Z", cat: "Tortas", sel: 0, qty: 1, opts: [{ label: "50 personas", price: 64000, units: 0 }] },
+  ];
+  let escrito = null;
+  const almacen = { getItem: () => JSON.stringify(guardado), setItem: (k, v) => { escrito = v; } };
+  const CART = new Function("localStorage", "LS_KEY", "ITEMS",
+    "var CART = [];\n" + extraer("cartLoad", true) + "\n" + extraer("cartSave", true) +
+    "\ncartLoad(); return CART;")(almacen, "k", ITEMS);
+  const linea = (n) => CART.find((e) => e.n === n);
+  ok(CART.length === 2,
+     `${suc} · carrito guardado: quedan 2 líneas (salen la renombrada y el tamaño que ya no viene), quedaron ${CART.length}`);
+  ok(linea("Torta X") && linea("Torta X").opts[linea("Torta X").sel].price === 47500 && linea("Torta X").qty === 2,
+     `${suc} · carrito guardado: la torta de 25 toma el precio de hoy y conserva la cantidad`);
+  ok(linea("Kuchen Y") && linea("Kuchen Y").opts[linea("Kuchen Y").sel].price === 19500,
+     `${suc} · carrito guardado: el kuchen toma el precio de hoy`);
+  ok(escrito !== null && JSON.parse(escrito).length === 2, `${suc} · carrito guardado: se vuelve a guardar ya corregido`);
+}
+
 console.log(`\n${revisados - fallos}/${revisados} comprobaciones OK · ${conTope} productos con tope en las 3 sucursales`);
 if (fallos) process.exit(1);
