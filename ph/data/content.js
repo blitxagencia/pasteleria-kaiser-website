@@ -27,7 +27,8 @@ window.KAISER = {
 
   /* ---- Horario ----
      Fuente: perfil de WhatsApp Business de la propia sucursal,
-     verificado el 2026-08-03. Formato 24h. day: 0=domingo .. 6=sábado.
+     verificado el 2026-08-03; martes a domingo 09:30–20:30 desde el
+     2026-11-05, pedido por Nicolás. Formato 24h. day: 0=domingo .. 6=sábado.
      Cerrado = null.
 
      ⚠️ Antes de tocar esto, confirmarlo contra el WhatsApp Business de
@@ -37,18 +38,16 @@ window.KAISER = {
     placeholder: false,
     dias: {
       1: null,                               // Lun: CERRADO
-      2: { abre: "12:00", cierra: "20:00" }, // Mar
-      3: { abre: "09:00", cierra: "20:00" }, // Mié
-      4: { abre: "09:00", cierra: "20:00" }, // Jue
-      5: { abre: "09:00", cierra: "20:00" }, // Vie
-      6: { abre: "09:00", cierra: "20:00" }, // Sáb
-      0: { abre: "11:45", cierra: "19:30" }, // Dom
+      2: { abre: "09:30", cierra: "20:30" }, // Mar
+      3: { abre: "09:30", cierra: "20:30" }, // Mié
+      4: { abre: "09:30", cierra: "20:30" }, // Jue
+      5: { abre: "09:30", cierra: "20:30" }, // Vie
+      6: { abre: "09:30", cierra: "20:30" }, // Sáb
+      0: { abre: "09:30", cierra: "20:30" }, // Dom
     },
     resumen: [
       { etiqueta: "Lunes", valor: "Cerrado" },
-      { etiqueta: "Martes", valor: "12:00 – 20:00" },
-      { etiqueta: "Miércoles a sábado", valor: "09:00 – 20:00" },
-      { etiqueta: "Domingo", valor: "11:45 – 19:30" },
+      { etiqueta: "Martes a domingo", valor: "09:30 – 20:30" },
     ],
   },
 

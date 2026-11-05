@@ -33,14 +33,13 @@ ph/
 
 ## Horario · REAL y confirmado
 
-**Vigente desde el miércoles 2026-08-19**, confirmado por Nicolás el 2026-08-17:
+**Vigente desde el 2026-11-05**, pedido por Nicolás ese día:
 
 - Lunes: **Cerrado**
-- Martes: **12:00 – 20:00**
-- Miércoles a sábado: **09:00 – 20:00**
-- Domingo: **11:45 – 19:30**
+- Martes a domingo: **09:30 – 20:30**
 
-*Antes de esa fecha era: martes a sábado 11:45 – 20:00, domingo igual.*
+*Antes: martes 12:00 – 20:00, miércoles a sábado 09:00 – 20:00, domingo 11:45 – 19:30
+(desde el 2026-08-19). Y antes de eso: martes a sábado 11:45 – 20:00, domingo igual.*
 
 Vive en `data/content.js` → `horario`, y de ahí sale también el indicador "Abierto ahora".
 
