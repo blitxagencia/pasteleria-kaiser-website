@@ -137,7 +137,6 @@ window.KAISER = {
             { n: "3 Sabores", d: "Panqueque de chocolate con crema pastelera, manjar crema y crema chantilly con frambuesa natural." },
             { n: "Frutas", d: "Panqueque de vainilla con crema chantilly acompañada de piña, durazno y cereza." },
             { n: "Merengue Lúcuma", d: "Panqueque de vainilla, discos de merengue con crema de lúcuma." },
-            { n: "4 Leches Amapola", d: "Panqueque con amapola, manjar crema y crema pastelera, con un ligero remojo de leche condensada y leche evaporada." },
             { n: "Manjar Nuez", d: "Panqueque de vainilla con manjar crema con nueces." },
             { n: "Lúcuma Manjar", d: "Panqueque de vainilla con crema de lúcuma y manjar puro." },
             { n: "Locura Kaiser", d: "Discos de merengue, panqueque de chocolate, discos de mil hoja, con crema de lúcuma, manjar y crema chantilly con mermelada de frambuesa.", img: "assets/img/torta-panqueque.jpg" },
